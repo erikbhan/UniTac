@@ -3,54 +3,82 @@ using MQTTnet.Diagnostics;
 using MQTTnet.Server;
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
-public class MQTTServer : MonoBehaviour
+public class Server : MonoBehaviour
 {
     [SerializeField] bool enableLogging = false;
     [SerializeField] int port = 1883;
     [SerializeField] int connectionBacklog = 100;
 
     Coroutine startServerCoroutine;
+    Coroutine stopServerCoroutine;
     MqttServer mqttServer;
 
-    public void Start()
+    string isStarted = "lorem ipsum";
+    
+    void OnGUI()
     {
-        if (startServerCoroutine == null && mqttServer == null)
+        if (GUILayout.Button("Start"))
         {
+            if (mqttServer != null && mqttServer.IsStarted)
+            {
+                Debug.Log("Server already started");
+                return;
+            }
+
+            if (stopServerCoroutine != null) StopCoroutine(stopServerCoroutine);
             startServerCoroutine = StartCoroutine(StartServerAsync());
-        } 
-        else
-        {
-            Debug.LogWarning("Server already starting or started");
         }
+
+        if (GUILayout.Button("Stop"))
+        {
+            if (mqttServer == null || !mqttServer.IsStarted)
+            {
+                Debug.Log("Server already stopped");
+                return;
+            }
+
+            if (startServerCoroutine != null) StopCoroutine(startServerCoroutine);
+            stopServerCoroutine = StartCoroutine(StopServerAsync());
+        }
+
+        GUILayout.Label("isStarted: " + isStarted);
+    }
+
+    void Update()
+    {
+        if (mqttServer != null) isStarted = mqttServer.IsStarted.ToString();
+        else isStarted = "null";
     }
 
     /// <summary>
     /// A Unity coroutine that creates and asynchronously starts the MQTT server
     /// </summary>
-    /// <returns></returns>
     IEnumerator StartServerAsync()
     {
+        var mqttFactory = new MqttFactory();
+        if (enableLogging) mqttFactory = new MqttFactory(new ConsoleLogger());
+
         var mqttServerOptions = new MqttServerOptionsBuilder()
-            .WithConnectionBacklog(connectionBacklog)
+            .WithDefaultEndpoint()
             .WithDefaultEndpointPort(port)
+            .WithConnectionBacklog(connectionBacklog)
             .Build();
 
-        MqttFactory mqttFactory;
-        if (enableLogging)
-        {
-            mqttFactory = new MqttFactory(new ConsoleLogger());
-        }
-        else
-        {
-            mqttFactory = new MqttFactory();
-        }
-        using (mqttServer = mqttFactory.CreateMqttServer(mqttServerOptions))
-        {
-            mqttServer.StartAsync();
-            yield return new WaitUntil(() => mqttServer.IsStarted);
-        }
+        mqttServer = mqttFactory.CreateMqttServer(mqttServerOptions);
+        var t = Task.Run(async () => await mqttServer.StartAsync());
+        yield return new WaitUntil(() => t.IsCompleted);
+    }
+
+    /// <summary>
+    /// Unity coroutine that asynchronously stops the MQTT server
+    /// </summary>
+    IEnumerator StopServerAsync()
+    {
+        var t = Task.Run(async () => await mqttServer?.StopAsync());
+        yield return new WaitWhile(() => t.IsCompleted);
     }
 
     /// <summary>
@@ -66,7 +94,7 @@ public class MQTTServer : MonoBehaviour
 #nullable disable
         {
             if (parameters?.Length > 0) { message = string.Format(message, parameters); }
-
+            
             lock (_consoleSyncRoot)
             {
                 switch (logLevel)
@@ -74,11 +102,9 @@ public class MQTTServer : MonoBehaviour
                     case MqttNetLogLevel.Warning:
                         Debug.LogWarning(message);
                         break;
-
                     case MqttNetLogLevel.Error:
                         Debug.LogError(message);
                         break;
-
                     default:
                         Debug.Log(message);
                         break;
