@@ -1,11 +1,20 @@
 using System;
 using System.Collections;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class UI : MonoBehaviour
 {
     Rect serverWindowRect = new(20, 20, 150, 0);
     Rect clientWindowRect = new(190, 20, 0, 0);
+    Server server;
+
+    private void Start()
+    {
+        server = new Server(gameObject.AddComponent<Logger>());
+    }
 
     void OnGUI()
     {
@@ -13,20 +22,19 @@ public class UI : MonoBehaviour
         clientWindowRect = GUILayout.Window(1, clientWindowRect, ClientWindow, "Client");
     }
 
-    private void ServerWindow(int id)
+    private async void ServerWindow(int id)
     {
         GUILayout.Label("Server status: " + false.ToString());
 
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Start"))
         {
-            // Do checks
-            // Start server if all good
+            await server.Start();
         }
+
         if (GUILayout.Button("Stop"))
         {
-            // Do checks
-            // Stop server if all good
+            await server.Stop();
         }
         GUILayout.EndHorizontal();
 
