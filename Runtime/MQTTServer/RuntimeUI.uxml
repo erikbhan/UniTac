@@ -1,0 +1,9 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements"
+        xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements"
+        noNamespaceSchemaLocation="../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:VisualElement style="flex-grow: 1;">
+        <ui:Label text="MQTTServer.IsStarted: " display-tooltip-when-elided="true"/>
+        <ui:Button text="Start" display-tooltip-when-elided="true" name="start-button"/>
+        <ui:Button text="Stop" display-tooltip-when-elided="true" name="stop-button"/>
+    </ui:VisualElement>
+</ui:UXML>
