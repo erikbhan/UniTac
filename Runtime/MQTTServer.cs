@@ -26,6 +26,10 @@ public class MQTTServer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// A Unity coroutine that creates and asynchronously starts the MQTT server
+    /// </summary>
+    /// <returns></returns>
     IEnumerator StartServerAsync()
     {
         var mqttServerOptions = new MqttServerOptionsBuilder()
@@ -49,6 +53,9 @@ public class MQTTServer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// A logger that communicates with the MQTT server
+    /// </summary>
     class ConsoleLogger : IMqttNetLogger
     {
         readonly object _consoleSyncRoot = new();
