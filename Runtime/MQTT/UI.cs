@@ -15,9 +15,10 @@ public class UI : MonoBehaviour
 
     private void Start()
     {
+        Spawner spawner = gameObject.GetComponent<Spawner>();
         Logger logger = gameObject.AddComponent<Logger>();
-        server = new Server(logger);
-        client = new Client(logger);
+        server = new Server(/*logger*/);
+        client = new Client(spawner);
     }
 
     void OnGUI()

@@ -1,10 +1,12 @@
 using MQTTnet;
 using MQTTnet.Client;
 using System;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Unity.Plastic.Newtonsoft.Json;
+using UnityEngine;
 
 public class Client
 {
@@ -14,14 +16,17 @@ public class Client
     private readonly Logger logger;
     private Payload payload;
     private DateTime lastMessageReceived;
+    Spawner spawner;
 
-    public Client(Logger? logger = null)
+#nullable enable
+    public Client(Spawner spawner, Logger? logger = null)
     {
+        this.spawner = spawner;
         this.logger = logger;
         var mqttFactory = new MqttFactory();
 
         this.mqttClientOptions = new MqttClientOptionsBuilder()
-            .WithTcpServer("192.168.0.185")
+            .WithTcpServer("192.168.0.230")
             .Build();
         if (logger != null) mqttClient = mqttFactory.CreateMqttClient(logger);
         else mqttClient = mqttFactory.CreateMqttClient();
@@ -59,6 +64,10 @@ public class Client
         var bytes = incommingEvent.ApplicationMessage.Payload;
         payload = UnpackPayload(bytes);
         if(logger != null) logger.Log(payload);
+        if (spawner != null)
+        {
+            spawner.UpdateBeans(payload.Entities.Values.ToList());
+        }
         return Task.CompletedTask;
     }
 
