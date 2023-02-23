@@ -26,12 +26,12 @@ public class Logger : MonoBehaviour, IMqttNetLogger
         }
     }
 
-    public void Log(object @object)
+    public void Log(object e)
     {
         var output = "NULL";
-        if (@object != null)
+        if (e != null)
         {
-            output = JsonConvert.SerializeObject(@object);
+            output = e.ToString();
         }
         Debug.Log(output);
     }

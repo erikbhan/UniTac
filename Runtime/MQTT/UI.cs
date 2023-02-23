@@ -15,8 +15,9 @@ public class UI : MonoBehaviour
 
     private void Start()
     {
-        server = new Server(/*gameObject.AddComponent<Logger>()*/);
-        client = new Client(gameObject.AddComponent<Logger>());
+        Logger logger = gameObject.AddComponent<Logger>();
+        server = new Server(logger);
+        client = new Client(logger);
     }
 
     void OnGUI()
@@ -47,7 +48,7 @@ public class UI : MonoBehaviour
 
     private async void ClientWindow(int id)
     {
-        GUILayout.Label("Client connected: " + client.isConnected.ToString());
+        GUILayout.Label("Client connected: " + client.IsConnected().ToString());
 
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Connect"))
