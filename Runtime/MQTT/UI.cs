@@ -10,12 +10,13 @@ public class UI : MonoBehaviour
     Rect serverWindowRect = new(20, 20, 150, 0);
     Rect clientWindowRect = new(190, 20, 0, 0);
     Server server;
+    Client client;
     bool serverRunning;
 
     private void Start()
     {
-        server = new Server(gameObject.AddComponent<Logger>());
-
+        server = new Server(/*gameObject.AddComponent<Logger>()*/);
+        client = new Client(gameObject.AddComponent<Logger>());
     }
 
     void OnGUI()
@@ -44,13 +45,21 @@ public class UI : MonoBehaviour
         GUI.DragWindow();
     }
 
-    private void ClientWindow(int id)
+    private async void ClientWindow(int id)
     {
+        GUILayout.Label("Client connected: " + client.isConnected.ToString());
+
+        GUILayout.BeginHorizontal();
         if (GUILayout.Button("Connect"))
         {
-            // Do checks
-            // Connect to server if all good
+            await client.Connect();
         }
+
+        if (GUILayout.Button("Disconnect"))
+        {
+            await client.Disconnect();
+        }
+        GUILayout.EndHorizontal();
 
         GUI.DragWindow();
     }
