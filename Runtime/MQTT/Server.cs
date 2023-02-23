@@ -1,20 +1,11 @@
 using MQTTnet;
 using MQTTnet.Server;
-using System;
-using System.Collections;
 using System.Threading.Tasks;
-using UnityEngine;
 
 public class Server
 {
-    private Logger logger;
-    private MqttServer mqttServer;
+    private readonly MqttServer mqttServer;
     public Server(Logger logger = null)
-    {
-        this.logger = logger;
-    }
-
-    public async Task Start()
     {
         // Factory
         MqttFactory mqttFactory;
@@ -27,10 +18,19 @@ public class Server
             .Build();
 
         mqttServer = mqttFactory.CreateMqttServer(mqttServerOptions);
-        await mqttServer.StartAsync();
+    }
+
+    public async Task Start()
+    {
+        await mqttServer?.StartAsync();
     }
 
     public async Task Stop() {
-        await mqttServer.StopAsync();
+        await mqttServer?.StopAsync();
+    }
+
+    public bool IsStarted()
+    {
+        return mqttServer.IsStarted;
     }
 }

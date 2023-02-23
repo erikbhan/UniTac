@@ -10,21 +10,24 @@ public class UI : MonoBehaviour
     Rect serverWindowRect = new(20, 20, 150, 0);
     Rect clientWindowRect = new(190, 20, 0, 0);
     Server server;
+    bool serverRunning;
 
     private void Start()
     {
         server = new Server(gameObject.AddComponent<Logger>());
+
     }
 
     void OnGUI()
     {
+        if (server != null) serverRunning = server.IsStarted();
         serverWindowRect = GUILayout.Window(0, serverWindowRect, ServerWindow, "Server");
         clientWindowRect = GUILayout.Window(1, clientWindowRect, ClientWindow, "Client");
     }
 
     private async void ServerWindow(int id)
     {
-        GUILayout.Label("Server status: " + false.ToString());
+        GUILayout.Label("Server running: " + serverRunning.ToString());
 
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("Start"))
