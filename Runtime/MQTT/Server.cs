@@ -4,7 +4,7 @@ using MQTTnet.Server;
 using System.Threading.Tasks;
 
 /// <summary>
-/// MQTT-server wrapper
+/// MQTT-server wrapper, see <see cref="MqttServer"/>
 /// </summary>
 public class Server
 {
@@ -13,7 +13,7 @@ public class Server
     /// <summary>
     /// Creates an MQTTserver (broker) ready to listen to localhost:1883
     /// </summary>
-    /// <param name="logger"></param>
+    /// <param name="logger">Optional: A logger may be passed to enable debugging</param>
     public Server(Logger? logger = null)
     {
         // Factory
@@ -30,7 +30,7 @@ public class Server
     /// <summary>
     /// Starts the server listening to localhost:1883
     /// </summary>
-    /// <returns></returns>
+    /// <returns>awaitable <see cref="Task"/></returns>
     public async Task Start()
     {
         await mqttServer.StartAsync();
@@ -39,7 +39,7 @@ public class Server
     /// <summary>
     /// Stops the server
     /// </summary>
-    /// <returns></returns>
+    /// <returns>awaitable <see cref="Task"/></returns>
     public async Task Stop() {
         await mqttServer.StopAsync();
     }

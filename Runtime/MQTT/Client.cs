@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Unity.Plastic.Newtonsoft.Json;
 
 /// <summary>
-/// MQTT-client wrapper
+/// MQTT-client wrapper, see <see cref="MqttClient"/>
 /// </summary>
 public class Client
 {
@@ -19,7 +19,7 @@ public class Client
     /// <summary>
     /// Constructor sets up the client with options to connect to the server and subscribe to any position data from any sensmax TAC-B sensors connected to the server
     /// </summary>
-    /// <param name="logger"> <see cref="Logger"/> A logger may be passed to enable debugging </param>
+    /// <param name="logger">Optional: A logger may be passed to enable debugging </param>
     public Client(Logger? logger = null)
     {
         this.logger = logger;
@@ -48,7 +48,7 @@ public class Client
     /// <summary>
     /// Connects to the server and subscribes to any position data from any sensmax TAC-B sensors connected to the server
     /// </summary>
-    /// <returns></returns>
+    /// <returns>awaitable <see cref="Task"/></returns>
     public async Task Connect()
     {
         await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
@@ -58,7 +58,7 @@ public class Client
     /// <summary>
     /// Disconnects the client from localhost
     /// </summary>
-    /// <returns></returns>
+    /// <returns>awaitable <see cref="Task"/></returns>
     public async Task Disconnect()
     {
         await mqttClient.DisconnectAsync();
@@ -76,13 +76,13 @@ public class Client
     /// <summary>
     /// Temporary handler for server messages
     /// </summary>
-    /// <param name="incommingEvent"></param>
-    /// <returns></returns>
-    private Task MessageHandler(MqttApplicationMessageReceivedEventArgs incommingEvent)
+    /// <param name="incomingEvent">Incoming event from server</param>
+    /// <returns><see cref="Task.CompletedTask"/> when message is handled</returns>
+    private Task MessageHandler(MqttApplicationMessageReceivedEventArgs incomingEvent)
     {
         if (logger == null) return Task.CompletedTask;
 
-        var bytes = incommingEvent.ApplicationMessage.Payload;
+        var bytes = incomingEvent.ApplicationMessage.Payload;
         var payload = UnpackPayload(bytes);
         if (payload != null) this.logger.Log(payload);
         else this.logger.LogError("Could not unpack payload" + bytes);
