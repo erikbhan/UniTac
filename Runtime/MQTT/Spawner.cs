@@ -9,10 +9,15 @@ public class Spawner : MonoBehaviour
     List<Entity> incomingBeans = new();
     List<long> longs= new();
 
+    private Vector3 GetVector3FromCoordinates(int X, int Y) {
+        Vector3 vector = new Vector3(X, 0f, Y);
+        if (X != 0) vector.x = X/10.0f;
+        if (X != 0) vector.y = Y/10.0f;
+        return vector;
+    }
 
     public void Update()
     {
-        Debug.Log(incomingBeans.Count);
         foreach (Entity e in incomingBeans)
         {
             if (beans.ContainsKey(e.Id))
@@ -22,7 +27,7 @@ public class Spawner : MonoBehaviour
             else
             {
                 Debug.Log("Created new bean");
-                beans.Add(e.Id, Instantiate(prefab, new Vector3(e.X[0] / 10.0f, 0, e.Y[0] / 00.0f), Quaternion.identity));
+                beans.Add(e.Id, Instantiate(prefab, GetVector3FromCoordinates(e.X[0], e.Y[0]), Quaternion.identity));
             }
         }
         foreach (long id in beans.Keys)
