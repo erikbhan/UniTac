@@ -22,7 +22,6 @@ public class Client
     /// Constructor sets up the client with options to connect to the server and subscribe to any position data from any sensmax TAC-B sensors connected to the server
     /// </summary>
     /// <param name="logger">Optional: A logger may be passed to enable debugging </param>
-#nullable enable
     public Client(Spawner spawner, Logger? logger = null)
     {
         this.spawner = spawner;
@@ -91,7 +90,7 @@ public class Client
             if (payload != null) this.logger.Log(payload);
             else this.logger.LogError("Could not unpack payload" + bytes);
         }
-        
+
         if (spawner != null)
         {
             spawner.UpdateBeans(payload?.Entities.Values.ToList());
