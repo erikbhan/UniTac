@@ -1,6 +1,7 @@
 #nullable enable
 using MQTTnet;
 using MQTTnet.Client;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -15,13 +16,15 @@ public class Client
     private readonly MqttClientOptions mqttClientOptions;
     private readonly MqttClientSubscribeOptions mqttSubscribeOptions;
     private readonly Logger? logger;
+    Spawner spawner;
 
     /// <summary>
     /// Constructor sets up the client with options to connect to the server and subscribe to any position data from any sensmax TAC-B sensors connected to the server
     /// </summary>
     /// <param name="logger">Optional: A logger may be passed to enable debugging </param>
-    public Client(Logger? logger = null)
+    public Client(Spawner spawner, Logger? logger = null)
     {
+        this.spawner = spawner;
         this.logger = logger;
         var mqttFactory = new MqttFactory();
 
@@ -80,13 +83,18 @@ public class Client
     /// <returns><see cref="Task.CompletedTask"/> when message is handled</returns>
     private Task MessageHandler(MqttApplicationMessageReceivedEventArgs incomingEvent)
     {
-        if (logger == null) return Task.CompletedTask;
-
         var bytes = incomingEvent.ApplicationMessage.Payload;
         var payload = UnpackPayload(bytes);
-        if (payload != null) this.logger.Log(payload);
-        else this.logger.LogError("Could not unpack payload" + bytes);
+        if (logger != null)
+        {
+            if (payload != null) this.logger.Log(payload);
+            else this.logger.LogError("Could not unpack payload" + bytes);
+        }
 
+        if (spawner != null)
+        {
+            spawner.UpdateBeans(payload?.Entities.Values.ToList());
+        }
         return Task.CompletedTask;
     }
 
