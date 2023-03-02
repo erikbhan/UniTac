@@ -6,7 +6,7 @@ using UnityEngine;
 /// <summary>
 /// Class that handles the Debug consol for <see cref="Client"/> and <see cref="Server"/> 
 /// </summary>
-public class Logger : MonoBehaviour, IMqttNetLogger
+public class Logger : IMqttNetLogger
 {
     public bool IsEnabled => true;
 
