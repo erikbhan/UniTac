@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Threading;
-using System.Threading.Tasks;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 public class UI : MonoBehaviour
@@ -16,9 +11,9 @@ public class UI : MonoBehaviour
     private void Start()
     {
         Spawner spawner = gameObject.GetComponent<Spawner>();
-        Logger logger = gameObject.AddComponent<Logger>();
+        Logger logger = new();
         server = new Server(/*logger*/);
-        client = new Client(spawner);
+        client = new Client(spawner/*, logger*/);
     }
 
     void OnGUI()
