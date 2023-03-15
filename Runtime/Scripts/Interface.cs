@@ -6,13 +6,14 @@ using MQTTnet.Server;
 using UnityEngine;
 using Unity.Plastic.Newtonsoft.Json;
 
+/// <summary>
+/// Script that interfaces between the game world and the sensor API
+/// </summary>
 public class Interface : MonoBehaviour
 {
     public LogLevel serverLogLevel = LogLevel.Warning;
     public LogLevel clientLogLevel = LogLevel.Warning;
-    public bool debugMenu = false;
     public int serverPort = 1883;
-    public string clientIP = "127.0.0.1";
 
     Logger serverLogger = new Logger();
     Logger clientLogger = new Logger();
@@ -20,31 +21,6 @@ public class Interface : MonoBehaviour
     IMqttClient client;
 
     void Start() { Init(); }
-
-    async void Init() {
-        server = CreateServer();
-        client = CreateClient();
-        await server.StartAsync();
-        await ConnectClient();
-        await SubscribeClient();
-    }
-
-    async Task ConnectClient()
-    {
-        var mqttClientOptions = new MqttClientOptionsBuilder()
-            .WithTcpServer(clientIP)
-            .Build();
-        await client.ConnectAsync(mqttClientOptions);
-    }
-
-    async Task SubscribeClient()
-    {
-        var mqttSubscribeOptions = (new MqttFactory()).CreateSubscribeOptionsBuilder()
-            .WithTopicFilter(
-                f => { f.WithTopic("smx/device/+/position"); })
-            .Build();
-        await client.SubscribeAsync(mqttSubscribeOptions);        
-    }
 
     void Update()
     {
@@ -55,6 +31,23 @@ public class Interface : MonoBehaviour
             serverLogger.logLevel = this.serverLogLevel;
     }
 
+    /// <summary>
+    /// Initialization method for the MQTT server and client.
+    /// Create client and server, starts server, connects client to server and subscribes
+    /// to the correct topic.
+    /// </summary>
+    async void Init() {
+        server = CreateServer();
+        client = CreateClient();
+        await server.StartAsync();
+        await ConnectClient();
+        await SubscribeClient();
+    }
+
+    /// <summary>
+    /// Creates an MQTT server for the sensor to connect to
+    /// </summary>
+    /// <returns>The server object</returns>
     MqttServer CreateServer() {
         var mqttFactory = new MqttFactory(serverLogger);
         var MqttServerOptions = new MqttServerOptionsBuilder()
@@ -64,14 +57,48 @@ public class Interface : MonoBehaviour
         return mqttFactory.CreateMqttServer(MqttServerOptions);
     }
 
+    /// <summary>
+    /// Creates an MQTT client to receive data from the server
+    /// </summary>
+    /// <returns>The client object</returns>
     IMqttClient CreateClient() {
         var mqttFactory = new MqttFactory(clientLogger);
         var client = mqttFactory.CreateMqttClient();
-        client.ApplicationMessageReceivedAsync += e => MessageHandler(e);
+        client.ApplicationMessageReceivedAsync += e => HandleMessage(e);
         return client;
     }
 
-    private Task MessageHandler(MqttApplicationMessageReceivedEventArgs e)
+    /// <summary>
+    /// Connects the client to the server
+    /// </summary>
+    /// <returns>awaitable <see cref="Task"/></returns>
+    async Task ConnectClient()
+    {
+        var mqttClientOptions = new MqttClientOptionsBuilder()
+            .WithTcpServer("127.0.0.1")
+            .Build();
+        await client.ConnectAsync(mqttClientOptions);
+    }
+
+    /// <summary>
+    /// Subscribes the client to the SensMax sensor topic
+    /// </summary>
+    /// <returns>awaitable <see cref="Task"/></returns>
+    async Task SubscribeClient()
+    {
+        var mqttSubscribeOptions = (new MqttFactory()).CreateSubscribeOptionsBuilder()
+            .WithTopicFilter(
+                f => { f.WithTopic("smx/device/+/position"); })
+            .Build();
+        await client.SubscribeAsync(mqttSubscribeOptions);        
+    }
+
+    /// <summary>
+    /// A method to process message events from TAC-B sensors
+    /// </summary>
+    /// <param name="e">The incoming message event</param>
+    /// <returns>awaitable <see cref="Task"/></returns>
+    private Task HandleMessage(MqttApplicationMessageReceivedEventArgs e)
     {
         var json = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
         var payload = JsonConvert.DeserializeObject<Payload>(json);
@@ -84,13 +111,5 @@ public class Interface : MonoBehaviour
             }
         }
         return Task.CompletedTask;
-    }
-
-    // TODO; make debug menu
-    void OnGUI() {
-        if (debugMenu) {
-            if (GUILayout.Button("Press Me"))
-                Debug.Log("Hello!");
-        }
     }
 }
