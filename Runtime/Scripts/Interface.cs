@@ -32,6 +32,17 @@ public class Interface : MonoBehaviour
     }
 
     /// <summary>
+    /// Gracefully shut down and dispose client and server when exiting play mode/shutting down application.
+    /// </summary>
+    async void OnApplicationQuit()
+    {
+        await client.DisconnectAsync();
+        await server.StopAsync();
+        client.Dispose();
+        server.Dispose();
+    }
+
+    /// <summary>
     /// Initialization method for the MQTT server and client.
     /// Create client and server, starts server, connects client to server and subscribes
     /// to the correct topic.
