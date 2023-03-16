@@ -28,8 +28,8 @@ public class Interface : MonoBehaviour
         serverLogger.logLevel = this.serverLogLevel;
         foreach (Transform child in transform)
         {
-            if (sensors.ContainsKey(child.GetComponent<Sensor>().serial)) continue;
-            sensors.Add(child.GetComponent<Sensor>().serial, child.GetComponent<Sensor>());
+            if (sensors.ContainsKey(child.GetComponent<Sensor>().Serial)) continue;
+            sensors.Add(child.GetComponent<Sensor>().Serial, child.GetComponent<Sensor>());
         }
         server = CreateServer();
         client = CreateClient();
