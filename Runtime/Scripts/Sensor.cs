@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -7,60 +8,56 @@ using UnityEngine;
 /// </summary>
 public class Sensor : MonoBehaviour
 {
+    // Config
     public string serial = "";
-    public GameObject spawnObject = null;
+    public float secondsUntilIdle = 2f;
+
+    
+    // Private
+    private float idleTimer = 0f;
+    private float currentSessionLength = 0f;
+    private Session currentSession = new(false);
+    private Session lastSession;
+    private Dictionary<long, Entity> entities = new();
+    public bool isActive { get; private set; } = false;
 
     /// <summary>
     /// Processes the received message data
     /// </summary>
     /// <param name="payload">Payload from the client; holds data from the sensor</param>
     public void HandleMessage(Payload payload) {
-        if (spawnObject == null) return;
-        UpdateBeans(payload.Entities.Values.ToList());
-    }
-
-    Dictionary<long, GameObject> beans = new();
-    List<Entity> incomingBeans = new();
-    List<long> longs= new();
-
-    private Vector3 GetVector3FromCoordinates(int X, int Y) {
-        Vector3 vector = new Vector3(X, 0f, Y);
-        if (X != 0) vector.x = X/10.0f;
-        if (X != 0) vector.y = Y/10.0f;
-        return vector;
+        idleTimer = secondsUntilIdle;
+        var temp = new Dictionary<long, Entity>();
+        foreach (Entity e in payload.Entities.Values.ToList())
+        {
+            temp.Add(e.Id, e);
+        }
+        entities = temp;
     }
 
     public void Update()
     {
-        foreach (Entity e in incomingBeans)
+        currentSessionLength += Time.deltaTime;
+        if (isActive)
         {
-            if (beans.ContainsKey(e.Id))
-            {
-                beans[e.Id].transform.position = new Vector3(e.X[0]/10.0f, 0, e.Y[0] / 10.0f);
-            } 
+            if (idleTimer > 0) idleTimer -= Time.deltaTime;
             else
             {
-                Debug.Log("Created new bean");
-                beans.Add(e.Id, Instantiate(spawnObject, GetVector3FromCoordinates(e.X[0], e.Y[0]), Quaternion.identity));
+                entities = new();
+                UpdateSession();
             }
         }
-        foreach (long id in beans.Keys)
+        else
         {
-            if (!longs.Contains(id)) {
-                Destroy(beans[id]);
-                beans.Remove(id);
-            }
+            if (idleTimer > 0) UpdateSession();
         }
     }
 
-    public void UpdateBeans(List<Entity> list)
-    {
-        longs = new();
-
-        this.incomingBeans = list;
-        foreach (Entity e in list)
-        {
-            longs.Add(e.Id);
-        }
+    private void UpdateSession() {
+        isActive = !isActive;
+        currentSession.sessionLength = currentSessionLength;
+        lastSession = currentSession;
+        currentSession = new Session(isActive);
+        currentSessionLength = 0f;
     }
 }

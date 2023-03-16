@@ -40,10 +40,10 @@ public class Interface : MonoBehaviour
     /// <summary>
     /// Gracefully shut down and dispose client and server when exiting play mode/shutting down application.
     /// </summary>
-    void OnApplicationQuit()
+    async void OnApplicationQuit()
     {
-        _ = client.DisconnectAsync();
-        _ = server.StopAsync();
+        await client.DisconnectAsync();
+        await server.StopAsync();
         client.Dispose();
         server.Dispose();
     }
