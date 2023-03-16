@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 /// <summary>
 /// Script for the sensor gameobject that handles functionality
@@ -10,6 +11,9 @@ public class Sensor : MonoBehaviour
     // Config
     public string serial = "";
     public float secondsUntilIdle = 2f;
+
+    // Public
+    public UnityEvent messageReceivedEvent { get; } = new();
 
     // Private
     private float idleTimer = 0f;
@@ -35,6 +39,7 @@ public class Sensor : MonoBehaviour
             temp.Add(e.Id, e);
         }
         Entities = temp;
+        messageReceivedEvent.Invoke();
     }
 
     public void Update()
@@ -50,6 +55,7 @@ public class Sensor : MonoBehaviour
             {
                 Entities = new();
                 UpdateSession();
+                messageReceivedEvent.Invoke();
             }
         }
         else
