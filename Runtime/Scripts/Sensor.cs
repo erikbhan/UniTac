@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -12,17 +11,20 @@ public class Sensor : MonoBehaviour
     public string serial = "";
     public float secondsUntilIdle = 2f;
 
-    
     // Private
     private float idleTimer = 0f;
-    private float currentSessionLength = 0f;
-    private Session currentSession = new(false);
-    private Session lastSession;
-    private Dictionary<long, Entity> entities = new();
-    public bool isActive { get; private set; } = false;
+    private Session CurrentSession = new(false);
+
+    // Readonly
+    public float CurrentSessionLength { get; private set; } = 0f;
+    public Session LastSession { get; private set; }
+    public Dictionary<long, Entity> Entities { get; private set; } = new();
+    public bool IsActive { get; private set; } = false;
 
     /// <summary>
-    /// Processes the received message data
+    /// Processes the received message data. 
+    /// Updates existing dictionary of <see cref="Entity"/> entities to the new entities received in the message.
+    /// Also reset the idle countdown to maintain active session.
     /// </summary>
     /// <param name="payload">Payload from the client; holds data from the sensor</param>
     public void HandleMessage(Payload payload) {
@@ -32,18 +34,21 @@ public class Sensor : MonoBehaviour
         {
             temp.Add(e.Id, e);
         }
-        entities = temp;
+        Entities = temp;
     }
 
     public void Update()
     {
-        currentSessionLength += Time.deltaTime;
-        if (isActive)
+        // Update session length
+        CurrentSessionLength += Time.deltaTime;
+
+        // Update active status
+        if (IsActive)
         {
             if (idleTimer > 0) idleTimer -= Time.deltaTime;
             else
             {
-                entities = new();
+                Entities = new();
                 UpdateSession();
             }
         }
@@ -53,11 +58,14 @@ public class Sensor : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the current and last sessions at the session end of a session
+    /// </summary>
     private void UpdateSession() {
-        isActive = !isActive;
-        currentSession.sessionLength = currentSessionLength;
-        lastSession = currentSession;
-        currentSession = new Session(isActive);
-        currentSessionLength = 0f;
+        IsActive = !IsActive;
+        CurrentSession.SessionLength = CurrentSessionLength;
+        LastSession = CurrentSession;
+        CurrentSession = new Session(IsActive);
+        CurrentSessionLength = 0f;
     }
 }

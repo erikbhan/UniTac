@@ -1,12 +1,12 @@
 using System;
-class Session
+public class Session
 {
-    public DateTime start { get; } = DateTime.Now;
-    public float sessionLength { get; set; }
-    public bool activeSession { get; }
+    public DateTime Start { get; } = DateTime.Now;
+    public float SessionLength { get; set; }
+    public bool ActiveSession { get; }
 
     public Session(bool activeSession)
     {
-        this.activeSession = activeSession;
+        this.ActiveSession = activeSession;
     }
 }
