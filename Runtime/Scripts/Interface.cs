@@ -5,6 +5,7 @@ using MQTTnet.Client;
 using MQTTnet.Server;
 using UnityEngine;
 using Unity.Plastic.Newtonsoft.Json;
+using System.Collections.Generic;
 
 /// <summary>
 /// Script that interfaces between the game world and the sensor API
@@ -19,40 +20,32 @@ public class Interface : MonoBehaviour
     Logger clientLogger = new Logger();
     MqttServer server;
     IMqttClient client;
+    Dictionary<string, Sensor> sensors = new();
 
-    void Start() { Init(); }
-
-    void Update()
+    void Start()
     {
-        // TODO: use events vs checking every frame
-        if (clientLogger.logLevel != this.clientLogLevel)
-            clientLogger.logLevel = this.clientLogLevel;
-        if (serverLogger.logLevel != this.serverLogLevel)
-            serverLogger.logLevel = this.serverLogLevel;
+        clientLogger.logLevel = this.clientLogLevel;
+        serverLogger.logLevel = this.serverLogLevel;
+        foreach (Transform child in transform)
+        {
+            if (sensors.ContainsKey(child.GetComponent<Sensor>().serial)) continue;
+            sensors.Add(child.GetComponent<Sensor>().serial, child.GetComponent<Sensor>());
+        }
+        server = CreateServer();
+        client = CreateClient();
+        _ = server.StartAsync();
+        ConnectClient();
     }
 
     /// <summary>
     /// Gracefully shut down and dispose client and server when exiting play mode/shutting down application.
     /// </summary>
-    async void OnApplicationQuit()
+    void OnApplicationQuit()
     {
-        await client.DisconnectAsync();
-        await server.StopAsync();
+        _ = client.DisconnectAsync();
+        _ = server.StopAsync();
         client.Dispose();
         server.Dispose();
-    }
-
-    /// <summary>
-    /// Initialization method for the MQTT server and client.
-    /// Create client and server, starts server, connects client to server and subscribes
-    /// to the correct topic.
-    /// </summary>
-    async void Init() {
-        server = CreateServer();
-        client = CreateClient();
-        await server.StartAsync();
-        await ConnectClient();
-        await SubscribeClient();
     }
 
     /// <summary>
@@ -83,25 +76,22 @@ public class Interface : MonoBehaviour
     /// Connects the client to the server
     /// </summary>
     /// <returns>awaitable <see cref="Task"/></returns>
-    async Task ConnectClient()
+    async void ConnectClient()
     {
+        // Client options
         var mqttClientOptions = new MqttClientOptionsBuilder()
             .WithTcpServer("127.0.0.1")
             .Build();
-        await client.ConnectAsync(mqttClientOptions);
-    }
-
-    /// <summary>
-    /// Subscribes the client to the SensMax sensor topic
-    /// </summary>
-    /// <returns>awaitable <see cref="Task"/></returns>
-    async Task SubscribeClient()
-    {
-        var mqttSubscribeOptions = (new MqttFactory()).CreateSubscribeOptionsBuilder()
+        
+        // Client subscription options
+        var mqttFactory = new MqttFactory();
+        var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder()
             .WithTopicFilter(
                 f => { f.WithTopic("smx/device/+/position"); })
             .Build();
-        await client.SubscribeAsync(mqttSubscribeOptions);        
+
+        await client.ConnectAsync(mqttClientOptions, System.Threading.CancellationToken.None);
+        await client.SubscribeAsync(mqttSubscribeOptions, System.Threading.CancellationToken.None);    
     }
 
     /// <summary>
@@ -114,13 +104,7 @@ public class Interface : MonoBehaviour
         var json = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
         var payload = JsonConvert.DeserializeObject<Payload>(json);
         var serial = payload.CollectorSerial;
-        foreach (Transform child in transform)
-        {
-            if (child.GetComponent<Sensor>().serial == serial) {
-                child.GetComponent<Sensor>().HandleMessage(payload);
-                break; // break out of loop, because serial numbers are unique
-            }
-        }
+        sensors[serial].HandleMessage(payload);
         return Task.CompletedTask;
     }
 }
