@@ -19,7 +19,7 @@ public class Sensor : MonoBehaviour
 
     // Readonly
     public float CurrentSessionLength { get; private set; } = 0f;
-    public Session LastSession { get; private set; }
+    public Session? LastSession { get; private set; }
     public Dictionary<long, Entity> Entities { get; private set; } = new();
     public bool IsActive { get; private set; } = false;
 
@@ -78,11 +78,11 @@ public class Sensor : MonoBehaviour
     public Entity? GetClosestEntity()
     {
         if (!Entities.Any()) return null;
-        Entity closestEntity = Entities.First().Value;
-        double distance = Math.Sqrt(Math.Pow(closestEntity.X[0], 2.0) + Math.Pow(closestEntity.Y[0], 2.0));
+        Entity? closestEntity = null;
+        double distance = Double.PositiveInfinity;
         foreach (var e in Entities.Values)
         {
-            var d = Math.Sqrt(Math.Pow(e.X[0], 2.0) + Math.Pow(e.Y[0], 2.0));
+            var d = e.DistanceFromParent();
             if (d < distance)
             {
                 distance = d;
@@ -98,6 +98,6 @@ public class Sensor : MonoBehaviour
     /// <param name="id">The id of the entity</param>
     /// <returns><see cref="Entity"/> the entity or null if not found</returns>
     public Entity? GetEntity(long id) { 
-        return Entities[id] ?? null; 
+        return Entities.ContainsKey(id) ? Entities[id] : null; 
     }
 }

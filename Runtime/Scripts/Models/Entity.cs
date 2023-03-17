@@ -39,4 +39,17 @@ public class Entity
         s += "]\n";
         return s;
     }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null) return false;
+        if (obj is not Entity) return false;
+        Entity other = (Entity)obj;
+        return this.Id == other.Id;
+    }
+
+    public double DistanceFromParent()
+    {
+        return Math.Sqrt(Math.Pow(this.X[0], 2.0) + Math.Pow(this.Y[0], 2.0));
+    }
 }
