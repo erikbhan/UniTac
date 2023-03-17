@@ -1,5 +1,3 @@
-#nullable enable
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -10,12 +8,12 @@ using UnityEngine;
 public class Sensor : MonoBehaviour
 {
     // Config
-    public string Serial { get; set; } = "";
-    public float SecondsUntilIdle { get; set; } = 2f;
+    public string serial = "";
+    public float secondsUntilIdle = 2f;
 
     // Private
-    private float IdleTimer = 0f;
-    private Session CurrentSession = new(false);
+    private float idleTimer = 0f;
+    private Session currentSession = new(false);
 
     // Readonly
     public float CurrentSessionLength { get; private set; } = 0f;
@@ -30,7 +28,7 @@ public class Sensor : MonoBehaviour
     /// </summary>
     /// <param name="payload">Payload from the client; holds data from the sensor</param>
     public void HandleMessage(Payload payload) {
-        IdleTimer = SecondsUntilIdle;
+        idleTimer = secondsUntilIdle;
         var temp = new Dictionary<long, Entity>();
         foreach (Entity e in payload.Entities.Values.ToList())
         {
@@ -47,7 +45,7 @@ public class Sensor : MonoBehaviour
         // Update active status
         if (IsActive)
         {
-            if (IdleTimer > 0) IdleTimer -= Time.deltaTime;
+            if (idleTimer > 0) idleTimer -= Time.deltaTime;
             else
             {
                 Entities = new();
@@ -56,7 +54,7 @@ public class Sensor : MonoBehaviour
         }
         else
         {
-            if (IdleTimer > 0) UpdateSession();
+            if (idleTimer > 0) UpdateSession();
         }
     }
 
@@ -65,39 +63,9 @@ public class Sensor : MonoBehaviour
     /// </summary>
     private void UpdateSession() {
         IsActive = !IsActive;
-        CurrentSession.SessionLength = CurrentSessionLength;
-        LastSession = CurrentSession;
-        CurrentSession = new Session(IsActive);
+        currentSession.SessionLength = CurrentSessionLength;
+        LastSession = currentSession;
+        currentSession = new Session(IsActive);
         CurrentSessionLength = 0f;
-    }
-
-    /// <summary>
-    /// Gets the closest entity to the sensor
-    /// </summary>
-    /// <returns><see cref="Entity"/> the entity closest to the sensor or null no entities are present </returns>
-    public Entity? GetClosestEntity()
-    {
-        if (!Entities.Any()) return null;
-        Entity closestEntity = Entities.First().Value;
-        double distance = Math.Sqrt(Math.Pow(closestEntity.X[0], 2.0) + Math.Pow(closestEntity.Y[0], 2.0));
-        foreach (var e in Entities.Values)
-        {
-            var d = Math.Sqrt(Math.Pow(e.X[0], 2.0) + Math.Pow(e.Y[0], 2.0));
-            if (d < distance)
-            {
-                distance = d;
-                closestEntity = e;
-            }
-        }
-        return closestEntity;
-    }
-
-    /// <summary>
-    /// Gets the entity with the given id
-    /// </summary>
-    /// <param name="id">The id of the entity</param>
-    /// <returns><see cref="Entity"/> the entity or null if not found</returns>
-    public Entity? GetEntity(long id) { 
-        return Entities[id] ?? null; 
     }
 }
