@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 
 /// <summary>
-/// Script for the sensor gameobject that handles data management. Script can be added to add utility.
+/// Script for the sensor gameobject that handles functionality
 /// </summary>
 public class Sensor : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class Sensor : MonoBehaviour
 
     // Private
     private float idleTimer = 0f;
-    private Session currentSession = new(false);
+    private Session CurrentSession = new(false);
 
     // Readonly
     public float CurrentSessionLength { get; private set; } = 0f;
@@ -63,9 +63,9 @@ public class Sensor : MonoBehaviour
     /// </summary>
     private void UpdateSession() {
         IsActive = !IsActive;
-        currentSession.SessionLength = CurrentSessionLength;
-        LastSession = currentSession;
-        currentSession = new Session(IsActive);
+        CurrentSession.SessionLength = CurrentSessionLength;
+        LastSession = CurrentSession;
+        CurrentSession = new Session(IsActive);
         CurrentSessionLength = 0f;
     }
 }
