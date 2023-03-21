@@ -1,20 +1,18 @@
-#nullable enable
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 /// <summary>
-/// Script for the sensor gameobject that handles data management. Script can be added to add utility.
+/// Script for the sensor gameobject that handles functionality
 /// </summary>
 public class Sensor : MonoBehaviour
 {
     // Config
-    public string Serial { get; set; } = "";
-    public float SecondsUntilIdle { get; set; } = 2f;
+    public string serial = "";
+    public float secondsUntilIdle = 2f;
 
     // Private
-    private float IdleTimer = 0f;
+    private float idleTimer = 0f;
     private Session CurrentSession = new(false);
 
     // Readonly
@@ -30,7 +28,7 @@ public class Sensor : MonoBehaviour
     /// </summary>
     /// <param name="payload">Payload from the client; holds data from the sensor</param>
     public void HandleMessage(Payload payload) {
-        IdleTimer = SecondsUntilIdle;
+        idleTimer = secondsUntilIdle;
         var temp = new Dictionary<long, Entity>();
         foreach (Entity e in payload.Entities.Values.ToList())
         {
@@ -47,7 +45,7 @@ public class Sensor : MonoBehaviour
         // Update active status
         if (IsActive)
         {
-            if (IdleTimer > 0) IdleTimer -= Time.deltaTime;
+            if (idleTimer > 0) idleTimer -= Time.deltaTime;
             else
             {
                 Entities = new();
@@ -56,7 +54,7 @@ public class Sensor : MonoBehaviour
         }
         else
         {
-            if (IdleTimer > 0) UpdateSession();
+            if (idleTimer > 0) UpdateSession();
         }
     }
 
