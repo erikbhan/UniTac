@@ -1,6 +1,6 @@
 {
     "name": "ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration.Tests",
-    "rootNamespace": "",
+    "rootNamespace": "ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration",
     "references": [
         "ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration",
         "UnityEngine.TestRunner",
@@ -11,12 +11,9 @@
     ],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
-    "overrideReferences": true,
-    "precompiledReferences": [
-        "nunit.framework.dll",
-        "Unity.Plastic.Newtonsoft.Json.dll"
-    ],
-    "autoReferenced": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
     "defineConstraints": [
         "UNITY_INCLUDE_TESTS"
     ],
