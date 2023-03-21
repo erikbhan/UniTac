@@ -2,39 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Unity.Collections;
 
 public class SpawnOnEntity : MonoBehaviour
 {
-    public GameObject prefab = null;
-    private List<GameObject> spawned = new();
-    private Sensor sensor;
-    private bool hasWork;
+    public GameObject spawnPrefab = null;
+    private Queue<Entity> updateQueue = new();
+    private Dictionary<long, GameObject> spawned = new();
+    private Sensor sensor = null;
 
     void Start()
     {
+        if (!spawnPrefab) Debug.LogWarning("Prefab not set");
         sensor = gameObject.GetComponent<Sensor>();
+        if (!sensor) Debug.LogError("Sensor script not found");
         sensor.messageReceivedEvent.AddListener(Spawn);
     }
 
     void Update() {
-        if (hasWork) {
-            hasWork = false;
-            foreach (GameObject obj in spawned) Destroy(obj);
-            spawned = new List<GameObject>();
-            foreach (Entity e in sensor.Entities.Values.ToList()) {
-                var obj = Instantiate(prefab, new Vector3(e.X[0]/10f, 0, e.Y[0]/10), Quaternion.identity);
-                obj.transform.SetParent(gameObject.transform);
-                spawned.Add(obj);
+        if (updateQueue.Any())
+        {
+            Entity entity = updateQueue.Dequeue();
+            string s = "";
+            foreach (var i in entity.X) s += i + ", ";
+            Debug.Log(s);
+            if (spawned.ContainsKey(entity.Id))
+            {
+                spawned[entity.Id].transform.localPosition = new Vector3(entity.X[0]/10f, 0f, entity.Y[0]/10f);
+            }
+            else
+            {
+                var newBean = Instantiate(spawnPrefab, gameObject.transform, false);
+                newBean.transform.localPosition = new Vector3(entity.X[0] / 10f, 0f, entity.Y[0] / 10f);
+                spawned.Add(entity.Id, newBean);
             }
         }
     }
 
     void Spawn()
     {
-        if (prefab == null) {
-            Debug.LogWarning("No prefab set, nothing will spawn");
-            return;
+        foreach (Entity entity in sensor.Entities.Values.ToList<Entity>())
+        {
+            updateQueue.Enqueue(entity);
         }
-        hasWork = true;
     }
 }
