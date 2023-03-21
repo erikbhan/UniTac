@@ -40,6 +40,20 @@ public class Entity
         return s;
     }
 
+    /// <summary>
+    /// Calculates the distance from this entity to the origin (parent)
+    /// </summary>
+    /// <returns><see cref="double"/> distance from parent sensor</returns>
+    public double DistanceFromParent()
+    {
+        return Math.Sqrt(Math.Pow(this.X[0], 2.0) + Math.Pow(this.Y[0], 2.0));
+    }
+
+    /// <summary>
+    /// Checks if the given object is equal to this entity
+    /// </summary>
+    /// <param name="obj"><see cref="object"/> object to check</param>
+    /// <returns><see cref="bool"/> true if input is entity with the same id</returns>
     public override bool Equals(object obj)
     {
         if (obj == null) return false;
@@ -48,8 +62,8 @@ public class Entity
         return this.Id == other.Id;
     }
 
-    public double DistanceFromParent()
+    public override int GetHashCode()
     {
-        return Math.Sqrt(Math.Pow(this.X[0], 2.0) + Math.Pow(this.Y[0], 2.0));
+        return HashCode.Combine(Id);
     }
 }
