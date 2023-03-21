@@ -100,4 +100,20 @@ public class Sensor : MonoBehaviour
     public Entity? GetEntity(long id) { 
         return Entities.ContainsKey(id) ? Entities[id] : null; 
     }
+
+    /// <summary>
+    /// Returns the time since last active session.
+    /// </summary>
+    /// <returns><see cref="float"/> number of seconds since last active session</returns>
+    public float GetTimeSinceLastActivePeriod()
+    {
+        if (CurrentSession.ActiveSession)
+        {
+            return 0;
+        }
+        else 
+        { 
+            return CurrentSessionLength; 
+        }
+    }
 }
