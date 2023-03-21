@@ -43,20 +43,20 @@ public class SensorTests
     }
 
     [Test]
-    public void GetClosestEntityReturnsCorrectEntity()
+    public void GetClosestEntity_WithEntities_ReturnsClosest()
     {
         Assert.AreEqual(1, Sensor.GetClosestEntity()?.Id);
     }
 
     [Test]
-    public void GetClosestEntityReturnsNullonNoEntities()
+    public void GetClosestEntity_WithoutEntities_ReturnsNull()
     {
         Sensor.Entities.Clear();
         Assert.IsNull(Sensor.GetClosestEntity());
     }
 
     [Test]
-    public void GetEntityReturnsEntity()
+    public void GetEntity_ExistingId_ReturnsEntity()
     {
         var entity = new Entity
         {
@@ -68,7 +68,7 @@ public class SensorTests
     }
 
     [Test]
-    public void GetEntityReturnsNullOnNotFound()
+    public void GetEntity_OutOfScopeId_ReturnsNull()
     {
         Assert.IsNull(Sensor.GetEntity(4));
     }
