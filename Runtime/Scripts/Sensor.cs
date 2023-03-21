@@ -122,13 +122,6 @@ public class Sensor : MonoBehaviour
     /// <returns><see cref="float"/> number of seconds since last active session</returns>
     public float GetTimeSinceLastActivePeriod()
     {
-        if (CurrentSession.ActiveSession)
-        {
-            return 0;
-        }
-        else 
-        { 
-            return CurrentSessionLength; 
-        }
+        return CurrentSession.ActiveSession ? 0 : CurrentSessionLength;
     }
 }
