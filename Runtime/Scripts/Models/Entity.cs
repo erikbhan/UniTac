@@ -26,7 +26,7 @@ public class Entity
     /// </summary>
     /// <returns>
     /// <see cref="string" />
-    /// A string that represents the current payload.
+    /// a string that represents the current payload.
     /// </returns>
     public override string ToString()
     {
@@ -41,7 +41,7 @@ public class Entity
     }
 
     /// <summary>
-    /// Calculates the distance from this entity to the origin (parent)
+    /// Calculates the distance from this entity to the origin
     /// </summary>
     /// <returns><see cref="double"/> distance from parent sensor</returns>
     public double DistanceFromParent()
@@ -62,6 +62,10 @@ public class Entity
         return this.Id == other.Id;
     }
 
+    /// <summary>
+    /// Uses the Id of the entity to generate a hash code
+    /// </summary>
+    /// <returns><see cref="int"/> the hash code for this entity</returns>
     public override int GetHashCode()
     {
         return HashCode.Combine(Id);
