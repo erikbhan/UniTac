@@ -20,7 +20,7 @@ public class EntityTests
     }
 
     [Test]
-    public void Equals_EqualEntityReturnsTrue()
+    public void Equals_EqualEntities_ReturnsTrue()
     {
         var entity1 = new Entity {
             Id = 1,
@@ -35,7 +35,7 @@ public class EntityTests
     }
 
     [Test]
-    public void Equals_NotEqualEntityReturnsFalse()
+    public void Equals_NotEqualEntities_ReturnsFalse()
     {
         var entity1 = new Entity
         {
@@ -52,7 +52,7 @@ public class EntityTests
     }
 
     [Test]
-    public void DistanceFromParentCalculatesAsExpected()
+    public void DistanceFromParent_CalculatesAsExpected()
     {
         var entity = new Entity();
         entity.X[0] = 4;
