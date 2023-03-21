@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a387abe49574f4749924a6468012e0b7
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ActiveAnimation: {fileID: 3307194964309230587, guid: 3634dd610f5f7e343928e1fd589c495a, type: 3}
+  - IdleAnimation: {fileID: 7070129418793348526, guid: db6f62970bf0e2843bb2141532f14832, type: 3}
+  - IdleAnimation2: {fileID: 8820809872581763004, guid: 5017c3a3735b7334da282970c61e69f4, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
