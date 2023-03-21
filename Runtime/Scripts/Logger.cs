@@ -1,8 +1,7 @@
+#nullable enable
 using System;
 using MQTTnet.Diagnostics;
 using UnityEngine;
-
-#nullable enable
 
 /// <summary>
 /// Enum for keeping track of log levels
