@@ -5,7 +5,7 @@
   "description": "A package that enables the use of a SensMax TAC-B 3D-W people counting radar sensor in Unity.",
   "unity": "2019.1",
   "unityRelease": "0b5",
-  "documentationUrl": "todo",
+  "documentationUrl": "https://erikbhan.github.io/bachelor/",
   "changelogUrl": "todo",
   "license": "MIT"
 }
