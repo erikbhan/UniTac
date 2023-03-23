@@ -7,18 +7,33 @@ using Unity.Plastic.Newtonsoft.Json;
 [Serializable]
 public class Entity
 {
-    // {
+    // Json format from sensor:
+    // "{
     //    "ID":76,
     //    "speed":0.0,
     //    "X":[-75,-93,0,0,0,0,0,0,0,0],
     //    "Y":[40,51,0,0,0,0,0,0,0,0]
-    // }
+    // }"
     
+    /// <summary>
+    /// Id given to the entity by the sensor.
+    /// </summary>
     [JsonProperty("ID")]
     public long Id { get; set; }
+    /// <summary>
+    /// Detected speed of the entity.
+    /// </summary>
     [JsonProperty("speed")]
     public float Speed { get; set; }
+    /// <summary>
+    /// Array representing the entity's last 10 X-coordinates. 
+    /// The first being the most resent known position. 
+    /// </summary>
     public int[] X { get; set; } = new int[10];
+    /// <summary>
+    /// Array representing the entity's last 10 Y-coordinates. 
+    /// The first being the most resent known position. 
+    /// </summary>
     public int[] Y { get; set; } = new int[10];
 
     /// <summary>
