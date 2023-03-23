@@ -1,3 +1,4 @@
+#nullable enable
 using NUnit.Framework;
 
 public class SensorTests

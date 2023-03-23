@@ -1,3 +1,4 @@
+#nullable enable
 using NUnit.Framework;
 using Unity.Plastic.Newtonsoft.Json;
 
@@ -10,13 +11,13 @@ public class EntityTests
         int[] expectedX = { -75, -93, 0, 0, 0, 0, 0, 0, 0, 0 };
         int[] expectedY = { 40, 51, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-        Entity entity = JsonConvert.DeserializeObject<Entity>(json);
+        Entity? entity = JsonConvert.DeserializeObject<Entity>(json);
 
         Assert.IsNotNull(entity);
-        Assert.AreEqual(entity.Id, 76);
-        Assert.AreEqual(entity.Speed, 0.0f);
-        Assert.AreEqual(entity.X, expectedX);
-        Assert.AreEqual(entity.Y, expectedY);
+        Assert.AreEqual(entity?.Id, 76);
+        Assert.AreEqual(entity?.Speed, 0.0f);
+        Assert.AreEqual(entity?.X, expectedX);
+        Assert.AreEqual(entity?.Y, expectedY);
     }
 
     [Test]
