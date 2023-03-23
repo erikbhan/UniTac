@@ -1,3 +1,4 @@
+#nullable enable
 using NUnit.Framework;
 using Unity.Plastic.Newtonsoft.Json;
 
