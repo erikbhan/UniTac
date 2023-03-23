@@ -19,12 +19,9 @@ jobs:
       - name: Setup Doxygen
         uses: mattnotmitt/doxygen-action@v1.9.5
 
-      # - name: Build
-      #   run: doxygen Doxyfile
-
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         if: ${{ github.ref == 'refs/heads/main' }}
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./Documentation~
+          publish_dir: ./Documentation~/html
