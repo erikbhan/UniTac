@@ -9,20 +9,22 @@ using UnityEngine.Events;
 /// </summary>
 public class Sensor : MonoBehaviour
 {
-    // Config
-    public string serial = "";
-    public float secondsUntilIdle = 2f;
-
-    // Public
-    public UnityEvent messageReceivedEvent { get; } = new();
-
-    // Private
-    private float idleTimer = 0f;
-    private Session CurrentSession = new(false);
-
-    // Readonly
+    /// <summary>
+    /// Serial of the sensor to handle events from.
+    /// </summary>
+    public string Serial = "";
+    /// <summary>
+    /// Seconds without messages from sensor before the session set to idle.
+    /// </summary>
+    public float SecondsUntilIdle = 2f;
+    /// <summary>
+    /// Event that is invoked when the a message is received.
+    /// </summary>
+    public UnityEvent MessageReceivedEvent { get; } = new();
+    /// <summary>
+    /// Running lenght of the current session.
+    /// </summary>
     public float CurrentSessionLength { get; private set; } = 0f;
-
     /// <summary>
     /// Data from the session before the current session. 
     /// Null if current session is the first session.
@@ -30,8 +32,20 @@ public class Sensor : MonoBehaviour
     #nullable enable
     public Session? LastSession { get; private set; }
     #nullable disable
+    /// <summary>
+    /// List of entities currently detected by the sensor.
+    /// </summary>
     public Dictionary<long, Entity> Entities { get; private set; } = new();
+    /// <summary>
+    /// Bool representing if the sensor is currently active. 
+    /// The sensor is active if it has received a message in less time 
+    /// than the time set by <see cref="SecondsUntilIdle"/>.
+    /// </summary>
     public bool IsActive { get; private set; } = false;
+
+    // Private
+    private float IdleTimer = 0f;
+    private Session CurrentSession = new(false);
 
     /// <summary>
     /// Processes the received message data. 
@@ -41,14 +55,14 @@ public class Sensor : MonoBehaviour
     /// </summary>
     /// <param name="payload">Payload from the client; holds data from the sensor</param>
     public void HandleMessage(Payload payload) {
-        idleTimer = secondsUntilIdle;
+        IdleTimer = SecondsUntilIdle;
         var temp = new Dictionary<long, Entity>();
         foreach (Entity e in payload.Entities.Values.ToList())
         {
             temp.Add(e.Id, e);
         }
         Entities = temp;
-        messageReceivedEvent.Invoke();
+        MessageReceivedEvent.Invoke();
     }
 
     public void Update()
@@ -59,17 +73,17 @@ public class Sensor : MonoBehaviour
         // Update active status
         if (IsActive)
         {
-            if (idleTimer > 0) idleTimer -= Time.deltaTime;
+            if (IdleTimer > 0) IdleTimer -= Time.deltaTime;
             else
             {
                 Entities = new();
                 UpdateSession();
-                messageReceivedEvent.Invoke();
+                MessageReceivedEvent.Invoke();
             }
         }
         else
         {
-            if (idleTimer > 0) UpdateSession();
+            if (IdleTimer > 0) UpdateSession();
         }
     }
 
