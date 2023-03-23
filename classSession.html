@@ -82,17 +82,19 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ae5a25a572083e5d0a4113e8d7ecf65ae"><td class="memItemLeft" align="right" valign="top"><a id="ae5a25a572083e5d0a4113e8d7ecf65ae" name="ae5a25a572083e5d0a4113e8d7ecf65ae"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Session</b> (bool activeSession)</td></tr>
+<tr class="memitem:ae5a25a572083e5d0a4113e8d7ecf65ae"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSession.html#ae5a25a572083e5d0a4113e8d7ecf65ae">Session</a> (bool activeSession)</td></tr>
+<tr class="memdesc:ae5a25a572083e5d0a4113e8d7ecf65ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a new instance of the <a class="el" href="classSession.html" title="Class that represents data about a sensor session.">Session</a> class.   <a href="classSession.html#ae5a25a572083e5d0a4113e8d7ecf65ae">More...</a><br /></td></tr>
 <tr class="separator:ae5a25a572083e5d0a4113e8d7ecf65ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a06df3c287d0158e0770cb2f90d3a040d"><td class="memItemLeft" align="right" valign="top"><a id="a06df3c287d0158e0770cb2f90d3a040d" name="a06df3c287d0158e0770cb2f90d3a040d"></a>
 DateTime&#160;</td><td class="memItemRight" valign="bottom"><b>Start</b> = DateTime.Now<code> [get]</code></td></tr>
+<tr class="memdesc:a06df3c287d0158e0770cb2f90d3a040d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Start time of the session.  <br /></td></tr>
 <tr class="separator:a06df3c287d0158e0770cb2f90d3a040d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab476a8f535de148f8e2091aea5fd7fa8"><td class="memItemLeft" align="right" valign="top"><a id="ab476a8f535de148f8e2091aea5fd7fa8" name="ab476a8f535de148f8e2091aea5fd7fa8"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>SessionLength</b><code> [get, set]</code></td></tr>
+<tr class="memdesc:ab476a8f535de148f8e2091aea5fd7fa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Duration of the session. May not be set if session is not complete.  <br /></td></tr>
 <tr class="separator:ab476a8f535de148f8e2091aea5fd7fa8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a26d3ac87c9f085d3799976a58f8093fc"><td class="memItemLeft" align="right" valign="top"><a id="a26d3ac87c9f085d3799976a58f8093fc" name="a26d3ac87c9f085d3799976a58f8093fc"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>ActiveSession</b><code> [get]</code></td></tr>
@@ -101,7 +103,42 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>ActiveSession</b><cod
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Class that represents data about a sensor session.  </p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ae5a25a572083e5d0a4113e8d7ecf65ae" name="ae5a25a572083e5d0a4113e8d7ecf65ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5a25a572083e5d0a4113e8d7ecf65ae">&#9670;&#160;</a></span>Session()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Session.Session </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>activeSession</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Initializes a new instance of the <a class="el" href="classSession.html" title="Class that represents data about a sensor session.">Session</a> class.  </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">activeSession</td><td>bool representing if the session is active or idle</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
 <li>Runtime/Scripts/Models/Session.cs</li>
 </ul>
 </div><!-- contents -->

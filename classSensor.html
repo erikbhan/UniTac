@@ -107,20 +107,24 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></t
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a6169ffdf47f1b1f3ca33319ead917a44"><td class="memItemLeft" align="right" valign="top"><a id="a6169ffdf47f1b1f3ca33319ead917a44" name="a6169ffdf47f1b1f3ca33319ead917a44"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>serial</b> = &quot;&quot;</td></tr>
-<tr class="separator:a6169ffdf47f1b1f3ca33319ead917a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74a547c9bf55202b03fb04ac26152460"><td class="memItemLeft" align="right" valign="top"><a id="a74a547c9bf55202b03fb04ac26152460" name="a74a547c9bf55202b03fb04ac26152460"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>secondsUntilIdle</b> = 2f</td></tr>
-<tr class="separator:a74a547c9bf55202b03fb04ac26152460"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8954c5687652898a3679e7396ad9b148"><td class="memItemLeft" align="right" valign="top"><a id="a8954c5687652898a3679e7396ad9b148" name="a8954c5687652898a3679e7396ad9b148"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>Serial</b> = &quot;&quot;</td></tr>
+<tr class="memdesc:a8954c5687652898a3679e7396ad9b148"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serial of the sensor to handle events from.  <br /></td></tr>
+<tr class="separator:a8954c5687652898a3679e7396ad9b148"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9035ae7630d20c12169accde83da019a"><td class="memItemLeft" align="right" valign="top"><a id="a9035ae7630d20c12169accde83da019a" name="a9035ae7630d20c12169accde83da019a"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>SecondsUntilIdle</b> = 2f</td></tr>
+<tr class="memdesc:a9035ae7630d20c12169accde83da019a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seconds without messages from sensor before the session set to idle.  <br /></td></tr>
+<tr class="separator:a9035ae7630d20c12169accde83da019a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a31c3cffd98a20ec9571af877598796ff"><td class="memItemLeft" align="right" valign="top"><a id="a31c3cffd98a20ec9571af877598796ff" name="a31c3cffd98a20ec9571af877598796ff"></a>
-UnityEvent&#160;</td><td class="memItemRight" valign="bottom"><b>messageReceivedEvent</b> = new()<code> [get]</code></td></tr>
-<tr class="separator:a31c3cffd98a20ec9571af877598796ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9523d60363cfbe8c65fa163cba069376"><td class="memItemLeft" align="right" valign="top"><a id="a9523d60363cfbe8c65fa163cba069376" name="a9523d60363cfbe8c65fa163cba069376"></a>
+UnityEvent&#160;</td><td class="memItemRight" valign="bottom"><b>MessageReceivedEvent</b> = new()<code> [get]</code></td></tr>
+<tr class="memdesc:a9523d60363cfbe8c65fa163cba069376"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is invoked when the a message is received.  <br /></td></tr>
+<tr class="separator:a9523d60363cfbe8c65fa163cba069376"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6af60365a41ca81f05bf917b70c534e5"><td class="memItemLeft" align="right" valign="top"><a id="a6af60365a41ca81f05bf917b70c534e5" name="a6af60365a41ca81f05bf917b70c534e5"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentSessionLength</b> = 0f<code> [get]</code></td></tr>
+<tr class="memdesc:a6af60365a41ca81f05bf917b70c534e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running lenght of the current session.  <br /></td></tr>
 <tr class="separator:a6af60365a41ca81f05bf917b70c534e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a334f0103fc5679446cc84dd8da218fea"><td class="memItemLeft" align="right" valign="top"><a id="a334f0103fc5679446cc84dd8da218fea" name="a334f0103fc5679446cc84dd8da218fea"></a>
 <a class="el" href="classSession.html">Session</a>?&#160;</td><td class="memItemRight" valign="bottom"><b>LastSession</b><code> [get]</code></td></tr>
@@ -128,9 +132,11 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentSessionLength
 <tr class="separator:a334f0103fc5679446cc84dd8da218fea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98423400ad1a8f325c9066b0cb82cd95"><td class="memItemLeft" align="right" valign="top"><a id="a98423400ad1a8f325c9066b0cb82cd95" name="a98423400ad1a8f325c9066b0cb82cd95"></a>
 Dictionary&lt; long, <a class="el" href="classEntity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Entities</b> = new()<code> [get]</code></td></tr>
+<tr class="memdesc:a98423400ad1a8f325c9066b0cb82cd95"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of entities currently detected by the sensor.  <br /></td></tr>
 <tr class="separator:a98423400ad1a8f325c9066b0cb82cd95"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a382298f747b12eedda12b7a66cd647f7"><td class="memItemLeft" align="right" valign="top"><a id="a382298f747b12eedda12b7a66cd647f7" name="a382298f747b12eedda12b7a66cd647f7"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsActive</b> = false<code> [get]</code></td></tr>
+<tr class="memdesc:a382298f747b12eedda12b7a66cd647f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bool representing if the sensor is currently active. The sensor is active if it has received a message in less time than the time set by <a class="el" href="classSensor.html#a9035ae7630d20c12169accde83da019a" title="Seconds without messages from sensor before the session set to idle.">SecondsUntilIdle</a>.  <br /></td></tr>
 <tr class="separator:a382298f747b12eedda12b7a66cd647f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
