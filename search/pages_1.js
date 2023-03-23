@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['changelog_0',['CHANGELOG',['../md_CHANGELOG.html',1,'']]]
+  ['sensmax_20tac_2db_20unity_20integration_0',['SensMax TAC-B Unity integration',['../index.html',1,'']]]
 ];
