@@ -18,9 +18,9 @@ jobs:
 
       - name: Setup Doxygen
         uses: mattnotmitt/doxygen-action@v1.9.5
-        run: doxygen Doxyfile
 
       # - name: Build
+      #   run: doxygen Doxyfile
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
