@@ -13,6 +13,9 @@ public enum LogLevel { None, Error, Warning, All }
 /// </summary>
 public class Logger : IMqttNetLogger
 {
+    /// <summary>
+    /// Defines what should be logged to debug console by this logger
+    /// </summary>
     public LogLevel logLevel {get; set;} = LogLevel.Warning;
     bool IMqttNetLogger.IsEnabled => true;
 
