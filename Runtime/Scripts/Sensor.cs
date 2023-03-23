@@ -65,6 +65,9 @@ public class Sensor : MonoBehaviour
         MessageReceivedEvent.Invoke();
     }
 
+    /// <summary>
+    /// Checks if session needs updating and updates when needed.
+    /// </summary>
     public void Update()
     {
         // Update session length
