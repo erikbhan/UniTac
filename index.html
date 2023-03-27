@@ -81,11 +81,15 @@ Usage</h1>
 <p >After importing our package, you first need a manager to administrate the sensor. Click and drag our pre-made prefab into either the Unity Scene or the Unity Hierarchy from the Package folder. To troubleshoot the MQTT client or server, you can change the logging level in the manager prefab's Inspector window. You can also set a custom port if you'd like.</p>
 <p >Then you need to drag and drop a sensor prefab onto the manager for each physical sensor you'd like to connect to. These sensor prefabs represent the physical sensor in the Unity world. Configure each sensor prefab via the Inspector window; you need to set the "serial" field equal to the physical sensor's serial number. Seconds until idle is simply the time from the last message until the sensor considers itself "idle".</p>
 <p >Finally, you need to add functionality to the sensor. There is sample code in the package folder under "Runtime" &gt; "Samples". Simply drag the wanted functionality onto the sensor GameObject in the Unity Hierarchy, then configure via the Inspector again (for example, if you need to make a 3D object to use as a prefab for spawning).</p>
-<h1><a class="anchor" id="autotoc_md6"></a>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Documentation</h2>
+<p >For concrete examples on how to use our library, please see the <code>Runtime/Samples</code> folder.</p>
+<p >For API documentation, please see the <a href="https://erikbhan.github.io/bachelor/">wiki</a>.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Contributing</h1>
 <p >Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.</p>
 <p >Please make sure to update tests as appropriate.</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md8"></a>
 License</h1>
 <p ><a href="https://choosealicense.com/licenses/mit/">MIT</a> </p>
 </div></div><!-- PageDoc -->
