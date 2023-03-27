@@ -14,6 +14,12 @@ Then you need to drag and drop a sensor prefab onto the manager for each physica
 
 Finally, you need to add functionality to the sensor. There is sample code in the package folder under "Runtime" > "Samples". Simply drag the wanted functionality onto the sensor GameObject in the Unity Hierarchy, then configure via the Inspector again (for example, if you need to make a 3D object to use as a prefab for spawning).
 
+### Documentation
+
+For concrete examples on how to use our library, please see the `Runtime/Samples` folder.
+
+For API documentation, please see the [wiki](https://erikbhan.github.io/bachelor/).
+
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
