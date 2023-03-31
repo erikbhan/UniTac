@@ -2,14 +2,15 @@ name: Make and publish documentation
 
 on:
   push:
-    branches: [ main ]
   pull_request:
+    branches: [ main ]
 
 permissions:
   contents: write
   
 jobs:
   build:
+    if: ${{ github.event.pull_request.merged }}
     runs-on: ubuntu-latest
 
     steps:
