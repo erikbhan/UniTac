@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+namespace Bachelor {
 /// <summary>
 /// Script for the sensor gameobject that handles functionality
 /// </summary>
@@ -141,4 +142,5 @@ public class Sensor : MonoBehaviour
     {
         return CurrentSession.ActiveSession ? 0 : CurrentSessionLength;
     }
+}
 }
