@@ -4,8 +4,9 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
+namespace UniTac {
 /// <summary>
-/// Script for the sensor gameobject that handles functionality
+/// Script for the sensor gameobject that handles functionality.
 /// </summary>
 public class Sensor : MonoBehaviour
 {
@@ -141,4 +142,5 @@ public class Sensor : MonoBehaviour
     {
         return CurrentSession.ActiveSession ? 0 : CurrentSessionLength;
     }
+}
 }
