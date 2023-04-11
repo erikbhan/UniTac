@@ -3,7 +3,7 @@ using System;
 using MQTTnet.Diagnostics;
 using UnityEngine;
 
-namespace Bachelor {
+namespace UniTac {
     /// <summary>
     /// Class that logs to console for <see cref="Client"/> and <see cref="Server"/> 
     /// </summary>
