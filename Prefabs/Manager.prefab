@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &81466155616329821
+--- !u!1 &7539980163110648885
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7079683154673987749}
-  - component: {fileID: 5686784212157508884}
+  - component: {fileID: 7539980163110648887}
+  - component: {fileID: 7539980163110648886}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -17,137 +17,34 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7079683154673987749
+--- !u!4 &7539980163110648887
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81466155616329821}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2023671308922192590}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5686784212157508884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 81466155616329821}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00f330f107d68bd3787ac903dfdbeb8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ServerLogLevel: 2
-  ClientLogLevel: 2
-  ServerPort: 1883
---- !u!1 &1000586526755399908
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 3717512973785500562, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-  m_PrefabInstance: {fileID: 5960613378373874824}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2023671308922192590}
-  - component: {fileID: 9037996307302151552}
-  m_Layer: 0
-  m_Name: Sensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2023671308922192590
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-  m_PrefabInstance: {fileID: 5960613378373874824}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000586526755399908}
+  m_GameObject: {fileID: 7539980163110648885}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7079683154673987749}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9037996307302151552
+--- !u!114 &7539980163110648886
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 1417840840542248518, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-  m_PrefabInstance: {fileID: 5960613378373874824}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1000586526755399908}
+  m_GameObject: {fileID: 7539980163110648885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ef8ef75971b46a3cb2ff3bfb0f8047b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a36be0ffd122e1f5a43d44acd87b3e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Serial: 
-  SecondsUntilIdle: 2
---- !u!1001 &5960613378373874824
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 7079683154673987749}
-    m_Modifications:
-    - target: {fileID: 3717512973785500562, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_Name
-      value: Sensor
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_RootOrder
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4959293724573043000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 96d611172a0b3da08a048c739fa7e514, type: 3}
+  ServerPort: 1883
+  EnableLogging: 0
+  ServerLogLevel: 2
+  ClientLogLevel: 2
