@@ -1,19 +1,22 @@
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(Interface))]
-public class ManagerEditor : Editor
-{
-    public override void OnInspectorGUI()
+namespace UniTac {
+[CustomEditor (typeof(Manager))]
+    public class InterfaceEditor : Editor
     {
-        DrawDefaultInspector();
-        EditorGUILayout.HelpBox("This is a help box", MessageType.Info);
-
-
-        Interface manager = (Interface) target;
-        if (GUILayout.Button("Add a sensor"))
+        public override void OnInspectorGUI()
         {
-            Instantiate(manager.transform.GetChild(0), manager.transform, false);
+            DrawDefaultInspector();
+
+            Manager manager = (Manager) target;
+
+            // Button to add another sensor
+            if (GUILayout.Button("Add Sensor")) {
+                GameObject sensor = new("Sensor", typeof(Sensor));
+                sensor.transform.SetParent(manager.transform);
+                sensor.transform.SetPositionAndRotation(manager.transform.position, manager.transform.rotation);
+            }
         }
     }
 }
