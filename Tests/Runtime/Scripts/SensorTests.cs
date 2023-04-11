@@ -1,5 +1,6 @@
 #nullable enable
 using NUnit.Framework;
+using UniTac;
 
 public class SensorTests
 {
