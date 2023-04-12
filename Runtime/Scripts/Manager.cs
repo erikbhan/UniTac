@@ -64,7 +64,7 @@ namespace UniTac {
             _ = Server.StartAsync();
             ConnectClient();
         }
-        
+
         /// <summary>
         /// Creates an MQTT server object enabling communication between the sensor and the client.
         /// </summary>
