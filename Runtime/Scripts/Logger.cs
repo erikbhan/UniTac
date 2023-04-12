@@ -16,6 +16,16 @@ namespace UniTac {
         bool IMqttNetLogger.IsEnabled => true;
 
         /// <summary>
+        /// Constructor that sets loglevel. Default log level is warning. 
+        /// Meaning errors and waringings will be logged in debug consol.
+        /// </summary>
+        /// <param name="logLevel">Desired loglevel</param>
+        public Logger(LogLevel? logLevel = null) 
+        { 
+            if (logLevel != null) this.logLevel = (LogLevel)logLevel;
+        }
+
+        /// <summary>
         /// Logs a messages from parent
         /// </summary>
         /// <param name="logLevel">Type of log received</param>
