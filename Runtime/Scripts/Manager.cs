@@ -34,11 +34,6 @@ namespace UniTac {
         public LogLevel ClientLogLevel = LogLevel.None;
 
         /// <summary>
-        /// The logger, if enabled. Else; null.
-        /// </summary>
-        private Logger Logger;
-
-        /// <summary>
         /// The MQTT server.
         /// </summary>
         private MqttServer Server;
@@ -59,7 +54,6 @@ namespace UniTac {
         public void Start() {
             if (ClientLogLevel == LogLevel.None && ServerLogLevel == LogLevel.None)
                 EnableLogging = false;
-            if (EnableLogging) Logger = new();
             foreach (Transform child in transform)
             {
                 if (Sensors.ContainsKey(child.GetComponent<Sensor>().Serial)) continue;
@@ -70,16 +64,20 @@ namespace UniTac {
             _ = Server.StartAsync();
             ConnectClient();
         }
-
+        
         /// <summary>
         /// Creates an MQTT server object enabling communication between the sensor and the client.
         /// </summary>
         /// <returns>The server object</returns>
         MqttServer CreateServer() {
             var mqttFactory = new MqttFactory();
+
             if (EnableLogging)
-                mqttFactory = new MqttFactory(Logger);
-            
+            {
+                Logger logger = new(ServerLogLevel);
+                mqttFactory = new MqttFactory(logger);
+            }
+
             var MqttServerOptions = new MqttServerOptionsBuilder()
                 .WithDefaultEndpoint()
                 .WithDefaultEndpointPort(ServerPort)
@@ -93,8 +91,13 @@ namespace UniTac {
         /// <returns>The client object</returns>
         IMqttClient CreateClient() {
             var mqttFactory = new MqttFactory();
-            if (EnableLogging)
-                mqttFactory = new MqttFactory(Logger);
+
+            if (EnableLogging) 
+            {
+                Logger logger = new(ClientLogLevel);
+                mqttFactory = new MqttFactory(logger);
+            }
+
             var client = mqttFactory.CreateMqttClient();
             client.ApplicationMessageReceivedAsync += e => HandleMessage(e);
             return client;
