@@ -11,7 +11,6 @@ namespace UniTac
         /// </summary>
         public string Path = "";
         private Sensor Sensor = null;
-        private StreamWriter StreamWriter = null;
 
         /// <summary>
         /// Gets the sensor and creates a log file if it does not already exist.
@@ -26,15 +25,14 @@ namespace UniTac
             }
             Sensor.StatusChangedEvent.AddListener(LogStatus);
 
-            if (Path == "") Path = "./Assets/" + Sensor.Serial + "-Log.json";
+            if (Path == "") Path = "./Assets/" + Sensor.Serial + "-Log.txt";
             if (!File.Exists(Path))
             {
                 File.Create(Path);
             }
-            if (File.Exists(Path))
+            if (!File.Exists(Path))
             {
-                FileStream fs = new(Path, FileMode.Append, FileAccess.Write);
-                StreamWriter = new StreamWriter(fs);
+                Debug.LogError("Could not create file!");
             }
         }
 
@@ -44,7 +42,9 @@ namespace UniTac
         private void LogStatus()
         {
             var data = JsonConvert.SerializeObject(Sensor.LastSession);
-            StreamWriter.WriteLine(data + ",");
+            using FileStream fs = new(Path, FileMode.Append, FileAccess.Write);
+            using StreamWriter sw = new(fs);
+            sw.WriteLine(data);
         }
     }
 }
