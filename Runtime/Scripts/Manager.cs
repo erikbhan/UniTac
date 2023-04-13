@@ -52,8 +52,6 @@ namespace UniTac {
         /// Initializes the manager when starting Play mode or running the application.
         /// </summary>
         public void Start() {
-            if (ClientLogLevel == LogLevel.None && ServerLogLevel == LogLevel.None)
-                EnableLogging = false;
             foreach (Transform child in transform)
             {
                 if (Sensors.ContainsKey(child.GetComponent<Sensor>().Serial)) continue;
@@ -72,7 +70,7 @@ namespace UniTac {
         MqttServer CreateServer() {
             var mqttFactory = new MqttFactory();
 
-            if (EnableLogging)
+            if (EnableLogging && ServerLogLevel != LogLevel.None)
             {
                 Logger logger = new(ServerLogLevel);
                 mqttFactory = new MqttFactory(logger);
@@ -92,7 +90,7 @@ namespace UniTac {
         IMqttClient CreateClient() {
             var mqttFactory = new MqttFactory();
 
-            if (EnableLogging) 
+            if (EnableLogging && ClientLogLevel != LogLevel.None) 
             {
                 Logger logger = new(ClientLogLevel);
                 mqttFactory = new MqttFactory(logger);
@@ -133,7 +131,14 @@ namespace UniTac {
             var json = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
             var payload = JsonConvert.DeserializeObject<Payload>(json);
             var serial = payload.CollectorSerial;
-            Sensors[serial].HandleMessage(payload);
+            if (Sensors.ContainsKey(serial))
+            {
+                Sensors[serial].HandleMessage(payload);
+            }
+            else
+            {
+                Debug.LogWarning("Received message from untracked sensor with serial: " + serial);
+            }
             return Task.CompletedTask;
         }
 
