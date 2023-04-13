@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace UniTac
 {
+    /// <summary>
+    /// Sample monobehaviour that saves sensor session data to a separate log file.
+    /// </summary>
     public class LogSessionData : MonoBehaviour
     {
         /// <summary>
