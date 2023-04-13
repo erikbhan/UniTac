@@ -44,7 +44,7 @@ namespace UniTac
             var data = JsonConvert.SerializeObject(Sensor.LastSession);
             using FileStream fs = new(Path, FileMode.Append, FileAccess.Write);
             using StreamWriter sw = new(fs);
-            sw.WriteLine(data);
+            sw.WriteLine(data + ",");
         }
     }
 }
