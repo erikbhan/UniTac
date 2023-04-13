@@ -36,7 +36,7 @@ namespace UniTac {
         /// <summary>
         /// The MQTT server.
         /// </summary>
-        private MqttServer Server;
+        internal MqttServer Server { get; private set; }
 
         /// <summary>
         /// The MQTT client.
