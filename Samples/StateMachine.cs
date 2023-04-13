@@ -4,7 +4,7 @@ using UniTac;
 /// <summary>
 /// Sample monobehaviour that acts as a simple state machine.
 /// </summary>
-public class AnimationOnActiveAndIdle : MonoBehaviour
+public class StateMachine : MonoBehaviour
 {
     /// <summary>
     /// GameObject thats is active if the sensor is detecting entities.
