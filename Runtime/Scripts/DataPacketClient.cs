@@ -18,18 +18,21 @@ namespace UniTac
         /// </summary>
         public string Path = "";
         /// <summary>
-        /// Boolean variable toggled in the Inspector GUI; enables logging to the console if true.
-        /// </summary>
-        public bool EnableLogging = false;
-        /// <summary>
         /// The minimum log level a message from the client needs before it is printed in console.
         /// </summary>
         public LogLevel LogLevel = LogLevel.None;
         private IMqttClient Client;
+        private Manager Manager;
 
         // Start is called before the first frame update
         void Start()
         {
+            Manager = gameObject.GetComponent<Manager>();
+            if (!Manager)
+            {
+                Debug.LogError("Manager not found");
+                Application.Quit();
+            }
             if (Path == "") Path = "./Assets/5-minute-message-log.txt";
             if (!File.Exists(Path))
             {
@@ -51,7 +54,7 @@ namespace UniTac
         {
             var mqttFactory = new MqttFactory();
 
-            if (EnableLogging)
+            if (LogLevel != LogLevel.None)
             {
                 Logger logger = new(LogLevel);
                 mqttFactory = new MqttFactory(logger);
@@ -65,7 +68,6 @@ namespace UniTac
         /// <summary>
         /// Connects the client to the server.
         /// </summary>
-        /// <returns>awaitable <see cref="Task"/></returns>
         IEnumerator ConnectClient()
         {
             var mqttClientOptions = new MqttClientOptionsBuilder()
@@ -75,12 +77,12 @@ namespace UniTac
             var mqttFactory = new MqttFactory();
             var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder()
                 .WithTopicFilter(
-                    f => { f.WithTopic("smx/device/+/5_min_data"); })
+                    f => { f.WithTopic("smx/device/+/5_min_data/#"); })
                 .Build();
 
-            yield return new WaitForSeconds(5);
-
+            yield return new WaitUntil(() => Manager.Server != null && Manager.Server.IsStarted);
             Client.ConnectAsync(mqttClientOptions, System.Threading.CancellationToken.None);
+            yield return new WaitUntil(() => Client.IsConnected);
             Client.SubscribeAsync(mqttSubscribeOptions, System.Threading.CancellationToken.None);
         }
 
