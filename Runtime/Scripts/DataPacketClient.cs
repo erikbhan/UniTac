@@ -35,7 +35,6 @@ namespace UniTac
                 Debug.LogError("Manager not found");
                 Application.Quit();
             }
-
             if (Path == "") Path = "./Assets/5-minute-message-log.txt";
             if (!File.Exists(Path))
             {
