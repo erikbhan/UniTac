@@ -33,7 +33,7 @@ The manager can be set up with a username and password so that connections can b
 }
 ```
 
-Then add the path to this file to the "Secret File Path" to the path to your file.
+Then add the path to this file to the "Secret File Path"-variable in the manager inspector window.
 
 ### Logging 5-minute-packets
 
