@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Text;
 using Unity.Plastic.Newtonsoft.Json;
 using MQTTnet.Protocol;
+using System.IO;
 
 namespace UniTac {
     /// <summary>
@@ -31,6 +32,10 @@ namespace UniTac {
         /// </summary>
         public LogLevel ClientLogLevel = LogLevel.None;
         /// <summary>
+        /// The path to file with username and password for MQTT-protocol. If left empty no username or password will be sett.
+        /// </summary>
+        public string SecretsFilePath = string.Empty;
+        /// <summary>
         /// The MQTT server.
         /// </summary>
         internal MqttServer Server { get; private set; }
@@ -41,22 +46,31 @@ namespace UniTac {
         /// Initializes the manager when starting Play mode or running the application.
         /// </summary>
         public void Start() {
+            var username = "";
+            var password = "";
+            if (SecretsFilePath != "" && File.Exists(SecretsFilePath))
+            {
+                var json = File.ReadAllText(SecretsFilePath);
+                var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                username = data["username"];
+                password = data["password"];
+            }
             foreach (Transform child in transform)
             {
                 if (Sensors.ContainsKey(child.GetComponent<Sensor>().Serial)) continue;
                 Sensors.Add(child.GetComponent<Sensor>().Serial, child.GetComponent<Sensor>());
             }
-            Server = CreateServer();
+            Server = CreateServer(username, password);
             Client = CreateClient();
             _ = Server.StartAsync();
-            ConnectClient();
+            ConnectClient(username, password);
         }
 
         /// <summary>
         /// Creates an MQTT server object enabling communication between the sensor and the client.
         /// </summary>
         /// <returns>The server object</returns>
-        MqttServer CreateServer() {
+        MqttServer CreateServer(string username, string password) {
             var mqttFactory = new MqttFactory();
 
             if (EnableLogging && ServerLogLevel != LogLevel.None)
@@ -70,12 +84,15 @@ namespace UniTac {
                 .WithDefaultEndpointPort(ServerPort)
                 .Build();
             var mqttServer = mqttFactory.CreateMqttServer(MqttServerOptions);
-            mqttServer.ValidatingConnectionAsync += e =>
+            if (username != "" || password != "")
             {
-                if (e.UserName != "") e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
-                if (e.Password != "") e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
-                return Task.CompletedTask;
-            };
+                mqttServer.ValidatingConnectionAsync += e =>
+                {
+                    if (e.UserName != username) e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
+                    if (e.Password != password) e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
+                    return Task.CompletedTask;
+                };
+            }
             return mqttServer;
         }
 
@@ -101,11 +118,11 @@ namespace UniTac {
         /// Connects the client to the server.
         /// </summary>
         /// <returns>awaitable <see cref="Task"/></returns>
-        async void ConnectClient()
+        async void ConnectClient(string username, string password)
         {
             var mqttClientOptions = new MqttClientOptionsBuilder()
                 .WithTcpServer("127.0.0.1")
-                .WithCredentials("", "")
+                .WithCredentials(username, password)
                 .Build();
             
             var mqttFactory = new MqttFactory();

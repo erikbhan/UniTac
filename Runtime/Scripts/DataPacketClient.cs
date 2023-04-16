@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.Plastic.Newtonsoft.Json;
 
 namespace UniTac
 {
@@ -33,6 +35,17 @@ namespace UniTac
                 Debug.LogError("Manager not found");
                 Application.Quit();
             }
+
+            var username = "";
+            var password = "";
+            if (Manager.SecretsFilePath != "" && File.Exists(Manager.SecretsFilePath))
+            {
+                var json = File.ReadAllText(Manager.SecretsFilePath);
+                var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                username = data["username"];
+                password = data["password"];
+            }
+
             if (Path == "") Path = "./Assets/5-minute-message-log.txt";
             if (!File.Exists(Path))
             {
@@ -43,7 +56,7 @@ namespace UniTac
                 Debug.LogError("Could not create file!");
             }
             Client = CreateClient();
-            StartCoroutine(ConnectClient());
+            StartCoroutine(ConnectClient(username, password));
         }
 
         /// <summary>
@@ -68,11 +81,11 @@ namespace UniTac
         /// <summary>
         /// Connects the client to the server.
         /// </summary>
-        IEnumerator ConnectClient()
+        IEnumerator ConnectClient(string username, string password)
         {
             var mqttClientOptions = new MqttClientOptionsBuilder()
                 .WithTcpServer("127.0.0.1")
-                .WithCredentials("", "")
+                .WithCredentials(username, password)
                 .Build();
 
             var mqttFactory = new MqttFactory();
