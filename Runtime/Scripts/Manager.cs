@@ -6,6 +6,7 @@ using MQTTnet;
 using System.Threading.Tasks;
 using System.Text;
 using Unity.Plastic.Newtonsoft.Json;
+using MQTTnet.Protocol;
 
 namespace UniTac {
     /// <summary>
@@ -17,35 +18,23 @@ namespace UniTac {
         /// The port the project should use. 
         /// </summary>
         public int ServerPort = 1883;
-
         /// <summary>
         /// Boolean variable toggled in the Inspector GUI; enables logging to the console if true.
         /// </summary>
         public bool EnableLogging = false;
-
         /// <summary>
         /// The minimum log level a message from the server needs before it is printed in console.
         /// </summary>
         public LogLevel ServerLogLevel = LogLevel.None;
-
         /// <summary>
         /// The minimum log level a message from the client needs before it is printed in console.
         /// </summary>
         public LogLevel ClientLogLevel = LogLevel.None;
-
         /// <summary>
         /// The MQTT server.
         /// </summary>
         internal MqttServer Server { get; private set; }
-
-        /// <summary>
-        /// The MQTT client.
-        /// </summary>
         private IMqttClient Client;
-
-        /// <summary>
-        /// A dictionary that keeps track of all the sensors.
-        /// </summary>
         private readonly Dictionary<string, Sensor> Sensors = new();
 
         /// <summary>
@@ -80,7 +69,14 @@ namespace UniTac {
                 .WithDefaultEndpoint()
                 .WithDefaultEndpointPort(ServerPort)
                 .Build();
-            return mqttFactory.CreateMqttServer(MqttServerOptions);
+            var mqttServer = mqttFactory.CreateMqttServer(MqttServerOptions);
+            mqttServer.ValidatingConnectionAsync += e =>
+            {
+                if (e.UserName != "") e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
+                if (e.Password != "") e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
+                return Task.CompletedTask;
+            };
+            return mqttServer;
         }
 
         /// <summary>
@@ -109,6 +105,7 @@ namespace UniTac {
         {
             var mqttClientOptions = new MqttClientOptionsBuilder()
                 .WithTcpServer("127.0.0.1")
+                .WithCredentials("", "")
                 .Build();
             
             var mqttFactory = new MqttFactory();

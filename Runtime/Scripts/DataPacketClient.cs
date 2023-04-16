@@ -72,6 +72,7 @@ namespace UniTac
         {
             var mqttClientOptions = new MqttClientOptionsBuilder()
                 .WithTcpServer("127.0.0.1")
+                .WithCredentials("", "")
                 .Build();
 
             var mqttFactory = new MqttFactory();
