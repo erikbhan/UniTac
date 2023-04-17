@@ -54,8 +54,8 @@ namespace UniTac {
         public void Start() {
             foreach (Transform child in transform)
             {
-                if (Sensors.ContainsKey(child.GetComponent<Sensor>().Serial)) continue;
-                Sensors.Add(child.GetComponent<Sensor>().Serial, child.GetComponent<Sensor>());
+                var sensor = child.GetComponent<Sensor>();
+                Sensors[sensor.Serial] = sensor;
             }
             Server = CreateServer();
             Client = CreateClient();
