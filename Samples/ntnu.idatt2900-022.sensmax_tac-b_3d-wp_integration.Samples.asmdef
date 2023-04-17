@@ -1,0 +1,16 @@
+{
+	"name": "ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration.Samples",
+    "rootNamespace": "UniTac",
+    "references": [
+        "ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
