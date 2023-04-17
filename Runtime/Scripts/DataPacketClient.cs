@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.Plastic.Newtonsoft.Json;
 
 namespace UniTac
 {
@@ -70,19 +72,28 @@ namespace UniTac
         /// </summary>
         IEnumerator ConnectClient()
         {
+            yield return new WaitUntil(() => Manager.Server != null && Manager.Server.IsStarted);
+            var username = "";
+            var password = "";
+            if (Manager.SecretsFilePath != "" && File.Exists(Manager.SecretsFilePath))
+            {
+                var json = File.ReadAllText(Manager.SecretsFilePath);
+                var data = JsonConvert.DeserializeObject<Dictionary<string, string>>(json);
+                username = data["username"];
+                password = data["password"];
+            }
             var mqttClientOptions = new MqttClientOptionsBuilder()
                 .WithTcpServer("127.0.0.1")
+                .WithCredentials(username, password)
                 .Build();
+            Client.ConnectAsync(mqttClientOptions, System.Threading.CancellationToken.None);
 
+            yield return new WaitUntil(() => Client.IsConnected);
             var mqttFactory = new MqttFactory();
             var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder()
                 .WithTopicFilter(
                     f => { f.WithTopic("smx/device/+/5_min_data/#"); })
                 .Build();
-
-            yield return new WaitUntil(() => Manager.Server != null && Manager.Server.IsStarted);
-            Client.ConnectAsync(mqttClientOptions, System.Threading.CancellationToken.None);
-            yield return new WaitUntil(() => Client.IsConnected);
             Client.SubscribeAsync(mqttSubscribeOptions, System.Threading.CancellationToken.None);
         }
 
