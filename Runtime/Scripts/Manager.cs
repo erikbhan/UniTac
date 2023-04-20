@@ -101,6 +101,7 @@ namespace UniTac {
                 .Build();
 
             //TODO: Combine TLS and user/pass
+            // See here to create a CA + client cert and server cert
             if (EnableTLS && File.Exists(CertificatePath + "server/server.pfx"))
             {
                 X509Certificate2 serverCrt = new(CertificatePath + "server/server.pfx", "server", X509KeyStorageFlags.Exportable);
