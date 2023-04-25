@@ -4,7 +4,7 @@ using UnityEditor;
 namespace UniTac
 {
     [CustomEditor(typeof(Sensor))]
-    public class DrawSolidArcEditor : Editor
+    public class SensorEditor : Editor
     {
         public float arrowSize = 1;
 
