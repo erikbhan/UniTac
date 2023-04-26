@@ -35,6 +35,33 @@ The manager can be set up with a username and password so that connections can b
 
 Then add the path to this file to the "Secret File Path"-variable in the manager inspector window.
 
+### TLS
+
+To encrypt the communication between your sensor and Unity, you will need to set up valid certificates for both your PC and sensor. You can use a trusted third party certificate authority (CA), but since you don't need other computers to trust your project or your sensor, you can also create your own CA.
+
+1. Creating a CA key and certificate with OpenSSL
+
+```bash
+openssl genrsa -out rootCA.key 4096
+openssl req -x509 -new -nodes -key rootCA.key -sha256 -days 1024 -out rootCA.pem
+```
+
+2. Creating a server (or client) key, certificate signing request and sign it with the root CA
+
+```bash
+openssl genrsa -out server.key 2048
+openssl req -new -key server.key -out server.csr
+openssl x509 -req -in server.csr -CA rootCA.pem -CAkey rootCA.key -CAcreateserial -out server.crt -days 365 -sha256
+```
+
+3. Repeat the above step for as many clients and servers you have (if you have one sensor, this means 3 times; two for the server and client in our package, and once for the sensor.)
+
+4. Convert the keys and certificates into the .pfx format
+
+```bash
+openssl pkcs12 -export -out server.pfx -inkey server.key -in server.crt -certfile rootCA.pem
+```
+
 ### Logging 5-minute-packets
 
 The sensor automaticly sends a "5-minute-data"-packet every 5 minutes. As a default the manager discards these to not waste time. The script "DataPacketClient" can be added to manager to log these messages in a separate file.
