@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 using MQTTnet.Protocol;
-using System.IO;
 
 namespace UniTac {
     /// <summary>
