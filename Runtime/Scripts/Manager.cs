@@ -68,12 +68,8 @@ namespace UniTac {
             }
             foreach (Transform child in transform)
             {
-                if (Sensors.ContainsKey(child.GetComponent<Sensor>().Serial)) 
-                {
-                    Debug.LogWarning("Two or more sensors with the same serial number");
-                    continue;
-                }
-                Sensors.Add(child.GetComponent<Sensor>().Serial, child.GetComponent<Sensor>());
+                var sensor = child.GetComponent<Sensor>();
+                Sensors[sensor.Serial] = sensor;
             }
             Server = CreateServer(username, password);
             Client = CreateClient();
