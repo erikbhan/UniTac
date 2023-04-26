@@ -4,6 +4,5 @@ var searchData=
   ['idleanimation_1',['IdleAnimation',['../classStateMachine.html#a87f5722dddfa26a69bebd94cb384db38',1,'StateMachine']]],
   ['idleanimation2_2',['IdleAnimation2',['../classStateMachine.html#a68419c265da523908d6ef565dd5533c3',1,'StateMachine']]],
   ['idletimeuntilsecondanimation_3',['IdleTimeUntilSecondAnimation',['../classStateMachine.html#a1702863389fd2b7027e4fe13321d732d',1,'StateMachine']]],
-  ['interfaceeditor_4',['InterfaceEditor',['../classUniTac_1_1EditorUI_1_1InterfaceEditor.html',1,'UniTac::EditorUI']]],
-  ['isactive_5',['IsActive',['../classUniTac_1_1Sensor.html#a8905735533e78f1ee9968553fc3df0e2',1,'UniTac::Sensor']]]
+  ['isactive_4',['IsActive',['../classUniTac_1_1Sensor.html#a8905735533e78f1ee9968553fc3df0e2',1,'UniTac::Sensor']]]
 ];

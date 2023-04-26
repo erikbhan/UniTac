@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['logger_0',['Logger',['../classUniTac_1_1Logger.html',1,'UniTac']]],
-  ['logsessiondata_1',['LogSessionData',['../classLogSessionData.html',1,'']]]
+  ['manager_0',['Manager',['../classUniTac_1_1Manager.html',1,'UniTac']]],
+  ['managereditor_1',['ManagerEditor',['../classUniTac_1_1EditorUI_1_1ManagerEditor.html',1,'UniTac::EditorUI']]]
 ];
