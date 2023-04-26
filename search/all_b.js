@@ -13,7 +13,7 @@ var searchData=
   ['spawnonentity_10',['SpawnOnEntity',['../classSpawnOnEntity.html',1,'']]],
   ['spawnprefab_11',['SpawnPrefab',['../classSpawnOnEntity.html#a3f852bd1379d0a74c49b21619c408668',1,'SpawnOnEntity']]],
   ['speed_12',['Speed',['../classUniTac_1_1Models_1_1Entity.html#aa768819a490c9cc0c299a033566673e2',1,'UniTac::Models::Entity']]],
-  ['start_13',['Start',['../classUniTac_1_1Models_1_1Session.html#a35bb52f644009011fddb7c161412f6ed',1,'UniTac.Models.Session.Start()'],['../classUniTac_1_1Manager.html#a6b1218907e7cc8ac4d3f36b6cd582504',1,'UniTac.Manager.Start()']]],
+  ['start_13',['Start',['../classUniTac_1_1Models_1_1Session.html#a35bb52f644009011fddb7c161412f6ed',1,'UniTac::Models::Session']]],
   ['statemachine_14',['StateMachine',['../classStateMachine.html',1,'']]],
   ['statuschangedevent_15',['StatusChangedEvent',['../classUniTac_1_1Sensor.html#a6ea32da236e1d9cbafc0e8b142ec8b5a',1,'UniTac::Sensor']]]
 ];
