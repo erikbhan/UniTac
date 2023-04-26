@@ -3,7 +3,8 @@ using Unity.Plastic.Newtonsoft.Json;
 
 namespace UniTac.Models {
     /// <summary>
-    /// Class for objects detected by the sensor, sensor payload carries <see cref="Dictionary" />&lt;<see cref="string"/>,<see cref="Entity"/>&gt;
+    /// Class for objects detected by the sensor, sensor payload 
+    /// carries <see cref="Dictionary" />&lt;<see cref="string"/>,<see cref="Entity"/>&gt;.
     /// </summary>
     [Serializable]
     public class Entity
@@ -57,19 +58,19 @@ namespace UniTac.Models {
         }
 
         /// <summary>
-        /// Calculates the distance from this entity to the origin
+        /// Calculates the distance from this entity to the origin.
         /// </summary>
-        /// <returns><see cref="double"/> distance from parent sensor</returns>
+        /// <returns><see cref="double"/> distance from parent sensor.</returns>
         public double DistanceFromParent()
         {
             return Math.Sqrt(Math.Pow(this.X[0], 2.0) + Math.Pow(this.Y[0], 2.0));
         }
 
         /// <summary>
-        /// Checks if the given object is equal to this entity
+        /// Checks if the given object is equal to this entity.
         /// </summary>
-        /// <param name="obj"><see cref="object"/> object to check</param>
-        /// <returns><see cref="bool"/> true if input is entity with the same id</returns>
+        /// <param name="obj"><see cref="object"/> to check.</param>
+        /// <returns><see cref="bool"/> true if input is entity with the same id.</returns>
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
@@ -79,9 +80,9 @@ namespace UniTac.Models {
         }
 
         /// <summary>
-        /// Uses the Id of the entity to generate a hash code
+        /// Uses the Id of the entity to generate a hash code.
         /// </summary>
-        /// <returns><see cref="int"/> the hash code for this entity</returns>
+        /// <returns><see cref="int"/> the hash code for this entity.</returns>
         public override int GetHashCode()
         {
             return HashCode.Combine(Id);

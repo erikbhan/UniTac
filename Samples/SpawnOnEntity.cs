@@ -5,7 +5,8 @@ using UniTac;
 using UniTac.Models;
 
 /// <summary>
-/// Sample monobehaviour that spawns GameObjects that represents any entities detected by the sensor.
+/// Sample monobehaviour that spawns GameObjects that represents any entities 
+/// detected by the sensor.
 /// </summary>
 public class SpawnOnEntity : MonoBehaviour
 {
@@ -67,7 +68,8 @@ public class SpawnOnEntity : MonoBehaviour
             if (Spawned.ContainsKey(entity.Id))
             {
                 // Entity is spawned on localPosition with the incoming X and Y coordinates from the sensor.
-                // The sensor sends X and Y as m so accurate conversion to unity's cm would be x/100, this sample uses x/10 for easy visualization.
+                // The sensor sends X and Y as m so accurate conversion to unity's cm would be x/100,
+                // this sample uses x/10 for easy visualization.
                 Spawned[entity.Id].transform.localPosition = new Vector3(entity.X[0] / 10f, 0f, entity.Y[0] / 10f);
                 Spawned[entity.Id].SetActive(true);
             }

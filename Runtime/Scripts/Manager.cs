@@ -21,19 +21,23 @@ namespace UniTac {
         /// </summary>
         public int ServerPort = 1883;
         /// <summary>
-        /// Boolean variable toggled in the Inspector GUI; enables logging to the console if true.
+        /// Boolean variable toggled in the Inspector GUI; enables logging to 
+        /// the console if true.
         /// </summary>
         public bool EnableLogging = false;
         /// <summary>
-        /// The minimum log level a message from the server needs before it is printed in console.
+        /// The minimum log level a message from the server needs before it 
+        /// is printed in console.
         /// </summary>
         public LogLevel ServerLogLevel = LogLevel.None;
         /// <summary>
-        /// The minimum log level a message from the client needs before it is printed in console.
+        /// The minimum log level a message from the client needs before it 
+        /// is printed in console.
         /// </summary>
         public LogLevel ClientLogLevel = LogLevel.None;
         /// <summary>
-        /// The path to file with username and password for MQTT-protocol. If left empty no username or password will be sett.
+        /// The path to file with username and password for MQTT-protocol. 
+        /// If left empty no username or password will be sett.
         /// </summary>
         public string SecretsFilePath = string.Empty;
         /// <summary>
@@ -68,9 +72,10 @@ namespace UniTac {
         }
 
         /// <summary>
-        /// Creates an MQTT server object enabling communication between the sensor and the client.
+        /// Creates an MQTT server object enabling communication between the 
+        /// sensor and the client.
         /// </summary>
-        /// <returns>The server object</returns>
+        /// <returns>The server object.</returns>
         private MqttServer CreateServer(string username, string password) {
             var mqttFactory = new MqttFactory();
 
@@ -89,8 +94,10 @@ namespace UniTac {
             {
                 mqttServer.ValidatingConnectionAsync += e =>
                 {
-                    if (e.UserName != username) e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
-                    if (e.Password != password) e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
+                    if (e.UserName != username) 
+                        e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
+                    if (e.Password != password) 
+                        e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
                     return Task.CompletedTask;
                 };
             }
@@ -100,7 +107,7 @@ namespace UniTac {
         /// <summary>
         /// Creates an MQTT client that receives the sensor data from the MQTT server.
         /// </summary>
-        /// <returns>The client object</returns>
+        /// <returns>The client object.</returns>
         private IMqttClient CreateClient() {
             var mqttFactory = new MqttFactory();
 
@@ -118,7 +125,7 @@ namespace UniTac {
         /// <summary>
         /// Connects the client to the server.
         /// </summary>
-        /// <returns>awaitable <see cref="Task"/></returns>
+        /// <returns>awaitable <see cref="Task"/>.</returns>
         private async void ConnectClient(string username, string password)
         {
             var mqttClientOptions = new MqttClientOptionsBuilder()
@@ -139,8 +146,8 @@ namespace UniTac {
         /// <summary>
         /// A method to process message events from TAC-B sensors.
         /// </summary>
-        /// <param name="e">The incoming message event</param>
-        /// <returns>awaitable <see cref="Task"/></returns>
+        /// <param name="e">The incoming message event.</param>
+        /// <returns>awaitable <see cref="Task"/>.</returns>
         private Task HandleMessage(MqttApplicationMessageReceivedEventArgs e)
         {
             var json = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
@@ -158,7 +165,8 @@ namespace UniTac {
         }
 
         /// <summary>
-        /// Gracefully shut down and dispose client and server when exiting play mode/shutting down application.
+        /// Gracefully shut down and dispose client and server when exiting play 
+        /// mode/shutting down application.
         /// </summary>
         async void OnApplicationQuit()
         {
