@@ -3,9 +3,15 @@ using UnityEditor;
 
 namespace UniTac.EditorUI 
 {
+    /// <summary>
+    /// Custom editor for <see cref="Manager"/> that adds button to add sensors.
+    /// </summary>
     [CustomEditor (typeof(Manager))]
-    public class InterfaceEditor : Editor
+    public class ManagerEditor : Editor
     {
+        /// <summary>
+        /// Draws the standard inspector and with the "Add sensor"-button.
+        /// </summary>
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
