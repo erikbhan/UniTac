@@ -20,7 +20,8 @@ namespace UniTac
         /// </summary>
         public string Path = "";
         /// <summary>
-        /// The minimum log level a message from the client needs before it is printed in console.
+        /// The minimum log level a message from the client needs before it 
+        /// is printed in Unity's debug console.
         /// </summary>
         public LogLevel LogLevel = LogLevel.None;
         private IMqttClient Client;
@@ -52,7 +53,7 @@ namespace UniTac
         /// Creates an MQTT client that receives the sensor data from the MQTT server.
         /// </summary>
         /// <returns>The client object</returns>
-        IMqttClient CreateClient()
+        private IMqttClient CreateClient()
         {
             var mqttFactory = new MqttFactory();
 
@@ -70,7 +71,7 @@ namespace UniTac
         /// <summary>
         /// Connects the client to the server.
         /// </summary>
-        IEnumerator ConnectClient()
+        private IEnumerator ConnectClient()
         {
             yield return new WaitUntil(() => Manager.Server != null && Manager.Server.IsStarted);
             var username = "";

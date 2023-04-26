@@ -49,9 +49,10 @@ namespace UniTac {
         /// </summary>
         public bool IsActive { get; private set; } = false;
         /// <summary>
-        /// Radius of the field of view of the sensor. SensMax TAC-B sensors have a 10m radius.
+        /// Radius of the field of view of the sensor. SensMax TAC-B 
+        /// sensors have a 10m radius.
         /// </summary>
-        public float fieldOfView = 10;
+        public float FieldOfView = 10;
 
         // Private
         private float IdleTimer = 0f;
@@ -63,7 +64,9 @@ namespace UniTac {
         /// entities to the new entities received in the message.
         /// Also reset the idle countdown to maintain active session.
         /// </summary>
-        /// <param name="payload"><see cref="Payload"/> from the client; holds data from the sensor.</param>
+        /// <param name="payload">
+        /// <see cref="Payload"/> from the client; contains data from the sensor.
+        /// </param>
         public void HandleMessage(Payload payload) {
             IdleTimer = SecondsUntilIdle;
             var temp = new Dictionary<long, Entity>();
@@ -115,7 +118,10 @@ namespace UniTac {
         /// <summary>
         /// Gets the closest entity to the sensor.
         /// </summary>
-        /// <returns><see cref="Entity"/> the entity closest to the sensor or null no entities are present. </returns>
+        /// <returns>
+        /// <see cref="Entity"/> the entity closest to the sensor 
+        /// or null if no entities are present.
+        /// </returns>
         public Entity? GetClosestEntity()
         {
             if (!Entities.Any()) return null;
@@ -146,7 +152,9 @@ namespace UniTac {
         /// <summary>
         /// Returns the time since last active session.
         /// </summary>
-        /// <returns><see cref="float"/> number of seconds since last active session.</returns>
+        /// <returns>
+        /// <see cref="float"/> number of seconds since last active session.
+        /// </returns>
         public float GetTimeSinceLastActivePeriod()
         {
             return CurrentSession.ActiveSession ? 0 : CurrentSessionLength;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace UniTac {
     /// <summary>
-    /// Class that logs to console for <see cref="Client"/> and <see cref="Server"/> 
+    /// Class that logs to console for <see cref="Client"/> and <see cref="Server"/>.
     /// </summary>
     public class Logger : IMqttNetLogger
     {
@@ -26,13 +26,13 @@ namespace UniTac {
         }
 
         /// <summary>
-        /// Logs a messages from parent
+        /// Logs a messages from parent.
         /// </summary>
-        /// <param name="logLevel">Type of log received</param>
-        /// <param name="source">Source of massage</param>
-        /// <param name="message">Message content</param>
-        /// <param name="parameters">Optional parameters of message</param>
-        /// <param name="exception">Optional exception</param>
+        /// <param name="logLevel">Type of log received.</param>
+        /// <param name="source">Source of massage.</param>
+        /// <param name="message">Message content.</param>
+        /// <param name="parameters">Optional parameters of message.</param>
+        /// <param name="exception">Optional exception.</param>
         public void Publish(MqttNetLogLevel logLevel, string source, string message, object[]? parameters, Exception? exception)
         {
             if (this.logLevel == LogLevel.None) return;
