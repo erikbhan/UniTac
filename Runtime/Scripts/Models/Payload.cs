@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Unity.Plastic.Newtonsoft.Json;
 
-namespace UniTac {
+namespace UniTac.Models {
     /// <summary>
     /// Class for deserializing JSON-objects received from sensor
     /// </summary>

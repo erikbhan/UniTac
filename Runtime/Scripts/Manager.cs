@@ -8,6 +8,7 @@ using System.Text;
 using Unity.Plastic.Newtonsoft.Json;
 using MQTTnet.Protocol;
 using System.IO;
+using UniTac.Models;
 
 namespace UniTac {
     /// <summary>

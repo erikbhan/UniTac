@@ -1,7 +1,7 @@
 ﻿using System;
 using Unity.Plastic.Newtonsoft.Json;
 
-namespace UniTac {
+namespace UniTac.Models {
     /// <summary>
     /// Class for objects detected by the sensor, sensor payload carries <see cref="Dictionary" />&lt;<see cref="string"/>,<see cref="Entity"/>&gt;
     /// </summary>

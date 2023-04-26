@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace UniTac {
-[CustomEditor (typeof(Manager))]
+namespace UniTac.EditorUI 
+{
+    [CustomEditor (typeof(Manager))]
     public class InterfaceEditor : Editor
     {
         public override void OnInspectorGUI()

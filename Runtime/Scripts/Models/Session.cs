@@ -1,6 +1,6 @@
 using System;
 
-namespace UniTac
+namespace UniTac.Models
 {
     /// <summary>
     /// Class that represents data about a sensor session.
