@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SensMax TAC-B 3D-WP Unity Integration: Interface Class Reference</title>
+<title>SensMax TAC-B 3D-WP Unity Integration: StateMachine Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -71,39 +71,43 @@ $(function() {
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="classInterface-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Interface Class Reference</div></div>
+<a href="classStateMachine-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">StateMachine Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Script that interfaces between the game world and the sensor API.   
- <a href="classInterface.html#details">More...</a></p>
+<p>Sample monobehaviour that acts as a simple state machine.   
+ <a href="classStateMachine.html#details">More...</a></p>
 <div class="dynheader">
-Inheritance diagram for Interface:</div>
+Inheritance diagram for StateMachine:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classInterface.png" alt=""/>
+  <img src="classStateMachine.png" alt=""/>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:a00c660138336ff829feff1b7b5b2d695"><td class="memItemLeft" align="right" valign="top"><a id="a00c660138336ff829feff1b7b5b2d695" name="a00c660138336ff829feff1b7b5b2d695"></a>
-LogLevel&#160;</td><td class="memItemRight" valign="bottom"><b>ServerLogLevel</b> = LogLevel.Warning</td></tr>
-<tr class="memdesc:a00c660138336ff829feff1b7b5b2d695"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log level of the sensor. Default log level: Waring.  <br /></td></tr>
-<tr class="separator:a00c660138336ff829feff1b7b5b2d695"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa267d82158bd7946c2d54deb4f69cc63"><td class="memItemLeft" align="right" valign="top"><a id="aa267d82158bd7946c2d54deb4f69cc63" name="aa267d82158bd7946c2d54deb4f69cc63"></a>
-LogLevel&#160;</td><td class="memItemRight" valign="bottom"><b>ClientLogLevel</b> = LogLevel.Warning</td></tr>
-<tr class="memdesc:aa267d82158bd7946c2d54deb4f69cc63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Log level of the client. Default log level: Waring.  <br /></td></tr>
-<tr class="separator:aa267d82158bd7946c2d54deb4f69cc63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1523df974a267f733be927119c6f90bf"><td class="memItemLeft" align="right" valign="top"><a id="a1523df974a267f733be927119c6f90bf" name="a1523df974a267f733be927119c6f90bf"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>ServerPort</b> = 1883</td></tr>
-<tr class="memdesc:a1523df974a267f733be927119c6f90bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Server port for the server and client use.  <br /></td></tr>
-<tr class="separator:a1523df974a267f733be927119c6f90bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa008c7a8e0eaa0cd347ef64813b94365"><td class="memItemLeft" align="right" valign="top"><a id="aa008c7a8e0eaa0cd347ef64813b94365" name="aa008c7a8e0eaa0cd347ef64813b94365"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>ActiveAnimation</b></td></tr>
+<tr class="memdesc:aa008c7a8e0eaa0cd347ef64813b94365"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject thats is active if the sensor is detecting entities.  <br /></td></tr>
+<tr class="separator:aa008c7a8e0eaa0cd347ef64813b94365"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87f5722dddfa26a69bebd94cb384db38"><td class="memItemLeft" align="right" valign="top"><a id="a87f5722dddfa26a69bebd94cb384db38" name="a87f5722dddfa26a69bebd94cb384db38"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>IdleAnimation</b></td></tr>
+<tr class="memdesc:a87f5722dddfa26a69bebd94cb384db38"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject thats is active if the sensor is not detecting entities.  <br /></td></tr>
+<tr class="separator:a87f5722dddfa26a69bebd94cb384db38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68419c265da523908d6ef565dd5533c3"><td class="memItemLeft" align="right" valign="top"><a id="a68419c265da523908d6ef565dd5533c3" name="a68419c265da523908d6ef565dd5533c3"></a>
+GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>IdleAnimation2</b></td></tr>
+<tr class="memdesc:a68419c265da523908d6ef565dd5533c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject thats is active if the sensor has not detected entities for the set time.  <br /></td></tr>
+<tr class="separator:a68419c265da523908d6ef565dd5533c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1702863389fd2b7027e4fe13321d732d"><td class="memItemLeft" align="right" valign="top"><a id="a1702863389fd2b7027e4fe13321d732d" name="a1702863389fd2b7027e4fe13321d732d"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>IdleTimeUntilSecondAnimation</b> = 300f</td></tr>
+<tr class="memdesc:a1702863389fd2b7027e4fe13321d732d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of second before second idle animation is set active.  <br /></td></tr>
+<tr class="separator:a1702863389fd2b7027e4fe13321d732d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Script that interfaces between the game world and the sensor API.  </p>
+<div class="textblock"><p >Sample monobehaviour that acts as a simple state machine.  </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>Runtime/Scripts/Interface.cs</li>
+<li>Samples/StateMachine.cs</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

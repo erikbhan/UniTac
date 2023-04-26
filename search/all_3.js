@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['entities_0',['Entities',['../classPayload.html#a11f3997f6f45cc42d065bc3909e83915',1,'Payload.Entities()'],['../classSensor.html#a98423400ad1a8f325c9066b0cb82cd95',1,'Sensor.Entities()']]],
-  ['entity_1',['Entity',['../classEntity.html',1,'']]],
-  ['equals_2',['Equals',['../classEntity.html#a716428c73805b30c18bba87a7b6e6aab',1,'Entity']]]
+  ['enablelogging_0',['EnableLogging',['../classUniTac_1_1Manager.html#aecddf9240286017dc0f8ff19a524a6a9',1,'UniTac::Manager']]],
+  ['entities_1',['Entities',['../classUniTac_1_1Payload.html#ad18121d99630d94bd6cb111c8624123f',1,'UniTac.Payload.Entities()'],['../classUniTac_1_1Sensor.html#aa646d9d20094693b6184f6dcc27d86ee',1,'UniTac.Sensor.Entities()']]],
+  ['entity_2',['Entity',['../classUniTac_1_1Entity.html',1,'UniTac']]],
+  ['equals_3',['Equals',['../classUniTac_1_1Entity.html#a301b2b04227b7a491cfeae06b492121a',1,'UniTac::Entity']]]
 ];

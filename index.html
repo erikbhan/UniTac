@@ -79,17 +79,40 @@ Installation</h1>
 <h1><a class="anchor" id="autotoc_md5"></a>
 Usage</h1>
 <p >After importing our package, you first need a manager to administrate the sensor. Click and drag our pre-made prefab into either the Unity Scene or the Unity Hierarchy from the Package folder. To troubleshoot the MQTT client or server, you can change the logging level in the manager prefab's Inspector window. You can also set a custom port if you'd like.</p>
-<p >Then you need to drag and drop a sensor prefab onto the manager for each physical sensor you'd like to connect to. These sensor prefabs represent the physical sensor in the Unity world. Configure each sensor prefab via the Inspector window; you need to set the "serial" field equal to the physical sensor's serial number. Seconds until idle is simply the time from the last message until the sensor considers itself "idle".</p>
-<p >Finally, you need to add functionality to the sensor. There is sample code in the package folder under "Runtime" &gt; "Samples". Simply drag the wanted functionality onto the sensor GameObject in the Unity Hierarchy, then configure via the Inspector again (for example, if you need to make a 3D object to use as a prefab for spawning).</p>
+<p >To handle incoming messages any sensors needs to be added. Use the "Add Sensor"-button on the manager Inspector window to add any number of sensors. Configure each sensor via the Inspector window; you need to set the "serial" field equal to the physical sensor's serial number. Seconds until idle is simply the time from the last message until the sensor considers itself "idle".</p>
+<p >Finally, you need to add functionality to the sensor, either by adding a sample or your own script. Simply drag the wanted functionality onto the sensor GameObject in the Unity Hierarchy, then configure via the Inspector again (for example, if you need to make a 3D object to use as a prefab for spawning).</p>
 <h2><a class="anchor" id="autotoc_md6"></a>
+Samples</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Sample   </th><th class="markdownTableHeadNone">Functionality    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="classSpawnOnEntity.html" title="Sample monobehaviour that spawns GameObjects that represents any entities detected by the sensor.">SpawnOnEntity</a>   </td><td class="markdownTableBodyNone">Spawns the given gameObject for each object detected by the sensor.    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">LogSessionData   </td><td class="markdownTableBodyNone">Logs the session data in a txt-file. Session data includes: active/idle-status, start time and session lenght.    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="classStateMachine.html" title="Sample monobehaviour that acts as a simple state machine.">StateMachine</a>   </td><td class="markdownTableBodyNone">Switches between each gameObject based on the active/idle-status of the sensor.   </td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md7"></a>
+Using credentials to authorize MQTT-connections</h2>
+<p >The manager can be set up with a username and password so that connections can be authorized. This does not mean packets cannot be intercepted, but stops connections that does not have the right credetials. To use credentials add this file to the project:</p>
+<div class="fragment"><div class="line">{</div>
+<div class="line">    &quot;username&quot;:&quot;YOUR_USERNAME&quot;,</div>
+<div class="line">    &quot;password&quot;:&quot;SECRET_PASSWORD&quot;</div>
+<div class="line">}</div>
+</div><!-- fragment --><p >Then add the path to this file to the "Secret File Path"-variable in the manager inspector window.</p>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Logging 5-minute-packets</h2>
+<p >The sensor automaticly sends a "5-minute-data"-packet every 5 minutes. As a default the manager discards these to not waste time. The script "DataPacketClient" can be added to manager to log these messages in a separate file.</p>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Documentation</h2>
-<p >For concrete examples on how to use our library, please see the <code>Runtime/Samples</code> folder.</p>
+<p >For concrete examples on how to use our library, please see the <code>Samples</code> folder.</p>
 <p >For API documentation, please see the <a href="https://erikbhan.github.io/bachelor/">wiki</a>.</p>
-<h1><a class="anchor" id="autotoc_md7"></a>
+<h1><a class="anchor" id="autotoc_md10"></a>
 Contributing</h1>
 <p >Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.</p>
 <p >Please make sure to update tests as appropriate.</p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md11"></a>
 License</h1>
 <p ><a href="https://choosealicense.com/licenses/mit/">MIT</a> </p>
 </div></div><!-- PageDoc -->

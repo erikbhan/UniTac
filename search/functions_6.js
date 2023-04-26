@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['tostring_0',['ToString',['../classEntity.html#a4bc625ad6226d6fe40093176952bc4ca',1,'Entity.ToString()'],['../classPayload.html#af07797917902f0f73312ec0c383b9791',1,'Payload.ToString()']]]
+  ['session_0',['Session',['../classUniTac_1_1Session.html#a54d2e9227a021beb8458cc8512f88aab',1,'UniTac::Session']]],
+  ['start_1',['Start',['../classUniTac_1_1Manager.html#a6b1218907e7cc8ac4d3f36b6cd582504',1,'UniTac::Manager']]]
 ];

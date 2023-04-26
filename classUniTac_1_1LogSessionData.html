@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SensMax TAC-B 3D-WP Unity Integration: AnimationOnActiveAndIdle Class Reference</title>
+<title>SensMax TAC-B 3D-WP Unity Integration: UniTac.LogSessionData Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -67,47 +67,39 @@ $(function() {
 </div>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceUniTac.html">UniTac</a></li><li class="navelem"><a class="el" href="classUniTac_1_1LogSessionData.html">LogSessionData</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Public Attributes</a> &#124;
-<a href="classAnimationOnActiveAndIdle-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">AnimationOnActiveAndIdle Class Reference</div></div>
+<a href="classUniTac_1_1LogSessionData-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">UniTac.LogSessionData Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Sample monobehaviour that acts as a simple state machine.   
- <a href="classAnimationOnActiveAndIdle.html#details">More...</a></p>
+<p>Sample monobehaviour that saves sensor session data to a separate log file.   
+ <a href="classUniTac_1_1LogSessionData.html#details">More...</a></p>
 <div class="dynheader">
-Inheritance diagram for AnimationOnActiveAndIdle:</div>
+Inheritance diagram for UniTac.LogSessionData:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classAnimationOnActiveAndIdle.png" alt=""/>
+  <img src="classUniTac_1_1LogSessionData.png" alt=""/>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:aeccd84d165021a4251eb22a183556864"><td class="memItemLeft" align="right" valign="top"><a id="aeccd84d165021a4251eb22a183556864" name="aeccd84d165021a4251eb22a183556864"></a>
-GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>ActiveAnimation</b></td></tr>
-<tr class="memdesc:aeccd84d165021a4251eb22a183556864"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject thats is active if the sensor is detecting entities.  <br /></td></tr>
-<tr class="separator:aeccd84d165021a4251eb22a183556864"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c32390a367a2b4d66814b7464b224c4"><td class="memItemLeft" align="right" valign="top"><a id="a9c32390a367a2b4d66814b7464b224c4" name="a9c32390a367a2b4d66814b7464b224c4"></a>
-GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>IdleAnimation</b></td></tr>
-<tr class="memdesc:a9c32390a367a2b4d66814b7464b224c4"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject thats is active if the sensor is not detecting entities.  <br /></td></tr>
-<tr class="separator:a9c32390a367a2b4d66814b7464b224c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab53718c02f05e34bd667342af427c3dc"><td class="memItemLeft" align="right" valign="top"><a id="ab53718c02f05e34bd667342af427c3dc" name="ab53718c02f05e34bd667342af427c3dc"></a>
-GameObject&#160;</td><td class="memItemRight" valign="bottom"><b>IdleAnimation2</b></td></tr>
-<tr class="memdesc:ab53718c02f05e34bd667342af427c3dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">GameObject thats is active if the sensor has not detected entities for the set time.  <br /></td></tr>
-<tr class="separator:ab53718c02f05e34bd667342af427c3dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab64e05585d538ec932de8d61953a2b1e"><td class="memItemLeft" align="right" valign="top"><a id="ab64e05585d538ec932de8d61953a2b1e" name="ab64e05585d538ec932de8d61953a2b1e"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>IdleTimeUntilSecondAnimation</b> = 300f</td></tr>
-<tr class="memdesc:ab64e05585d538ec932de8d61953a2b1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of second before second idle animation is set active.  <br /></td></tr>
-<tr class="separator:ab64e05585d538ec932de8d61953a2b1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad59c6740969f19dc883b2ce956e37a10"><td class="memItemLeft" align="right" valign="top"><a id="ad59c6740969f19dc883b2ce956e37a10" name="ad59c6740969f19dc883b2ce956e37a10"></a>
+string&#160;</td><td class="memItemRight" valign="bottom"><b>Path</b> = &quot;&quot;</td></tr>
+<tr class="memdesc:ad59c6740969f19dc883b2ce956e37a10"><td class="mdescLeft">&#160;</td><td class="mdescRight">File path of logfile.  <br /></td></tr>
+<tr class="separator:ad59c6740969f19dc883b2ce956e37a10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >Sample monobehaviour that acts as a simple state machine.  </p>
+<div class="textblock"><p >Sample monobehaviour that saves sensor session data to a separate log file.  </p>
 </div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>Runtime/Samples/AnimationOnActiveAndIdle.cs</li>
+<li>Samples/LogSessionData.cs</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

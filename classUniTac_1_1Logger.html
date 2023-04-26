@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>SensMax TAC-B 3D-WP Unity Integration: Logger Class Reference</title>
+<title>SensMax TAC-B 3D-WP Unity Integration: UniTac.Logger Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -67,43 +67,50 @@ $(function() {
 </div>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespaceUniTac.html">UniTac</a></li><li class="navelem"><a class="el" href="classUniTac_1_1Logger.html">Logger</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
-<a href="classLogger-members.html">List of all members</a>  </div>
-  <div class="headertitle"><div class="title">Logger Class Reference</div></div>
+<a href="classUniTac_1_1Logger-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">UniTac.Logger Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Class that logs to console for Client and Server   
- <a href="classLogger.html#details">More...</a></p>
+ <a href="classUniTac_1_1Logger.html#details">More...</a></p>
 <div class="dynheader">
-Inheritance diagram for Logger:</div>
+Inheritance diagram for UniTac.Logger:</div>
 <div class="dyncontent">
  <div class="center">
-  <img src="classLogger.png" alt=""/>
+  <img src="classUniTac_1_1Logger.png" alt=""/>
  </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a45a5d122de89a0a0e80fe9c9a582f4b0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classLogger.html#a45a5d122de89a0a0e80fe9c9a582f4b0">Publish</a> (MqttNetLogLevel <a class="el" href="classLogger.html#a4a114059f60eb0448eb900224c23c296">logLevel</a>, string source, string message, object[]? parameters, Exception? exception)</td></tr>
-<tr class="memdesc:a45a5d122de89a0a0e80fe9c9a582f4b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a messages from parent   <a href="classLogger.html#a45a5d122de89a0a0e80fe9c9a582f4b0">More...</a><br /></td></tr>
-<tr class="separator:a45a5d122de89a0a0e80fe9c9a582f4b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2021d66450ac8e1b7a857fa6ad8f64a0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniTac_1_1Logger.html#a2021d66450ac8e1b7a857fa6ad8f64a0">Logger</a> (<a class="el" href="namespaceUniTac.html#ad354bcac2f050624de329fdeef61fd8e">LogLevel</a>? <a class="el" href="classUniTac_1_1Logger.html#ab3318f76d09ce97bb8cff6f836c58e3b">logLevel</a>=null)</td></tr>
+<tr class="memdesc:a2021d66450ac8e1b7a857fa6ad8f64a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that sets loglevel. Default log level is warning. Meaning errors and warningings will be logged in debug console.   <a href="classUniTac_1_1Logger.html#a2021d66450ac8e1b7a857fa6ad8f64a0">More...</a><br /></td></tr>
+<tr class="separator:a2021d66450ac8e1b7a857fa6ad8f64a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab29435fbe5d1a03c9134c0b49cf6e249"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniTac_1_1Logger.html#ab29435fbe5d1a03c9134c0b49cf6e249">Publish</a> (MqttNetLogLevel <a class="el" href="classUniTac_1_1Logger.html#ab3318f76d09ce97bb8cff6f836c58e3b">logLevel</a>, string source, string message, object[]? parameters, Exception? exception)</td></tr>
+<tr class="memdesc:ab29435fbe5d1a03c9134c0b49cf6e249"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a messages from parent   <a href="classUniTac_1_1Logger.html#ab29435fbe5d1a03c9134c0b49cf6e249">More...</a><br /></td></tr>
+<tr class="separator:ab29435fbe5d1a03c9134c0b49cf6e249"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a4a114059f60eb0448eb900224c23c296"><td class="memItemLeft" align="right" valign="top"><a id="a4a114059f60eb0448eb900224c23c296" name="a4a114059f60eb0448eb900224c23c296"></a>
-LogLevel&#160;</td><td class="memItemRight" valign="bottom"><b>logLevel</b> = LogLevel.Warning<code> [get, set]</code></td></tr>
-<tr class="memdesc:a4a114059f60eb0448eb900224c23c296"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines what should be logged to debug console by this logger  <br /></td></tr>
-<tr class="separator:a4a114059f60eb0448eb900224c23c296"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3318f76d09ce97bb8cff6f836c58e3b"><td class="memItemLeft" align="right" valign="top"><a id="ab3318f76d09ce97bb8cff6f836c58e3b" name="ab3318f76d09ce97bb8cff6f836c58e3b"></a>
+<a class="el" href="namespaceUniTac.html#ad354bcac2f050624de329fdeef61fd8e">LogLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><b>logLevel</b> = LogLevel.Warning<code> [get, set]</code></td></tr>
+<tr class="memdesc:ab3318f76d09ce97bb8cff6f836c58e3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Defines what should be logged to debug console by this logger.  <br /></td></tr>
+<tr class="separator:ab3318f76d09ce97bb8cff6f836c58e3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Class that logs to console for Client and Server  </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a45a5d122de89a0a0e80fe9c9a582f4b0" name="a45a5d122de89a0a0e80fe9c9a582f4b0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a45a5d122de89a0a0e80fe9c9a582f4b0">&#9670;&#160;</a></span>Publish()</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a2021d66450ac8e1b7a857fa6ad8f64a0" name="a2021d66450ac8e1b7a857fa6ad8f64a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2021d66450ac8e1b7a857fa6ad8f64a0">&#9670;&#160;</a></span>Logger()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -112,7 +119,42 @@ LogLevel&#160;</td><td class="memItemRight" valign="bottom"><b>logLevel</b> = Lo
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Logger.Publish </td>
+          <td class="memname">UniTac.Logger.Logger </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceUniTac.html#ad354bcac2f050624de329fdeef61fd8e">LogLevel</a>?&#160;</td>
+          <td class="paramname"><em>logLevel</em> = <code>null</code></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor that sets loglevel. Default log level is warning. Meaning errors and warningings will be logged in debug console.  </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">logLevel</td><td>Desired loglevel or null if default logLevel.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab29435fbe5d1a03c9134c0b49cf6e249" name="ab29435fbe5d1a03c9134c0b49cf6e249"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab29435fbe5d1a03c9134c0b49cf6e249">&#9670;&#160;</a></span>Publish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void UniTac.Logger.Publish </td>
           <td>(</td>
           <td class="paramtype">MqttNetLogLevel&#160;</td>
           <td class="paramname"><em>logLevel</em>, </td>

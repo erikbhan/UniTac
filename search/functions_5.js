@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['session_0',['Session',['../classSession.html#ae5a25a572083e5d0a4113e8d7ecf65ae',1,'Session']]]
+  ['publish_0',['Publish',['../classUniTac_1_1Logger.html#ab29435fbe5d1a03c9134c0b49cf6e249',1,'UniTac::Logger']]]
 ];

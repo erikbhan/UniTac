@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['equals_0',['Equals',['../classEntity.html#a716428c73805b30c18bba87a7b6e6aab',1,'Entity']]]
+  ['equals_0',['Equals',['../classUniTac_1_1Entity.html#a301b2b04227b7a491cfeae06b492121a',1,'UniTac::Entity']]]
 ];

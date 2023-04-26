@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['activeanimation_0',['ActiveAnimation',['../classAnimationOnActiveAndIdle.html#aeccd84d165021a4251eb22a183556864',1,'AnimationOnActiveAndIdle']]],
-  ['activesession_1',['ActiveSession',['../classSession.html#a26d3ac87c9f085d3799976a58f8093fc',1,'Session']]],
-  ['animationonactiveandidle_2',['AnimationOnActiveAndIdle',['../classAnimationOnActiveAndIdle.html',1,'']]]
+  ['activeanimation_0',['ActiveAnimation',['../classStateMachine.html#aa008c7a8e0eaa0cd347ef64813b94365',1,'StateMachine']]],
+  ['activesession_1',['ActiveSession',['../classUniTac_1_1Session.html#a6d618ea8f0dc2a3f802fc54823e670ce',1,'UniTac::Session']]]
 ];

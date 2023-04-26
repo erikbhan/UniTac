@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['payload_0',['Payload',['../classPayload.html',1,'']]]
+  ['manager_0',['Manager',['../classUniTac_1_1Manager.html',1,'UniTac']]]
 ];

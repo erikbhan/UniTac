@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['getclosestentity_0',['GetClosestEntity',['../classSensor.html#ab46b36268016562cf2daf1d83a19497c',1,'Sensor']]],
-  ['getentity_1',['GetEntity',['../classSensor.html#a1697bada5133bfc635fd3f9d7acb2f68',1,'Sensor']]],
-  ['gethashcode_2',['GetHashCode',['../classEntity.html#a0ad5f7d8b544aab3ccc7315a0cf315f7',1,'Entity']]],
-  ['gettimesincelastactiveperiod_3',['GetTimeSinceLastActivePeriod',['../classSensor.html#a0ffe9f941742212cb57a1d63bd56dc87',1,'Sensor']]]
+  ['getclosestentity_0',['GetClosestEntity',['../classUniTac_1_1Sensor.html#a82f490d5300d179cbf02527b90226290',1,'UniTac::Sensor']]],
+  ['getentity_1',['GetEntity',['../classUniTac_1_1Sensor.html#a45678a784b0e13dba96d4c0a8111e15c',1,'UniTac::Sensor']]],
+  ['gethashcode_2',['GetHashCode',['../classUniTac_1_1Entity.html#a27ad6139a87b2514a9aeb24d9eafa8c4',1,'UniTac::Entity']]],
+  ['gettimesincelastactiveperiod_3',['GetTimeSinceLastActivePeriod',['../classUniTac_1_1Sensor.html#aa89e085203232da7e9a1ffd2b8641988',1,'UniTac::Sensor']]]
 ];
