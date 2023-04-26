@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UniTac;
+using UniTac.Models;
 
 /// <summary>
 /// Sample monobehaviour that spawns GameObjects that represents any entities detected by the sensor.
