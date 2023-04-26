@@ -61,7 +61,9 @@ namespace UniTac.Models {
         /// </returns>
         public override string ToString()
         {
-            string s = "Message type: " + MessageType + ", Message id: " + Id + ", Collector id: " + CollectorId + ", Collector serialnumber: " + CollectorSerial + ", Total detected entities: " + TotalDetectedEntities + "\nEntities:\n";
+            string s = "Message type: " + MessageType + ", Message id: " + Id + ", Collector id: " 
+                        + CollectorId + ", Collector serialnumber: " + CollectorSerial 
+                        + ", Total detected entities: " + TotalDetectedEntities + "\nEntities:\n";
             foreach (var entity in Entities)
             {
                 s += entity.Key + ": " + entity.Value.ToString() + "\n";
