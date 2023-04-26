@@ -47,6 +47,10 @@ namespace UniTac {
         /// than the time set by <see cref="SecondsUntilIdle"/>.
         /// </summary>
         public bool IsActive { get; private set; } = false;
+        /// <summary>
+        /// Radius of the field of view of the sensor. SensMax TAC-B sensors have a 10m radius.
+        /// </summary>
+        public float fieldOfView = 10;
 
         // Private
         private float IdleTimer = 0f;
@@ -58,7 +62,7 @@ namespace UniTac {
         /// entities to the new entities received in the message.
         /// Also reset the idle countdown to maintain active session.
         /// </summary>
-        /// <param name="payload">Payload from the client; holds data from the sensor</param>
+        /// <param name="payload"><see cref="Payload"/> from the client; holds data from the sensor.</param>
         public void HandleMessage(Payload payload) {
             IdleTimer = SecondsUntilIdle;
             var temp = new Dictionary<long, Entity>();
@@ -86,7 +90,6 @@ namespace UniTac {
                 {
                     Entities = new();
                     UpdateSession();
-                    MessageReceivedEvent.Invoke();
                 }
             }
             else
@@ -96,7 +99,7 @@ namespace UniTac {
         }
 
         /// <summary>
-        /// Updates the current and last sessions at the session end of a session
+        /// Updates the current and last sessions at the session end of a session.
         /// </summary>
         private void UpdateSession() {
             IsActive = !IsActive;
@@ -109,9 +112,9 @@ namespace UniTac {
 
         #nullable enable
         /// <summary>
-        /// Gets the closest entity to the sensor
+        /// Gets the closest entity to the sensor.
         /// </summary>
-        /// <returns><see cref="Entity"/> the entity closest to the sensor or null no entities are present </returns>
+        /// <returns><see cref="Entity"/> the entity closest to the sensor or null no entities are present. </returns>
         public Entity? GetClosestEntity()
         {
             if (!Entities.Any()) return null;
@@ -130,10 +133,10 @@ namespace UniTac {
         }
 
         /// <summary>
-        /// Gets the entity with the given id
+        /// Gets the entity with the given id.
         /// </summary>
         /// <param name="id">The id of the entity</param>
-        /// <returns><see cref="Entity"/> the entity or null if not found</returns>
+        /// <returns><see cref="Entity"/> the entity or null if not found.</returns>
         public Entity? GetEntity(long id) { 
             return Entities.ContainsKey(id) ? Entities[id] : null; 
         }
@@ -142,7 +145,7 @@ namespace UniTac {
         /// <summary>
         /// Returns the time since last active session.
         /// </summary>
-        /// <returns><see cref="float"/> number of seconds since last active session</returns>
+        /// <returns><see cref="float"/> number of seconds since last active session.</returns>
         public float GetTimeSinceLastActivePeriod()
         {
             return CurrentSession.ActiveSession ? 0 : CurrentSessionLength;
