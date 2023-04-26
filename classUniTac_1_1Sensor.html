@@ -93,17 +93,17 @@ Inheritance diagram for UniTac.Sensor:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af08698f580e36b890164acead0a143c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniTac_1_1Sensor.html#af08698f580e36b890164acead0a143c0">HandleMessage</a> (<a class="el" href="classUniTac_1_1Payload.html">Payload</a> payload)</td></tr>
-<tr class="memdesc:af08698f580e36b890164acead0a143c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes the received message data. Updates existing dictionary of <a class="el" href="classUniTac_1_1Entity.html" title="Class for objects detected by the sensor, sensor payload carries Dictionary&lt;string,...">Entity</a> entities to the new entities received in the message. Also reset the idle countdown to maintain active session.   <a href="classUniTac_1_1Sensor.html#af08698f580e36b890164acead0a143c0">More...</a><br /></td></tr>
+<tr class="memitem:af08698f580e36b890164acead0a143c0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniTac_1_1Sensor.html#af08698f580e36b890164acead0a143c0">HandleMessage</a> (<a class="el" href="classUniTac_1_1Models_1_1Payload.html">Payload</a> payload)</td></tr>
+<tr class="memdesc:af08698f580e36b890164acead0a143c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Processes the received message data. Updates existing dictionary of Entity entities to the new entities received in the message. Also reset the idle countdown to maintain active session.   <a href="classUniTac_1_1Sensor.html#af08698f580e36b890164acead0a143c0">More...</a><br /></td></tr>
 <tr class="separator:af08698f580e36b890164acead0a143c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad54de605d529eff4025a315d3daf1b41"><td class="memItemLeft" align="right" valign="top"><a id="ad54de605d529eff4025a315d3daf1b41" name="ad54de605d529eff4025a315d3daf1b41"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>Update</b> ()</td></tr>
 <tr class="memdesc:ad54de605d529eff4025a315d3daf1b41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if session needs updating and updates when needed.  <br /></td></tr>
 <tr class="separator:ad54de605d529eff4025a315d3daf1b41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82f490d5300d179cbf02527b90226290"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUniTac_1_1Entity.html">Entity</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniTac_1_1Sensor.html#a82f490d5300d179cbf02527b90226290">GetClosestEntity</a> ()</td></tr>
+<tr class="memitem:a82f490d5300d179cbf02527b90226290"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUniTac_1_1Models_1_1Entity.html">Entity</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniTac_1_1Sensor.html#a82f490d5300d179cbf02527b90226290">GetClosestEntity</a> ()</td></tr>
 <tr class="memdesc:a82f490d5300d179cbf02527b90226290"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the closest entity to the sensor.   <a href="classUniTac_1_1Sensor.html#a82f490d5300d179cbf02527b90226290">More...</a><br /></td></tr>
 <tr class="separator:a82f490d5300d179cbf02527b90226290"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45678a784b0e13dba96d4c0a8111e15c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUniTac_1_1Entity.html">Entity</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniTac_1_1Sensor.html#a45678a784b0e13dba96d4c0a8111e15c">GetEntity</a> (long id)</td></tr>
+<tr class="memitem:a45678a784b0e13dba96d4c0a8111e15c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classUniTac_1_1Models_1_1Entity.html">Entity</a>?&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniTac_1_1Sensor.html#a45678a784b0e13dba96d4c0a8111e15c">GetEntity</a> (long id)</td></tr>
 <tr class="memdesc:a45678a784b0e13dba96d4c0a8111e15c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the entity with the given id.   <a href="classUniTac_1_1Sensor.html#a45678a784b0e13dba96d4c0a8111e15c">More...</a><br /></td></tr>
 <tr class="separator:a45678a784b0e13dba96d4c0a8111e15c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa89e085203232da7e9a1ffd2b8641988"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniTac_1_1Sensor.html#aa89e085203232da7e9a1ffd2b8641988">GetTimeSinceLastActivePeriod</a> ()</td></tr>
@@ -140,11 +140,11 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentSessionLength
 <tr class="memdesc:a39ab1eda32ac8d29b8bd1eb0e10af607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running lenght of the current session.  <br /></td></tr>
 <tr class="separator:a39ab1eda32ac8d29b8bd1eb0e10af607"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a923001628da884ff8e83229751b9a552"><td class="memItemLeft" align="right" valign="top"><a id="a923001628da884ff8e83229751b9a552" name="a923001628da884ff8e83229751b9a552"></a>
-<a class="el" href="classUniTac_1_1Session.html">Session</a>?&#160;</td><td class="memItemRight" valign="bottom"><b>LastSession</b><code> [get]</code></td></tr>
+<a class="el" href="classUniTac_1_1Models_1_1Session.html">Session</a>?&#160;</td><td class="memItemRight" valign="bottom"><b>LastSession</b><code> [get]</code></td></tr>
 <tr class="memdesc:a923001628da884ff8e83229751b9a552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data from the session before the current session. Null if current session is the first session.  <br /></td></tr>
 <tr class="separator:a923001628da884ff8e83229751b9a552"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa646d9d20094693b6184f6dcc27d86ee"><td class="memItemLeft" align="right" valign="top"><a id="aa646d9d20094693b6184f6dcc27d86ee" name="aa646d9d20094693b6184f6dcc27d86ee"></a>
-Dictionary&lt; long, <a class="el" href="classUniTac_1_1Entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Entities</b> = new()<code> [get]</code></td></tr>
+Dictionary&lt; long, <a class="el" href="classUniTac_1_1Models_1_1Entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Entities</b> = new()<code> [get]</code></td></tr>
 <tr class="memdesc:aa646d9d20094693b6184f6dcc27d86ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of entities currently detected by the sensor.  <br /></td></tr>
 <tr class="separator:aa646d9d20094693b6184f6dcc27d86ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8905735533e78f1ee9968553fc3df0e2"><td class="memItemLeft" align="right" valign="top"><a id="a8905735533e78f1ee9968553fc3df0e2" name="a8905735533e78f1ee9968553fc3df0e2"></a>
@@ -165,7 +165,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsActive</b> = false<
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classUniTac_1_1Entity.html">Entity</a>? UniTac.Sensor.GetClosestEntity </td>
+          <td class="memname"><a class="el" href="classUniTac_1_1Models_1_1Entity.html">Entity</a>? UniTac.Sensor.GetClosestEntity </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -179,7 +179,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsActive</b> = false<
 </div><div class="memdoc">
 
 <p>Gets the closest entity to the sensor.  </p>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classUniTac_1_1Entity.html" title="Class for objects detected by the sensor, sensor payload carries Dictionary&lt;string,...">Entity</a> the entity closest to the sensor or null no entities are present. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Entity the entity closest to the sensor or null no entities are present. </dd></dl>
 
 </div>
 </div>
@@ -193,7 +193,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsActive</b> = false<
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classUniTac_1_1Entity.html">Entity</a>? UniTac.Sensor.GetEntity </td>
+          <td class="memname"><a class="el" href="classUniTac_1_1Models_1_1Entity.html">Entity</a>? UniTac.Sensor.GetEntity </td>
           <td>(</td>
           <td class="paramtype">long&#160;</td>
           <td class="paramname"><em>id</em></td><td>)</td>
@@ -214,7 +214,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsActive</b> = false<
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classUniTac_1_1Entity.html" title="Class for objects detected by the sensor, sensor payload carries Dictionary&lt;string,...">Entity</a> the entity or null if not found.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Entity the entity or null if not found.</dd></dl>
 
 </div>
 </div>
@@ -258,7 +258,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsActive</b> = false<
         <tr>
           <td class="memname">void UniTac.Sensor.HandleMessage </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classUniTac_1_1Payload.html">Payload</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classUniTac_1_1Models_1_1Payload.html">Payload</a>&#160;</td>
           <td class="paramname"><em>payload</em></td><td>)</td>
           <td></td>
         </tr>
@@ -270,10 +270,10 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsActive</b> = false<
 </table>
 </div><div class="memdoc">
 
-<p>Processes the received message data. Updates existing dictionary of <a class="el" href="classUniTac_1_1Entity.html" title="Class for objects detected by the sensor, sensor payload carries Dictionary&lt;string,...">Entity</a> entities to the new entities received in the message. Also reset the idle countdown to maintain active session.  </p>
+<p>Processes the received message data. Updates existing dictionary of Entity entities to the new entities received in the message. Also reset the idle countdown to maintain active session.  </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">payload</td><td><a class="el" href="classUniTac_1_1Payload.html" title="Class for deserializing JSON-objects received from sensor">Payload</a> from the client; holds data from the sensor.</td></tr>
+    <tr><td class="paramname">payload</td><td>Payload from the client; holds data from the sensor.</td></tr>
   </table>
   </dd>
 </dl>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['distancefromparent_0',['DistanceFromParent',['../classUniTac_1_1Entity.html#a2e8e88fb92b87df714a46229e9111202',1,'UniTac::Entity']]]
+  ['distancefromparent_0',['DistanceFromParent',['../classUniTac_1_1Models_1_1Entity.html#a83317ce1318f394872d844494b17ca4c',1,'UniTac::Models::Entity']]]
 ];
