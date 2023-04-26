@@ -4,7 +4,7 @@ using UnityEditor;
 namespace UniTac.EditorUI
 {
     /// <summary>
-    /// Custom editor for <see cref="Sensor"/> that visualizes field of view.
+    /// Custom editor for <see cref="Sensor"/> that visualizes the sensor's field of view.
     /// </summary>
     [CustomEditor(typeof(Sensor))]
     public class SensorEditor : Editor

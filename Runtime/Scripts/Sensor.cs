@@ -65,7 +65,7 @@ namespace UniTac {
         /// Also reset the idle countdown to maintain active session.
         /// </summary>
         /// <param name="payload">
-        /// <see cref="Payload"/> from the client; holds data from the sensor.
+        /// <see cref="Payload"/> from the client; contains data from the sensor.
         /// </param>
         public void HandleMessage(Payload payload) {
             IdleTimer = SecondsUntilIdle;
@@ -120,7 +120,7 @@ namespace UniTac {
         /// </summary>
         /// <returns>
         /// <see cref="Entity"/> the entity closest to the sensor 
-        /// or null no entities are present.
+        /// or null if no entities are present.
         /// </returns>
         public Entity? GetClosestEntity()
         {

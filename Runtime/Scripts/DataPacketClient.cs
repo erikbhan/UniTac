@@ -21,7 +21,7 @@ namespace UniTac
         public string Path = "";
         /// <summary>
         /// The minimum log level a message from the client needs before it 
-        /// is printed in console.
+        /// is printed in Unity's debug console.
         /// </summary>
         public LogLevel LogLevel = LogLevel.None;
         private IMqttClient Client;

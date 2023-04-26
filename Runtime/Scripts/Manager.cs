@@ -166,7 +166,7 @@ namespace UniTac {
 
         /// <summary>
         /// Gracefully shut down and dispose client and server when exiting play 
-        /// mode/shutting down application.
+        /// mode or quitting the application.
         /// </summary>
         async void OnApplicationQuit()
         {

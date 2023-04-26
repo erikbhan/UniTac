@@ -4,13 +4,13 @@ using UnityEditor;
 namespace UniTac.EditorUI 
 {
     /// <summary>
-    /// Custom editor for <see cref="Manager"/> that adds button to add sensors.
+    /// Extension to the <see cref="Manager"/>'s inspector GUI. Adds a button which instantiates sensor game objects as children to the manager.
     /// </summary>
     [CustomEditor (typeof(Manager))]
     public class ManagerEditor : Editor
     {
         /// <summary>
-        /// Draws the standard inspector and with the "Add sensor"-button.
+        /// Draws the standard inspector, and then the "Add sensor"-button.
         /// </summary>
         public override void OnInspectorGUI()
         {

@@ -68,7 +68,7 @@ public class SpawnOnEntity : MonoBehaviour
             if (Spawned.ContainsKey(entity.Id))
             {
                 // Entity is spawned on localPosition with the incoming X and Y coordinates from the sensor.
-                // The sensor sends X and Y as m so accurate conversion to unity's cm would be x/100,
+                // The sensor sends X and Y as centimeters, so accurate conversion to Unity's units would be x/100,
                 // this sample uses x/10 for easy visualization.
                 Spawned[entity.Id].transform.localPosition = new Vector3(entity.X[0] / 10f, 0f, entity.Y[0] / 10f);
                 Spawned[entity.Id].SetActive(true);
