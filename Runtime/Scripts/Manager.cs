@@ -46,7 +46,7 @@ namespace UniTac {
         /// <summary>
         /// Initializes the manager when starting Play mode or running the application.
         /// </summary>
-        public void Start() {
+        void Start() {
             var username = "";
             var password = "";
             if (SecretsFilePath != "" && File.Exists(SecretsFilePath))
@@ -71,7 +71,7 @@ namespace UniTac {
         /// Creates an MQTT server object enabling communication between the sensor and the client.
         /// </summary>
         /// <returns>The server object</returns>
-        MqttServer CreateServer(string username, string password) {
+        private MqttServer CreateServer(string username, string password) {
             var mqttFactory = new MqttFactory();
 
             if (EnableLogging && ServerLogLevel != LogLevel.None)
@@ -101,7 +101,7 @@ namespace UniTac {
         /// Creates an MQTT client that receives the sensor data from the MQTT server.
         /// </summary>
         /// <returns>The client object</returns>
-        IMqttClient CreateClient() {
+        private IMqttClient CreateClient() {
             var mqttFactory = new MqttFactory();
 
             if (EnableLogging && ClientLogLevel != LogLevel.None) 
@@ -119,7 +119,7 @@ namespace UniTac {
         /// Connects the client to the server.
         /// </summary>
         /// <returns>awaitable <see cref="Task"/></returns>
-        async void ConnectClient(string username, string password)
+        private async void ConnectClient(string username, string password)
         {
             var mqttClientOptions = new MqttClientOptionsBuilder()
                 .WithTcpServer("127.0.0.1")
