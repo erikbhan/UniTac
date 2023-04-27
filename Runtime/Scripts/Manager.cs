@@ -48,7 +48,8 @@ namespace UniTac {
         private readonly Dictionary<string, Sensor> Sensors = new();
 
         /// <summary>
-        /// Initializes the manager when starting Play mode or running the application.
+        /// Start is called before the first frame update.
+        /// Initializes the manager, starting the server and connecting the client.
         /// </summary>
         void Start() {
             var username = "";

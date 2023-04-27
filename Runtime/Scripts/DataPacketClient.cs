@@ -27,7 +27,10 @@ namespace UniTac
         private IMqttClient Client;
         private Manager Manager;
 
-        // Start is called before the first frame update
+        /// <summary>
+        /// Start is called before the first frame update.
+        /// Gets the parent <see cref="Manager"/> and creates the file if necessary.
+        /// </summary>
         void Start()
         {
             Manager = gameObject.GetComponent<Manager>();

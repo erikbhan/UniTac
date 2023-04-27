@@ -79,9 +79,10 @@ namespace UniTac {
         }
 
         /// <summary>
+        /// Update is called once per frame.
         /// Checks if session needs updating and updates when needed.
         /// </summary>
-        public void Update()
+        void Update()
         {
             // Update session length
             CurrentSessionLength += Time.deltaTime;
