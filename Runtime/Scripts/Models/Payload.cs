@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Unity.Plastic.Newtonsoft.Json;
 
-namespace UniTac {
+namespace UniTac.Models {
     /// <summary>
-    /// Class for deserializing JSON-objects received from sensor
+    /// Class for deserializing JSON-objects received from sensor.
     /// </summary>
     [Serializable]
     public class Payload
@@ -28,17 +28,17 @@ namespace UniTac {
         [JsonProperty("messagetype")]
         public string MessageType { get; set; } = string.Empty;
         /// <summary>
-        /// Message Id set by publisher
+        /// Message Id set by publisher.
         /// </summary>
         [JsonProperty("id")]
         public string Id { get; set; } = string.Empty;
         /// <summary>
-        /// Sensor Id
+        /// Sensor Id.
         /// </summary>
         [JsonProperty("collector_id")]
         public string CollectorId { get; set; } = string.Empty;
         /// <summary>
-        /// Sensor serial number
+        /// Sensor serial number.
         /// </summary>
         [JsonProperty("collector_serial")]
         public string CollectorSerial { get; set; } = string.Empty;
@@ -57,12 +57,13 @@ namespace UniTac {
         /// Returns a string that represents the current payload.
         /// </summary>
         /// <returns>
-        /// <see cref="string" />
-        /// A string that represents the current payload.
+        /// <see cref="string" /> that represents the current payload.
         /// </returns>
         public override string ToString()
         {
-            string s = "Message type: " + MessageType + ", Message id: " + Id + ", Collector id: " + CollectorId + ", Collector serialnumber: " + CollectorSerial + ", Total detected entities: " + TotalDetectedEntities + "\nEntities:\n";
+            string s = "Message type: " + MessageType + ", Message id: " + Id + ", Collector id: " 
+                        + CollectorId + ", Collector serialnumber: " + CollectorSerial 
+                        + ", Total detected entities: " + TotalDetectedEntities + "\nEntities:\n";
             foreach (var entity in Entities)
             {
                 s += entity.Key + ": " + entity.Value.ToString() + "\n";

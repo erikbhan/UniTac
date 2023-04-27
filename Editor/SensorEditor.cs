@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace UniTac
+namespace UniTac.EditorUI
 {
+    /// <summary>
+    /// Custom editor for <see cref="Sensor"/> that visualizes the sensor's field of view.
+    /// </summary>
     [CustomEditor(typeof(Sensor))]
     public class SensorEditor : Editor
     {
-        public float arrowSize = 1;
-
+        /// <summary>
+        /// Draws sensor field of view in scene based on <see cref="Sensor.FieldOfView"/>.
+        /// </summary>
         void OnSceneGUI()
         {
             Sensor t = target as Sensor;
@@ -15,28 +19,18 @@ namespace UniTac
             Handles.color = Color.blue;
             Handles.Label(t.transform.position + Vector3.up * 2,
                                  t.transform.position.ToString() + "\nFieldOfView: " +
-                                 t.fieldOfView.ToString());
-
-            Handles.BeginGUI();
-            GUILayout.BeginArea(new Rect(Screen.width - 100, Screen.height - 80, 90, 50));
-
-            if (GUILayout.Button("Reset Area"))
-                t.fieldOfView = 5;
-
-            GUILayout.EndArea();
-            Handles.EndGUI();
+                                 t.FieldOfView.ToString());
 
             Handles.color = new Color(1, 1, 1, 0.2f);
 
             Quaternion from = Quaternion.identity;
             from.eulerAngles = new Vector3(0, 30, 0);
-
             Handles.DrawSolidArc(t.transform.position, t.transform.up, from * -t.transform.right,
-                                    120, t.fieldOfView);
+                                    120, t.FieldOfView);
 
             Handles.color = Color.white;
-            t.fieldOfView = Handles.ScaleValueHandle(t.fieldOfView,
-                            t.transform.position + t.transform.forward * t.fieldOfView,
+            t.FieldOfView = Handles.ScaleValueHandle(t.FieldOfView,
+                            t.transform.position + t.transform.forward * t.FieldOfView,
                             t.transform.rotation, 1, Handles.ConeHandleCap, 1);
         }
     }

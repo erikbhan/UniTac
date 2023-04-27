@@ -1,6 +1,6 @@
 {
 	"name": "ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration.Samples",
-    "rootNamespace": "UniTac",
+    "rootNamespace": "",
     "references": [
         "ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration"
     ],

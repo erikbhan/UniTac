@@ -1,6 +1,6 @@
 {
     "name": "ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration.Editor",
-    "rootNamespace": "UniTac",
+    "rootNamespace": "UniTac.EditorUI",
     "references": [
         "ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration"
     ],

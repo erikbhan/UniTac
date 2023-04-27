@@ -1,6 +1,6 @@
 using System;
 
-namespace UniTac
+namespace UniTac.Models
 {
     /// <summary>
     /// Class that represents data about a sensor session.
@@ -24,7 +24,9 @@ namespace UniTac
         /// <summary>
         /// Initializes a new instance of the Session class.
         /// </summary>
-        /// <param name="activeSession"><see cref="bool"/> representing if the session is active or idle</param>
+        /// <param name="activeSession">
+        /// <see cref="bool"/> representing if the session is active or idle.
+        /// </param>
         public Session(bool activeSession)
         {
             this.ActiveSession = activeSession;

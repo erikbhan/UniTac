@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 using MQTTnet.Protocol;
+using UniTac.Models;
 
 namespace UniTac {
     /// <summary>
@@ -37,11 +38,13 @@ namespace UniTac {
         /// </summary>
         public LogLevel ServerLogLevel = LogLevel.None;
         /// <summary>
-        /// The minimum log level a message from the client needs before it is printed in console.
+        /// The minimum log level a message from the client needs before it 
+        /// is printed in console.
         /// </summary>
         public LogLevel ClientLogLevel = LogLevel.None;
         /// <summary>
-        /// The path to file with username and password for MQTT-protocol. If left empty no username or password will be sett.
+        /// The path to file with username and password for MQTT-protocol. 
+        /// If left empty no username or password will be sett.
         /// </summary>
         public string SecretsFilePath = string.Empty;
         /// <summary>
@@ -56,7 +59,7 @@ namespace UniTac {
         /// <summary>
         /// Initializes the manager when starting Play mode or running the application.
         /// </summary>
-        public void Start() {
+        void Start() {
             var username = "";
             var password = "";
             if (SecretsFilePath != "" && File.Exists(SecretsFilePath))
@@ -78,10 +81,11 @@ namespace UniTac {
         }
 
         /// <summary>
-        /// Creates an MQTT server object enabling communication between the sensor and the client.
+        /// Creates an MQTT server object enabling communication between the 
+        /// sensor and the client.
         /// </summary>
-        /// <returns>The server object</returns>
-        MqttServer CreateServer(string username, string password) {
+        /// <returns>The server object.</returns>
+        private MqttServer CreateServer(string username, string password) {
             var mqttFactory = new MqttFactory();
 
             if (EnableLogging && ServerLogLevel != LogLevel.None)
@@ -120,8 +124,10 @@ namespace UniTac {
             {
                 mqttServer.ValidatingConnectionAsync += e =>
                 {
-                    if (e.UserName != username) e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
-                    if (e.Password != password) e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
+                    if (e.UserName != username) 
+                        e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
+                    if (e.Password != password) 
+                        e.ReasonCode = MqttConnectReasonCode.BadUserNameOrPassword;
                     return Task.CompletedTask;
                 };
             }
@@ -131,8 +137,8 @@ namespace UniTac {
         /// <summary>
         /// Creates an MQTT client that receives the sensor data from the MQTT server.
         /// </summary>
-        /// <returns>The client object</returns>
-        IMqttClient CreateClient() {
+        /// <returns>The client object.</returns>
+        private IMqttClient CreateClient() {
             var mqttFactory = new MqttFactory();
 
             if (EnableLogging && ClientLogLevel != LogLevel.None) 
@@ -149,8 +155,8 @@ namespace UniTac {
         /// <summary>
         /// Connects the client to the server.
         /// </summary>
-        /// <returns>awaitable <see cref="Task"/></returns>
-        async void ConnectClient(string username, string password)
+        /// <returns>awaitable <see cref="Task"/>.</returns>
+        private async void ConnectClient(string username, string password)
         {
             List<X509Certificate> certs = new()
             {
@@ -189,8 +195,8 @@ namespace UniTac {
         /// <summary>
         /// A method to process message events from TAC-B sensors.
         /// </summary>
-        /// <param name="e">The incoming message event</param>
-        /// <returns>awaitable <see cref="Task"/></returns>
+        /// <param name="e">The incoming message event.</param>
+        /// <returns>awaitable <see cref="Task"/>.</returns>
         private Task HandleMessage(MqttApplicationMessageReceivedEventArgs e)
         {
             var json = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
@@ -208,7 +214,8 @@ namespace UniTac {
         }
 
         /// <summary>
-        /// Gracefully shut down and dispose client and server when exiting play mode/shutting down application.
+        /// Gracefully shut down and dispose client and server when exiting play 
+        /// mode or quitting the application.
         /// </summary>
         async void OnApplicationQuit()
         {
