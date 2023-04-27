@@ -14,9 +14,6 @@ public class SpawnOnEntity : MonoBehaviour
     /// GameObject to spawn representing entities.
     /// </summary>
     public GameObject SpawnPrefab = null;
-    private readonly Queue<Entity> UpdateQueue = new();
-    private readonly Dictionary<long, GameObject> Spawned = new();
-    private Sensor Sensor = null;
     /// <summary>
     /// List of colors for spawned objects.
     /// </summary>
@@ -26,10 +23,16 @@ public class SpawnOnEntity : MonoBehaviour
         Color.red,
         Color.yellow,
     };
+
+    // Private
     private bool newMessageRecieved = false;
+    private readonly Queue<Entity> UpdateQueue = new();
+    private readonly Dictionary<long, GameObject> Spawned = new();
+    private Sensor Sensor = null;
 
     /// <summary>
-    /// Initialices the spawner.
+    /// Start is called before the first frame update.
+    /// Gets the parent <see cref="Sensor"/> and initiates the event listeners.
     /// </summary>
     void Start()
     {
@@ -41,6 +44,7 @@ public class SpawnOnEntity : MonoBehaviour
     }
 
     /// <summary>
+    /// Update is called once per frame.
     /// Maintains the list of active game objects.
     /// </summary>
     void Update()
@@ -56,7 +60,7 @@ public class SpawnOnEntity : MonoBehaviour
     /// Updates the list of gameobjects.
     /// </summary>
     /// <param name="entities">Queue of active entities.</param>
-    void TransformOrInstantiateEntities(Queue<Entity> entities)
+    private void TransformOrInstantiateEntities(Queue<Entity> entities)
     {
         foreach (var spawn in Spawned)
         {
@@ -86,7 +90,7 @@ public class SpawnOnEntity : MonoBehaviour
     /// <summary>
     /// Queues entities for spawning in next frame.
     /// </summary>
-    void Spawn()
+    private void Spawn()
     {
         foreach (Entity entity in Sensor.Entities.Values.ToList<Entity>())
         {
@@ -98,7 +102,7 @@ public class SpawnOnEntity : MonoBehaviour
     /// <summary>
     /// Updates local active status on event.
     /// </summary>
-    void UpdateStatus()
+    private void UpdateStatus()
     {
         foreach (var spawn in Spawned.Values)
         {

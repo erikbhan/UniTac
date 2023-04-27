@@ -27,6 +27,7 @@ public class StateMachine : MonoBehaviour
     private bool IsActive = false;
 
     /// <summary>
+    /// Start is called before the first frame update.
     /// Sets up the sensor and all animation game objects.
     /// </summary>
     void Start()
@@ -47,6 +48,7 @@ public class StateMachine : MonoBehaviour
     }
 
     /// <summary>
+    /// Update is called once per frame.
     /// Updates on state change.
     /// </summary>
     void Update()

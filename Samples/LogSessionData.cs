@@ -15,6 +15,7 @@ public class LogSessionData : MonoBehaviour
     private Sensor Sensor = null;
 
     /// <summary>
+    /// Start is called before the first frame update.
     /// Gets the sensor and creates a log file if it does not already exist.
     /// </summary>
     void Start()
