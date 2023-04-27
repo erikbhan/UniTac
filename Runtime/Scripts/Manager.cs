@@ -98,26 +98,22 @@ namespace UniTac {
                 .WithDefaultEndpoint()
                 .WithDefaultEndpointPort(ServerPort)
                 .Build();
-
-            //TODO: Combine TLS and user/pass
-            // See here to create a CA + client cert and server cert
-            if (EnableTLS && File.Exists(CertificatePath + "server/server.pfx"))
+            
+            if (EnableTLS)
             {
-                X509Certificate2 serverCrt = new(CertificatePath + "server/server.pfx", "server", X509KeyStorageFlags.Exportable);
+                var pfx = new FileInfo("Assets/certs/server.pfx");
+                var certificate = new X509Certificate2(pfx.FullName, "ex", X509KeyStorageFlags.Exportable);
 
-                X509Chain ch = new();
-                ch.Build (serverCrt);
-                foreach (var status in ch.ChainStatus) {
-                    Debug.LogWarning(status.Status);
-                }
-
-                MqttServerOptions = new MqttServerOptionsBuilder()
+                var optionsBuilder = new MqttServerOptionsBuilder()
                     .WithoutDefaultEndpoint()
                     .WithEncryptedEndpoint()
                     .WithEncryptedEndpointPort(ServerPort)
-                    .WithEncryptionCertificate(serverCrt)
-                    .Build();
-                return mqttFactory.CreateMqttServer(MqttServerOptions);
+                    .WithEncryptionCertificate(certificate.Export(X509ContentType.Pfx));
+                // .WithEncryptionSslProtocol(System.Security.Authentication.SslProtocols.Tls12);
+
+                MqttServerOptions = optionsBuilder.Build();
+                MqttServerOptions.DefaultEndpointOptions.IsEnabled = false;
+                MqttServerOptions.TlsEndpointOptions.ClientCertificateRequired = true;
             }
             var mqttServer = mqttFactory.CreateMqttServer(MqttServerOptions);
             if (username != "" || password != "")
@@ -158,38 +154,36 @@ namespace UniTac {
         /// <returns>awaitable <see cref="Task"/>.</returns>
         private async void ConnectClient(string username, string password)
         {
-            List<X509Certificate> certs = new()
-            {
-                new(CertificatePath + "client/client.pfx", "client", X509KeyStorageFlags.Exportable)
+        var certCA = new FileInfo("Assets/certs/CA.pem");
+        var certificateCA = new X509Certificate2(certCA.FullName);
 
-        };
-            //TODO: Combine TLS and user/pass
-            var mqttClientOptions = new MqttClientOptionsBuilder()
-                .WithTcpServer("127.0.0.1")
-                .WithTls(
-                    o =>
-                    {
-                        o.Certificates = certs;
-                        o.CertificateValidationHandler = eventArgs =>
-                        {
-                            Debug.LogWarning("Chain Policy Revocation Mode: " + eventArgs.Chain.ChainPolicy.RevocationMode);
-                            Debug.LogWarning("Chain Status................: " + eventArgs.Chain.ChainStatus.ToString());
-                            Debug.LogWarning("SSL Policy Errors...........:" + eventArgs.SslPolicyErrors);
-                            return true;
-                        };
-                    }
-                )
-                // .WithCredentials(username, password)
-                .Build();
+        var cert = new FileInfo("Assets/certs/client.pfx");
+        var certificate = new X509Certificate2(cert.FullName, "ex", X509KeyStorageFlags.Exportable);
+
+        List<X509Certificate> certs = new() { certificateCA, certificate };
+
+        var mqttClientOptions = new MqttClientOptionsBuilder()
+            .WithTcpServer("127.0.0.1")
+            .WithTls(
+                o =>
+                {
+                    o.UseTls = true;
+                    // o.SslProtocol = System.Security.Authentication.SslProtocols.Tls12;
+                    // o.Certificates = certs;
+                    o.CertificateValidationHandler = _ => true;
+                }
+            )
+            // .WithCredentials(username, password)
+            .Build();
             
-            var mqttFactory = new MqttFactory();
-            var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder()
-                .WithTopicFilter(
-                    f => { f.WithTopic("smx/device/+/position"); })
-                .Build();
+        var mqttFactory = new MqttFactory();
+        var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder()
+            .WithTopicFilter(
+                f => { f.WithTopic("smx/device/+/position"); })
+            .Build();
 
-            await Client.ConnectAsync(mqttClientOptions, System.Threading.CancellationToken.None);
-            await Client.SubscribeAsync(mqttSubscribeOptions, System.Threading.CancellationToken.None);    
+        await Client.ConnectAsync(mqttClientOptions, System.Threading.CancellationToken.None);
+        await Client.SubscribeAsync(mqttSubscribeOptions, System.Threading.CancellationToken.None);    
         }
 
         /// <summary>
