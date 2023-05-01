@@ -10,8 +10,17 @@ using Unity.Plastic.Newtonsoft.Json;
 using UnityEngine;
 using MQTTnet.Protocol;
 using UniTac.Models;
+using System.Threading;
+using UnityEngine.Networking;
 
 namespace UniTac {
+    class AcceptAllCertificates : CertificateHandler
+    {
+        protected override bool ValidateCertificate(byte[] certificateData)
+        {
+            return true;
+        }
+    }
     /// <summary>
     /// Script that manages the sensors.
     /// </summary>
@@ -101,15 +110,14 @@ namespace UniTac {
             
             if (EnableTLS)
             {
-                var pfx = new FileInfo("Assets/certs/server.pfx");
-                var certificate = new X509Certificate2(pfx.FullName, "ex", X509KeyStorageFlags.Exportable);
+                var certificate = new X509Certificate2("Assets/certs/server.pfx", "ex", X509KeyStorageFlags.Exportable);
 
                 var optionsBuilder = new MqttServerOptionsBuilder()
                     .WithoutDefaultEndpoint()
                     .WithEncryptedEndpoint()
                     .WithEncryptedEndpointPort(ServerPort)
-                    .WithEncryptionCertificate(certificate.Export(X509ContentType.Pfx));
-                // .WithEncryptionSslProtocol(System.Security.Authentication.SslProtocols.Tls12);
+                    .WithEncryptionCertificate(certificate)
+                    .WithEncryptionSslProtocol(System.Security.Authentication.SslProtocols.Tls12);
 
                 MqttServerOptions = optionsBuilder.Build();
                 MqttServerOptions.DefaultEndpointOptions.IsEnabled = false;
@@ -154,36 +162,34 @@ namespace UniTac {
         /// <returns>awaitable <see cref="Task"/>.</returns>
         private async void ConnectClient(string username, string password)
         {
-        var certCA = new FileInfo("Assets/certs/CA.pem");
-        var certificateCA = new X509Certificate2(certCA.FullName);
-
-        var cert = new FileInfo("Assets/certs/client.pfx");
-        var certificate = new X509Certificate2(cert.FullName, "ex", X509KeyStorageFlags.Exportable);
-
-        List<X509Certificate> certs = new() { certificateCA, certificate };
+        var certificateCA = new X509Certificate2("Assets/certs/CA.pfx", "ex", X509KeyStorageFlags.Exportable);
+        var certificate = new X509Certificate2("Assets/certs/client.pfx", "ex", X509KeyStorageFlags.Exportable);
 
         var mqttClientOptions = new MqttClientOptionsBuilder()
-            .WithTcpServer("127.0.0.1")
-            .WithTls(
-                o =>
-                {
-                    o.UseTls = true;
-                    // o.SslProtocol = System.Security.Authentication.SslProtocols.Tls12;
-                    // o.Certificates = certs;
-                    o.CertificateValidationHandler = _ => true;
-                }
-            )
-            // .WithCredentials(username, password)
-            .Build();
+        .WithTcpServer("127.0.0.1", ServerPort)
+        .WithTls(
+            o =>
+            {
+                o.UseTls = true;
+                o.SslProtocol = System.Security.Authentication.SslProtocols.Tls12;
+                o.Certificates = new List<X509Certificate2> { certificateCA, certificate };
+                o.CertificateValidationHandler = _ => true;
+            }
+        )
+        .WithCredentials(username, password)
+        .Build();
             
         var mqttFactory = new MqttFactory();
         var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder()
             .WithTopicFilter(
                 f => { f.WithTopic("smx/device/+/position"); })
             .Build();
+            var timeout = new CancellationTokenSource(5000);
+            await Client.ConnectAsync(mqttClientOptions, timeout.Token);
+            Debug.LogWarning(Client.IsConnected);
+            await Client.SubscribeAsync(mqttSubscribeOptions, timeout.Token); 
+            Debug.LogWarning(Client.IsConnected);
 
-        await Client.ConnectAsync(mqttClientOptions, System.Threading.CancellationToken.None);
-        await Client.SubscribeAsync(mqttSubscribeOptions, System.Threading.CancellationToken.None);    
         }
 
         /// <summary>
