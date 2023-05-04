@@ -130,7 +130,7 @@ namespace UniTac {
         private async void ConnectClient(string username, string password)
         {
             var mqttClientOptions = new MqttClientOptionsBuilder()
-                .WithTcpServer("127.0.0.1")
+                .WithTcpServer("127.0.0.1", ServerPort)
                 .WithCredentials(username, password)
                 .Build();
             
