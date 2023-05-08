@@ -1,7 +1,7 @@
 {
-  "name": "edu.ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration",
+  "name": "edu.ntnu.idatt2900-022.unitac",
   "version": "0.0.1",
-  "displayName": "SensMax TAC-B 3D-W Integration",
+  "displayName": "UniTac - SensMax TAC-B sensor manager",
   "description": "A package that enables the use of a SensMax TAC-B 3D-W people counting radar sensor in Unity.",
   "unity": "2019.1",
   "unityRelease": "0b5",
