@@ -32,7 +32,7 @@ Finally, you need to add functionality to the sensor, either by adding a sample 
 
 ### Sensor Events
 
-The sensor implements events to facilitate observer pattern scripts. The sensor has a low update rate so it's recommended to utilize events to update only when new data is available.
+The sensor implements the [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern), utilizing [UnityEvent](https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html). Because the sensor only sends a new packet every 100ms, we avoid some overhead by not checking the sensor every frame. In addition, you can add as many listeners as you want without creating unnecessary coupling in your code. 
 
 | UnityEvent | Functionality |
 | --- | --- |
