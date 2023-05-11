@@ -8,7 +8,7 @@ This Unity package is an integration of the SensMax's TAC-B line of sensors. It 
 
 To import our package into Unity, you can use Unity's built-in Package Manager. You find this under "Window" > "Package Manager" in the Unity Editor.
 
-![Opening Package Manager](https://github.com/erikbhan/UniTac/assets/42799026/c4d9b8cb-535c-46df-981e-f7ecc235af15)
+![Opening Package Manager](https://github.com/erikbhan/UniTac/assets/42799026/3db44466-6439-45c1-84af-aa3183f58b16)
 
 In the Package Manager window, press the "+"-button, and then "Add package from git URL...". You can use both HTTPS and SSH to import the package.
 
