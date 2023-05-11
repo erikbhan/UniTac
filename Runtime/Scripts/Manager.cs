@@ -154,6 +154,16 @@ namespace UniTac {
             var json = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
             var payload = JsonConvert.DeserializeObject<Payload>(json);
             var serial = payload.CollectorSerial;
+            // check if message is short format and fix payload if necessary
+            if (payload.Entities.Count == 0) 
+            {
+                var miniPayload = JsonConvert.DeserializeObject<PayloadShort>(json);
+                foreach (var entity in miniPayload.Entities) {
+                    payload.Entities.Add(entity.Key, new Entity(entity.Value));
+                }
+            }
+
+            // Pass message to correct sensor
             if (Sensors.ContainsKey(serial))
             {
                 Sensors[serial].HandleMessage(payload);

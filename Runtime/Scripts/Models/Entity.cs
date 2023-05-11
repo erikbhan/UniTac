@@ -39,6 +39,17 @@ namespace UniTac.Models {
         public int[] Y { get; set; } = new int[10];
 
         /// <summary>
+        /// Constructor for making Entity from short MQTT-packet.
+        /// </summary>
+        /// <param name="shortEntity"><see cref="float"/>[] containing: ["Id","X","Y","Speed"]</param>
+        public Entity(float[] shortEntity) {
+            this.Id = (long) shortEntity[0];
+            this.Speed = shortEntity[4];
+            this.X[0] = (int) shortEntity[1];
+            this.Y[0] = (int) shortEntity[2];
+        }
+
+        /// <summary>
         /// Returns a string that represents the current payload.
         /// </summary>
         /// <returns>
