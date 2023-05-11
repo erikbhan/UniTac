@@ -9,6 +9,7 @@ using Unity.Plastic.Newtonsoft.Json;
 using MQTTnet.Protocol;
 using System.IO;
 using UniTac.Models;
+using System;
 
 namespace UniTac {
     /// <summary>
@@ -152,18 +153,18 @@ namespace UniTac {
         private Task HandleMessage(MqttApplicationMessageReceivedEventArgs e)
         {
             var json = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
-            var payload = JsonConvert.DeserializeObject<Payload>(json);
-            var serial = payload.CollectorSerial;
-            // check if message is short format and fix payload if necessary
-            if (payload.Entities.Count == 0) 
+            Payload payload;
+            try
             {
-                var miniPayload = JsonConvert.DeserializeObject<PayloadShort>(json);
-                foreach (var entity in miniPayload.Entities) {
-                    payload.Entities.Add(entity.Key, new Entity(entity.Value));
-                }
+                payload = JsonConvert.DeserializeObject<Payload>(json) ?? throw new ArgumentNullException();
+            }
+            catch (Exception)
+            {
+                payload = new Payload(json);
             }
 
             // Pass message to correct sensor
+            var serial = payload.CollectorSerial;
             if (Sensors.ContainsKey(serial))
             {
                 Sensors[serial].HandleMessage(payload);

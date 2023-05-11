@@ -51,7 +51,7 @@ namespace UniTac.Models {
         /// List of entities detected by the sensor.
         /// </summary>
         [JsonProperty("object_list")]
-        public Dictionary<string, Entity> Entities { get; set; } = new Dictionary<string, Entity>();
+        public Dictionary<string, Entity> Entities { get; set; } = new();
 
         /// <summary>
         /// Returns a string that represents the current payload.
@@ -69,6 +69,26 @@ namespace UniTac.Models {
                 s += entity.Key + ": " + entity.Value.ToString() + "\n";
             }
             return s;
+        }
+
+        public Payload() { }
+
+        /// <summary>
+        /// Constructor using short MQTT-packet.
+        /// </summary>
+        /// <param name="json">JSON-string of short payload</param>
+        public Payload(string json)
+        {
+            var miniPayload = JsonConvert.DeserializeObject<PayloadShort>(json);
+            MessageType = miniPayload.MessageType;
+            Id = miniPayload.Id;
+            CollectorId = miniPayload.CollectorId;
+            CollectorSerial = miniPayload.CollectorSerial;
+            TotalDetectedEntities = miniPayload.TotalDetectedEntities;
+            foreach (var entity in miniPayload.Entities)
+            {
+                Entities.Add(entity.Key, new Entity(entity.Value));
+            }
         }
     }
 }
