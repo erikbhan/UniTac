@@ -28,7 +28,7 @@ Configure each sensor via the Inspector window; you need to set the "serial" fie
 
 ![Sensor inspector window](https://github.com/erikbhan/UniTac/assets/42799026/cd2ff6c6-67d4-4ab5-bce4-b0b6151444d7)
 
-Finally, you need to add functionality to the sensor, either by adding a sample or your own script. Simply drag the wanted functionality onto the sensor GameObject in the Unity Hierarchy, then configure via the Inspector again (for example, if you need to make a 3D object to use as a prefab for spawning).
+Finally, you need to add functionality to the sensor, either by adding a sample or your own script. Simply drag the wanted functionality onto the sensor GameObject in the Unity Hierarchy or use the "Add component"-button in the sensor inspector window.
 
 ### Sensor Events
 
