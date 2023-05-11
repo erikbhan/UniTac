@@ -38,6 +38,10 @@ namespace UniTac.Models {
         /// </summary>
         public int[] Y { get; set; } = new int[10];
 
+        public Entity()
+        {
+        }
+
         /// <summary>
         /// Constructor for making Entity from short MQTT-packet.
         /// </summary>
