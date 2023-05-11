@@ -8,25 +8,25 @@ This Unity package is an integration of the SensMax's TAC-B line of sensors. It 
 
 To import our package into Unity, you can use Unity's built-in Package Manager. You find this under "Window" > "Package Manager" in the Unity Editor.
 
-![Opening Package Manager]()
+![Opening Package Manager](https://github.com/erikbhan/UniTac/assets/42799026/c4d9b8cb-535c-46df-981e-f7ecc235af15)
 
 In the Package Manager window, press the "+"-button, and then "Add package from git URL...". You can use both HTTPS and SSH to import the package.
 
-![Adding from git]()
+![Adding from git](https://github.com/erikbhan/UniTac/assets/42799026/fca9382e-c42a-47cb-a244-1ee49729b7ab)
 
 ## Usage
 
-After importing our package, you first need a manager to administrate the sensor. Click and drag our pre-made prefab into either the Unity Scene or the Unity Hierarchy from the Package folder. To troubleshoot the MQTT client or server, you can change the logging level in the manager prefab's Inspector window. You can also set a custom port if you'd like.
+After importing our package, you first need a manager to administrate the sensor. Click and drag our pre-made prefab into either the Unity Scene or the Unity Hierarchy from the Package folder. To troubleshoot the MQTT client or server, you can change the logging level in the manager prefab's Inspector window. You can also set a custom port if you'd like. Keep logging disabled in final product to maximize efficiency.
 
-![Manager inspector window]()
+![Manager inspector window](https://github.com/erikbhan/UniTac/assets/42799026/cb563644-6f36-448c-9acc-9b1c875bf64b)
 
 To handle incoming messages any sensors needs to be added. Use the "Add Sensor"-button on the manager Inspector window to add any number of sensors.
 
-![Add sensor button]()
+![Add sensor button](https://github.com/erikbhan/UniTac/assets/42799026/2e2a6da1-d3ec-4657-a13f-740ea732c262)
 
 Configure each sensor via the Inspector window; you need to set the "serial" field equal to the physical sensor's serial number. Seconds until idle is simply the time from the last message until the sensor considers itself "idle".
 
-![Sensor inspector window]()
+![Sensor inspector window](https://github.com/erikbhan/UniTac/assets/42799026/cd2ff6c6-67d4-4ab5-bce4-b0b6151444d7)
 
 Finally, you need to add functionality to the sensor, either by adding a sample or your own script. Simply drag the wanted functionality onto the sensor GameObject in the Unity Hierarchy, then configure via the Inspector again (for example, if you need to make a 3D object to use as a prefab for spawning).
 
@@ -49,7 +49,7 @@ The sensor implements events to facilitate observer pattern scripts. The sensor 
 
 ### Using credentials to authorize MQTT-connections
 
-The manager can be set up with a username and password so that connections can be authorized. This does not mean packets cannot be intercepted, but stops connections that does not have the right credentials. To use credentials add a txt-file containing this to your project:
+The manager can be set up with a username and password so that connections can be authorized. This does not mean packets cannot be intercepted, but stops connections that does not have the right credentials. Keep in mind that password is not encrypted when sendt from the sensor so any password used here is comprimized. To use credentials add a txt-file containing this to your project:
 
 ```JSON
 {
@@ -59,6 +59,8 @@ The manager can be set up with a username and password so that connections can b
 ```
 
 Then add the relative path to this file to the "Secret File Path"-variable in the manager inspector window. The relative path to your file can be found in Unity by right clicking it and selecting "Copy path".
+
+![ManagerInspector-secrets](https://github.com/erikbhan/UniTac/assets/42799026/9cbc03c5-3410-48e0-ba75-e7f8cfffb850)
 
 ### Saving 5-minute-packets
 
