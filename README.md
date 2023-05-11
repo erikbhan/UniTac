@@ -49,7 +49,7 @@ The sensor implements events to facilitate observer pattern scripts. The sensor 
 
 ### Using credentials to authorize MQTT-connections
 
-The manager can be set up with a username and password so that connections can be authorized. This does not mean packets cannot be intercepted, but stops connections that does not have the right credentials. Keep in mind that password is not encrypted when sendt from the sensor so any password used here is comprimized. To use credentials add a txt-file containing this to your project:
+The manager can be set up with a username and password so that connections can be authorized. This does not mean packets cannot be intercepted, but stops connections that does not have the right credentials. Keep in mind that password is not encrypted when sent from the sensor so any password used here is compromised. To use credentials add a txt-file containing this to your project:
 
 ```JSON
 {
@@ -64,8 +64,7 @@ Then add the relative path to this file to the "Secret File Path"-variable in th
 
 ### Saving 5-minute-packets
 
-The sensor automatically sends a "5-minute-data"-packet every 5 minutes. As a default the manager discards these to not waste time. The script "DataPacketClient" can be added to manager to log these messages in a separate file. After adding the script the path variable may be left empty to automatically save the data
-in "Assets/5-minute-message-log.txt" or set to another path to automatically save the data there.
+The sensor automatically sends a "5-minute-data"-packet every 5 minutes. As a default the manager discards these to not waste time. The script "DataPacketClient" can be added to manager to log these messages in a separate file.
 
 ### Documentation
 
