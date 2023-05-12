@@ -53,7 +53,17 @@ namespace UniTac.Tests.Models
                 Speed = 5f,
             };
             Assert.AreNotEqual(entity1, entity2);
-            Assert.AreNotEqual(entity1, null);
+        }
+
+        [Test]
+        public void Equals_null_ReturnsFalse()
+        {
+            var entity = new Entity
+            {
+                Id = 1,
+                Speed = 2.4f,
+            };
+            Assert.AreNotEqual(entity, null);
         }
 
         [Test]
@@ -63,6 +73,17 @@ namespace UniTac.Tests.Models
             entity.X[0] = 4;
             entity.Y[0] = 3;
             Assert.AreEqual(entity.DistanceFromParent(), 5);
+        }
+
+        [Test]
+        public void newEntity_WithShortEntity_InitializesCorrectly()
+        {
+            float[] shortEntity = new float[] { 1, 2, 3, 0, 4.5f };
+            var entity = new Entity(shortEntity);
+            Assert.AreEqual(entity.Id, 1);
+            Assert.AreEqual(entity.X[0], 2);
+            Assert.AreEqual(entity.Y[0], 3);
+            Assert.AreEqual(entity.Speed, 4.5f);
         }
     }
 }
