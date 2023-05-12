@@ -52,7 +52,7 @@ namespace UniTac {
         /// Radius of the field of view of the sensor. SensMax TAC-B 
         /// sensors have a 10m radius.
         /// </summary>
-        public float FieldOfView = 10;
+        public float RangeOfView = 100;
 
         // Private
         private float IdleTimer = 0f;

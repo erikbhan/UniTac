@@ -10,7 +10,7 @@ namespace UniTac.EditorUI
     public class SensorEditor : Editor
     {
         /// <summary>
-        /// Draws sensor field of view in scene based on <see cref="Sensor.FieldOfView"/>.
+        /// Draws sensor field of view in scene based on <see cref="Sensor.RangeOfView"/>.
         /// </summary>
         void OnSceneGUI()
         {
@@ -18,19 +18,19 @@ namespace UniTac.EditorUI
 
             Handles.color = Color.blue;
             Handles.Label(t.transform.position + Vector3.up * 2,
-                                 t.transform.position.ToString() + "\nFieldOfView: " +
-                                 t.FieldOfView.ToString());
+                                 t.transform.position.ToString() + "\nRangeOfView: " +
+                                 t.RangeOfView.ToString());
 
             Handles.color = new Color(1, 1, 1, 0.2f);
 
             Quaternion from = Quaternion.identity;
             from.eulerAngles = new Vector3(0, 30, 0);
             Handles.DrawSolidArc(t.transform.position, t.transform.up, from * -t.transform.right,
-                                    120, t.FieldOfView);
+                                    120, t.RangeOfView);
 
             Handles.color = Color.white;
-            t.FieldOfView = Handles.ScaleValueHandle(t.FieldOfView,
-                            t.transform.position + t.transform.forward * t.FieldOfView,
+            t.RangeOfView = Handles.ScaleValueHandle(t.RangeOfView,
+                            t.transform.position + t.transform.forward * t.RangeOfView,
                             t.transform.rotation, 1, Handles.ConeHandleCap, 1);
         }
     }
