@@ -54,7 +54,7 @@ namespace UniTac.Tests.Models
                 payload = new Payload(json);
             }
 
-            Assert.IsNotNull(payload.TotalDetectedEntities);
+            Assert.AreEqual(payload.TotalDetectedEntities, 1);
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace UniTac.Tests.Models
                 payload = new Payload(json);
             }
 
-            Assert.IsNotNull(payload.TotalDetectedEntities);
+            Assert.AreEqual(payload.TotalDetectedEntities, 1);
         }
     }
 }
