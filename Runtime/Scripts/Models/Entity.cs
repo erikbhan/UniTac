@@ -49,8 +49,8 @@ namespace UniTac.Models {
         public Entity(float[] shortEntity) {
             this.Id = (long) shortEntity[0];
             this.Speed = shortEntity[4];
-            this.X[0] = (int) shortEntity[1];
-            this.Y[0] = (int) shortEntity[2];
+            this.X = new int[] { (int)shortEntity[1] };
+            this.Y = new int[] { (int)shortEntity[2] };
         }
 
         /// <summary>
