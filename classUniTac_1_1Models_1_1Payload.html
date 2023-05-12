@@ -74,6 +74,7 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#properties">Properties</a> &#124;
@@ -90,6 +91,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a135d1a34e54d331ed0ef649391a4cc87"><td class="memItemLeft" align="right" valign="top">override string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniTac_1_1Models_1_1Payload.html#a135d1a34e54d331ed0ef649391a4cc87">ToString</a> ()</td></tr>
 <tr class="memdesc:a135d1a34e54d331ed0ef649391a4cc87"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a string that represents the current payload.   <a href="classUniTac_1_1Models_1_1Payload.html#a135d1a34e54d331ed0ef649391a4cc87">More...</a><br /></td></tr>
 <tr class="separator:a135d1a34e54d331ed0ef649391a4cc87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00b8aef7e10ed2fe1f9fa24f9cc03d29"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUniTac_1_1Models_1_1Payload.html#a00b8aef7e10ed2fe1f9fa24f9cc03d29">Payload</a> (string json)</td></tr>
+<tr class="memdesc:a00b8aef7e10ed2fe1f9fa24f9cc03d29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor using short MQTT-packet.   <a href="classUniTac_1_1Models_1_1Payload.html#a00b8aef7e10ed2fe1f9fa24f9cc03d29">More...</a><br /></td></tr>
+<tr class="separator:a00b8aef7e10ed2fe1f9fa24f9cc03d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
@@ -117,13 +121,48 @@ string&#160;</td><td class="memItemRight" valign="bottom"><b>CollectorSerial</b>
 <tr class="memdesc:a9e2fa3b813e810fbb5a8c4fc05c46b6a"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classUniTac_1_1Sensor.html" title="Script for the sensor gameobject that handles functionality.">Sensor</a> serial number.  <br /></td></tr>
 <tr class="separator:a9e2fa3b813e810fbb5a8c4fc05c46b6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add5acbfcd34f980082c735757c80f2a0"><td class="memItemLeft" align="right" valign="top"><a id="add5acbfcd34f980082c735757c80f2a0" name="add5acbfcd34f980082c735757c80f2a0"></a>
-Dictionary&lt; string, <a class="el" href="classUniTac_1_1Models_1_1Entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Entities</b> = new Dictionary&lt;string, <a class="el" href="classUniTac_1_1Models_1_1Entity.html">Entity</a>&gt;()<code> [get, set]</code></td></tr>
+Dictionary&lt; string, <a class="el" href="classUniTac_1_1Models_1_1Entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Entities</b> = new()<code> [get, set]</code></td></tr>
 <tr class="memdesc:add5acbfcd34f980082c735757c80f2a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of entities detected by the sensor.  <br /></td></tr>
 <tr class="separator:add5acbfcd34f980082c735757c80f2a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Class for deserializing JSON-objects received from sensor.  </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a00b8aef7e10ed2fe1f9fa24f9cc03d29" name="a00b8aef7e10ed2fe1f9fa24f9cc03d29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00b8aef7e10ed2fe1f9fa24f9cc03d29">&#9670;&#160;</a></span>Payload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UniTac.Models.Payload.Payload </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>json</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor using short MQTT-packet.  </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">json</td><td>JSON-string of short payload</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a135d1a34e54d331ed0ef649391a4cc87" name="a135d1a34e54d331ed0ef649391a4cc87"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a135d1a34e54d331ed0ef649391a4cc87">&#9670;&#160;</a></span>ToString()</h2>
 
