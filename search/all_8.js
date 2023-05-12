@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['lastsession_0',['LastSession',['../classUniTac_1_1Sensor.html#a923001628da884ff8e83229751b9a552',1,'UniTac::Sensor']]],
-  ['logger_1',['Logger',['../classUniTac_1_1Logger.html#a2021d66450ac8e1b7a857fa6ad8f64a0',1,'UniTac.Logger.Logger()'],['../classUniTac_1_1Logger.html',1,'UniTac.Logger']]],
-  ['loglevel_2',['LogLevel',['../classUniTac_1_1DataPacketClient.html#a0f0f96f29fcc807c36361968b7ff4e4f',1,'UniTac::DataPacketClient']]],
-  ['loglevel_3',['logLevel',['../classUniTac_1_1Logger.html#ab3318f76d09ce97bb8cff6f836c58e3b',1,'UniTac::Logger']]],
-  ['loglevel_4',['LogLevel',['../namespaceUniTac.html#ad354bcac2f050624de329fdeef61fd8e',1,'UniTac']]],
-  ['logsessiondata_5',['LogSessionData',['../classLogSessionData.html',1,'']]]
+  ['manager_0',['Manager',['../classUniTac_1_1Manager.html',1,'UniTac']]],
+  ['managereditor_1',['ManagerEditor',['../classUniTac_1_1EditorUI_1_1ManagerEditor.html',1,'UniTac::EditorUI']]],
+  ['messagereceivedevent_2',['MessageReceivedEvent',['../classUniTac_1_1Sensor.html#ae95a87a94fa77069847f740e3a41a7d2',1,'UniTac::Sensor']]],
+  ['messagetype_3',['MessageType',['../classUniTac_1_1Models_1_1Payload.html#a7c8bbd66bd3f9747098198332c35fa27',1,'UniTac::Models::Payload']]]
 ];
