@@ -90,5 +90,33 @@ namespace UniTac.Models {
                 Entities.Add(entity.Key, new Entity(entity.Value));
             }
         }
+
+        /// <summary>
+        /// Class for deserializing short JSON-objects received from sensor.
+        /// </summary>
+        [Serializable]
+        private class PayloadShort
+        {
+            // JSON format from sensor:
+            // {"messageType":"position",
+            // "id":"974682A",
+            // "collector_id":"TAC-B",
+            // "collector_serial":"051001572",
+            // "total_detected_objects":1,
+            // "object_list":{
+            // "object0":["12","100","215","0", "5.6"]}
+            [JsonProperty("messagetype")]
+            public string MessageType { get; set; } = string.Empty;
+            [JsonProperty("id")]
+            public string Id { get; set; } = string.Empty;
+            [JsonProperty("collector_id")]
+            public string CollectorId { get; set; } = string.Empty;
+            [JsonProperty("collector_serial")]
+            public string CollectorSerial { get; set; } = string.Empty;
+            [JsonProperty("total_detected_objects")]
+            public int TotalDetectedEntities;
+            [JsonProperty("object_list")]
+            public Dictionary<string, float[]> Entities { get; set; } = new();
+        }
     }
 }
