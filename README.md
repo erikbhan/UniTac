@@ -2,8 +2,7 @@
 
 This Unity package is an integration of the SensMax's TAC-B line of sensors. It uses the [MQTTnet](https://github.com/dotnet/MQTTnet) package to communicate with the sensor. It facilitates the use of multiple sensors in one project.
 
-![Gif of spawn entities sample in use](https://github.com/erikbhan/UniTac/assets/42799026/ba8023f6-a074-46a6-b941-8c8269d79220)
-![BeanMidRes](https://github.com/erikbhan/UniTac/assets/42799026/6a9239cf-9510-4e96-bf74-1dcd17c3b8ef)
+![Gif of spawn entities sample in use](https://github.com/erikbhan/UniTac/assets/42799026/6a9239cf-9510-4e96-bf74-1dcd17c3b8ef)
 
 ## Installation
 
