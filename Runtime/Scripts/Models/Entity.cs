@@ -45,7 +45,7 @@ namespace UniTac.Models {
         /// <summary>
         /// Constructor for making Entity from short MQTT-packet.
         /// </summary>
-        /// <param name="shortEntity"><see cref="float"/>[] containing: ["Id","X","Y","Speed"]</param>
+        /// <param name="shortEntity"><see cref="float"/>[] containing: ["Id","X","Y","Z","Speed"]</param>
         public Entity(float[] shortEntity) {
             this.Id = (long) shortEntity[0];
             this.Speed = shortEntity[4];
