@@ -16,9 +16,9 @@ namespace UniTac
     public class DataPacketClient : MonoBehaviour
     {
         /// <summary>
-        /// File path of logfile.
+        /// File path of logfile. If no file exist it will be created.
         /// </summary>
-        public string Path = "";
+        public string Path = "./Assets/5-minute-message-log.txt";
         /// <summary>
         /// The minimum log level a message from the client needs before it 
         /// is printed in Unity's debug console.
@@ -39,7 +39,6 @@ namespace UniTac
                 Debug.LogError("Manager not found");
                 Application.Quit();
             }
-            if (Path == "") Path = "./Assets/5-minute-message-log.txt";
             if (!File.Exists(Path))
             {
                 File.Create(Path);
