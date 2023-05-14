@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_0',['X',['../classUniTac_1_1Models_1_1Entity.html#ad7b5feea1596de65ea868cf235d02f0f',1,'UniTac::Models::Entity']]]
+  ['y_0',['Y',['../classUniTac_1_1Models_1_1Entity.html#a593d1cccb116d06660dc694384915fd0',1,'UniTac::Models::Entity']]]
 ];

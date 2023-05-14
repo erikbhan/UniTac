@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['editorui_0',['EditorUI',['../namespaceUniTac_1_1EditorUI.html',1,'UniTac']]],
-  ['models_1',['Models',['../namespaceUniTac_1_1Models.html',1,'UniTac']]],
-  ['unitac_2',['UniTac',['../namespaceUniTac.html',1,'']]]
+  ['x_0',['X',['../classUniTac_1_1Models_1_1Entity.html#ad7b5feea1596de65ea868cf235d02f0f',1,'UniTac::Models::Entity']]]
 ];
