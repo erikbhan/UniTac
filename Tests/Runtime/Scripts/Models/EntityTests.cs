@@ -1,6 +1,6 @@
 #nullable enable
 using NUnit.Framework;
-using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
 using UniTac.Models;
 
 namespace UniTac.Tests.Models

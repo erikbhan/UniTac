@@ -5,7 +5,7 @@ using MQTTnet.Client;
 using MQTTnet;
 using System.Threading.Tasks;
 using System.Text;
-using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
 using MQTTnet.Protocol;
 using System.IO;
 using UniTac.Models;
