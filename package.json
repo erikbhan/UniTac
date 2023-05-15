@@ -1,11 +1,16 @@
 {
-  "name": "edu.ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration",
+  "name": "edu.ntnu.idatt2900-022.unitac",
   "version": "0.0.1",
-  "displayName": "SensMax TAC-B 3D-W Integration",
-  "description": "A package that enables the use of a SensMax TAC-B 3D-W people counting radar sensor in Unity.",
+  "displayName": "UniTac - SensMax TAC-B sensor manager",
+  "description": "A package that enables the use of a SensMax TAC-B people counting radar sensor in Unity. This package manages the MQTT-communication between the real world sensor and the in game sensor, making it easy to utilize the sensor as an input device in projects.",
   "unity": "2019.1",
   "unityRelease": "0b5",
-  "documentationUrl": "https://erikbhan.github.io/bachelor/",
-  "changelogUrl": "todo",
-  "license": "MIT"
+  "documentationUrl": "https://erikbhan.github.io/UniTac/",
+  "changelogUrl": "https://github.com/erikbhan/UniTac/",
+  "license": "MIT",
+  "dependencies":
+      {
+        "com.unity.nuget.newtonsoft-json": "2.0.0"
+      }
+
 }

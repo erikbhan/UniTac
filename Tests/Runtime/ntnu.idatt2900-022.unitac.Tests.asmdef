@@ -1,8 +1,8 @@
 {
-    "name": "ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration.Tests",
+    "name": "ntnu.idatt2900-022.unitac.Tests",
     "rootNamespace": "UniTac.Tests",
     "references": [
-        "ntnu.idatt2900-022.sensmax_tac-b_3d-wp_integration",
+        "ntnu.idatt2900-022.unitac",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],
