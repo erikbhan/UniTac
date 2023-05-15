@@ -36,7 +36,7 @@ namespace UniTac.Tests
                 X = three,
                 Y = three,
             };
-            foreach (var entity in entities) Sensor.Entities.Add(entity.Id, entity);
+            foreach (var entity in entities) Sensor.Entities.Add(entity);
         }
 
         [TearDown]
