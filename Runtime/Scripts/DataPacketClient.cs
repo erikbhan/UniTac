@@ -18,6 +18,7 @@ namespace UniTac
         /// <summary>
         /// File path of logfile.
         /// </summary>
+        [Tooltip("Relative path to output file, a file wil be automatically generated with the name and filetype in the set path.")]
         public string Path = "";
         /// <summary>
         /// The minimum log level a message from the client needs before it 

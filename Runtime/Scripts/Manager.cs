@@ -20,6 +20,8 @@ namespace UniTac {
         /// The port the project should use. 
         /// </summary>
         public int ServerPort = 1883;
+
+        [Header("Debug settings")]
         /// <summary>
         /// Boolean variable toggled in the Inspector GUI; enables logging to 
         /// the console if true.
@@ -35,10 +37,13 @@ namespace UniTac {
         /// is printed in console.
         /// </summary>
         public LogLevel ClientLogLevel = LogLevel.None;
+
+        [Header("Credentials")]
         /// <summary>
-        /// The path to file with username and password for MQTT-protocol. 
+        /// The relative path to file with username and password for MQTT-protocol. 
         /// If left empty no username or password will be sett.
         /// </summary>
+        [Tooltip("The relative path to a txt-file containing {\"username\":\"YOUR_USERNAME\",\"password\":\"SECRET_PASSWORD\"}")]
         public string SecretsFilePath = string.Empty;
         /// <summary>
         /// The MQTT server.
