@@ -14,11 +14,21 @@ namespace UniTac {
         /// <summary>
         /// Serial of the sensor to handle events from.
         /// </summary>
+        [Tooltip("Serialnumber of the physical sensor.")]
         public string Serial = "";
+        /// <summary>
+        /// Radius of the field of view of the sensor. SensMax TAC-B 
+        /// sensors have a 10m radius.
+        /// </summary>
+        [Tooltip("Radius of the visiual indicator of field of view of the sensor. Does not effect the function of this script. SensMax TAC-B sensors have a 10m radius.")]
+        public float RangeOfView = 100;
         /// <summary>
         /// Seconds without messages from sensor before the session set to idle.
         /// </summary>
+        [Tooltip("Seconds without messages from sensor before the session set to idle.")]
         public float SecondsUntilIdle = 2f;
+
+        [Header("Sensor events")]
         /// <summary>
         /// Event that is invoked when the a message is received.
         /// </summary>
@@ -27,17 +37,6 @@ namespace UniTac {
         /// Event that is invoked when the sensor changes active/idle status.
         /// </summary>
         public UnityEvent StatusChangedEvent;
-        /// <summary>
-        /// Running lenght of the current session.
-        /// </summary>
-        public float CurrentSessionLength { get; private set; } = 0f;
-        /// <summary>
-        /// Data from the session before the current session. 
-        /// Null if current session is the first session.
-        /// </summary>
-        #nullable enable
-        public Session? LastSession { get; private set; }
-        #nullable disable
         /// <summary>
         /// List of entities currently detected by the sensor.
         /// </summary>
@@ -49,10 +48,16 @@ namespace UniTac {
         /// </summary>
         public bool IsActive { get; private set; } = false;
         /// <summary>
-        /// Radius of the field of view of the sensor. SensMax TAC-B 
-        /// sensors have a 10m radius.
+        /// Running lenght of the current session.
         /// </summary>
-        public float RangeOfView = 100;
+        public float CurrentSessionLength { get; private set; } = 0f;
+        /// <summary>
+        /// Data from the session before the current session. 
+        /// Null if current session is the first session.
+        /// </summary>
+        #nullable enable
+        public Session? LastSession { get; private set; }
+        #nullable disable
 
         // Private
         private float IdleTimer = 0f;

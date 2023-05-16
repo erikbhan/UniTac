@@ -13,10 +13,12 @@ public class SpawnOnEntity : MonoBehaviour
     /// <summary>
     /// GameObject to spawn representing entities.
     /// </summary>
+    [Tooltip("Spawnable 3D object")]
     public GameObject SpawnPrefab;
     /// <summary>
-    /// List of colors for spawned objects.
+    /// List of colors for spawned objects. Colors is assigned based on Id in this sample.
     /// </summary>
+    [Tooltip("Colors for spawned objects. Colors is assigned based on Id in this sample.")]
     public List<Color> colors = new(){
         Color.blue,
         Color.green,

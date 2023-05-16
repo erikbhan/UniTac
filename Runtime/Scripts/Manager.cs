@@ -20,6 +20,7 @@ namespace UniTac {
         /// <summary>
         /// The port the project should use. 
         /// </summary>
+        [Tooltip("Desired server port for the MQTT-broker.")]
         public int ServerPort = 1883;
 
         [Header("Debug settings")]
@@ -27,16 +28,19 @@ namespace UniTac {
         /// Boolean variable toggled in the Inspector GUI; enables logging to 
         /// the console if true.
         /// </summary>
+        [Tooltip("Turns logging to debug console on or off completely. Turning this off increases performance.")]
         public bool EnableLogging = false;
         /// <summary>
         /// The minimum log level a message from the server needs before it 
         /// is printed in console.
         /// </summary>
+        [Tooltip("The minimum log level a message from the server needs before it is printed in console.")]
         public LogLevel ServerLogLevel = LogLevel.None;
         /// <summary>
         /// The minimum log level a message from the client needs before it 
         /// is printed in console.
         /// </summary>
+        [Tooltip("The minimum log level a message from the client needs before it is printed in console.")]
         public LogLevel ClientLogLevel = LogLevel.None;
 
         [Header("Credentials")]
@@ -52,6 +56,7 @@ namespace UniTac {
         internal MqttServer Server { get; private set; }
         private IMqttClient Client;
         private readonly Dictionary<string, Sensor> Sensors = new();
+        public List<GameObject> SensorList = new();
 
         /// <summary>
         /// Start is called before the first frame update.
@@ -71,6 +76,7 @@ namespace UniTac {
             {
                 var sensor = child.GetComponent<Sensor>();
                 Sensors[sensor.Serial] = sensor;
+                SensorList.Add(child.gameObject);
             }
             Server = CreateServer(username, password);
             Client = CreateClient();
@@ -85,13 +91,13 @@ namespace UniTac {
         /// <returns>The server object.</returns>
         private MqttServer CreateServer(string username, string password) {
             var mqttFactory = new MqttFactory();
-
+#if UNITY_EDITOR
             if (EnableLogging && ServerLogLevel != LogLevel.None)
             {
                 Logger logger = new(ServerLogLevel);
                 mqttFactory = new MqttFactory(logger);
             }
-
+#endif
             var MqttServerOptions = new MqttServerOptionsBuilder()
                 .WithDefaultEndpoint()
                 .WithDefaultEndpointPort(ServerPort)
@@ -117,13 +123,13 @@ namespace UniTac {
         /// <returns>The client object.</returns>
         private IMqttClient CreateClient() {
             var mqttFactory = new MqttFactory();
-
+#if UNITY_EDITOR
             if (EnableLogging && ClientLogLevel != LogLevel.None) 
             {
                 Logger logger = new(ClientLogLevel);
                 mqttFactory = new MqttFactory(logger);
             }
-
+#endif
             var client = mqttFactory.CreateMqttClient();
             client.ApplicationMessageReceivedAsync += e => HandleMessage(e);
             return client;
