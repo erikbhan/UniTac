@@ -16,7 +16,7 @@ namespace UniTac
     public class DataPacketClient : MonoBehaviour
     {
         /// <summary>
-        /// Relative File path of log file.
+        /// Relative path to output file, a file wil be automatically generated with the name and filetype in the set path.
         /// </summary>
         [Tooltip("Relative path to output file, a file wil be automatically generated with the name and filetype in the set path.")]
         public string Path = "./Assets/5-minute-message-log.txt";
@@ -24,7 +24,7 @@ namespace UniTac
         /// The minimum log level a message from the client needs before it 
         /// is printed in Unity's debug console.
         /// </summary>
-        [Tooltip("Log level for logging to debug console. Does not effect function of the script.")]
+        [Tooltip("The minimum log level a message from the client needs before it is printed in Unity's debug console. Does not effect function of the script.")]
         public LogLevel LogLevel = LogLevel.None;
         private IMqttClient Client;
         private Manager Manager;
