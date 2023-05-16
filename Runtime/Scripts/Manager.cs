@@ -20,7 +20,7 @@ namespace UniTac {
         /// <summary>
         /// The port the project should use. 
         /// </summary>
-        [Tooltip("Server port for the MQTT-broker.")]
+        [Tooltip("Server port for the MQTT server.")]
         public int ServerPort = 1883;
 
         [Header("Debug settings")]
