@@ -13,7 +13,7 @@ public class SpawnOnEntity : MonoBehaviour
     /// <summary>
     /// GameObject to spawn representing entities.
     /// </summary>
-    [Tooltip("Spawnable 3D object")]
+    [Tooltip("Spawnable prefab")]
     public GameObject SpawnPrefab;
     /// <summary>
     /// List of colors for spawned objects. Colors is assigned based on Id in this sample.
