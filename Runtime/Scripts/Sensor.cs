@@ -14,7 +14,7 @@ namespace UniTac {
         /// <summary>
         /// Serial of the sensor to handle events from.
         /// </summary>
-        [Tooltip("Serialnumber of the physical sensor.")]
+        [Tooltip("Serial number of the physical sensor.")]
         public string Serial = "";
         /// <summary>
         /// Radius of the field of view of the sensor. SensMax TAC-B 
