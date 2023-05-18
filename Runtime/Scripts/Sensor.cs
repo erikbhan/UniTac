@@ -48,7 +48,7 @@ namespace UniTac {
         /// </summary>
         public bool IsActive { get; private set; } = false;
         /// <summary>
-        /// Running lenght of the current session.
+        /// Running length of the current session.
         /// </summary>
         public float CurrentSessionLength { get; private set; } = 0f;
         /// <summary>
