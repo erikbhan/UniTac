@@ -16,7 +16,7 @@ public class SpawnOnEntity : MonoBehaviour
     [Tooltip("Spawnable prefab")]
     public GameObject SpawnPrefab;
     /// <summary>
-    /// List of colors for spawned objects. Colors is assigned based on Id in this sample.
+    /// List of colors for spawned objects. Colors are assigned based on Id in this sample.
     /// </summary>
     [Tooltip("Colors for spawned objects. Colors is assigned based on Id in this sample.")]
     public List<Color> colors = new(){
