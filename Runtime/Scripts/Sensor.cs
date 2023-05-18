@@ -20,7 +20,7 @@ namespace UniTac {
         /// Radius of the field of view of the sensor. SensMax TAC-B 
         /// sensors have a 10m radius.
         /// </summary>
-        [Tooltip("Radius of the visual indicator showing the sensor's field of view. Does not effect the function of this script. SensMax TAC-B sensors have a 10m radius.")]
+        [Tooltip("Radius of the visual indicator showing the sensor's field of view. Has no effect on the function of this script. SensMax TAC-B sensors have a 10m radius.")]
         public float RangeOfView = 100;
         /// <summary>
         /// Seconds without messages from sensor before the session set to idle.
