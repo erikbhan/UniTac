@@ -72,7 +72,7 @@ $(function() {
   <div class="headertitle"><div class="title">SensMax TAC-B Unity integration </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p ><a class="anchor" id="md_README"></a> This Unity package is an integration of the SensMax's TAC-B line of sensors. It uses the <a href="https://github.com/dotnet/MQTTnet">MQTTnet</a> package to communicate with the sensor. It facilitates the use of multiple sensors in one project.</p>
+<div class="textblock"><p ><a class="anchor" id="md_README"></a> This Unity package is an integration of the SensMax's TAC-B line of sensors. It uses the <a href="https://github.com/dotnet/MQTTnet">MQTTnet</a> package to communicate with the sensor. It facilitates the use of multiple sensors in one project. This package is made for 3D projects, but is equally usable in 2D projects.</p>
 <p ><img src="https://github.com/erikbhan/UniTac/assets/42799026/6a9239cf-9510-4e96-bf74-1dcd17c3b8ef" alt="Gif of spawn entities sample in use" class="inline"/></p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Installation</h1>
@@ -86,7 +86,7 @@ Usage</h1>
 <p ><img src="https://github.com/erikbhan/UniTac/assets/42799026/cb563644-6f36-448c-9acc-9b1c875bf64b" alt="Manager inspector window" class="inline"/></p>
 <p >To handle incoming messages any sensors needs to be added. Use the "Add Sensor"-button on the manager Inspector window to add any number of sensors.</p>
 <p ><img src="https://github.com/erikbhan/UniTac/assets/42799026/2e2a6da1-d3ec-4657-a13f-740ea732c262" alt="Add sensor button" class="inline"/></p>
-<p >Configure each sensor via the Inspector window; you need to set the "serial" field equal to the physical sensor's serial number. Seconds until idle is simply the time from the last message until the sensor considers itself "idle".</p>
+<p >Configure each sensor via the Inspector window; you need to set the "serial" field equal to the physical sensor's serial number. Seconds until idle is simply the time from the last message until the sensor considers itself "idle". If using the sensor in a 2D project the sensor rotation must be set to X=90.</p>
 <p ><img src="https://github.com/erikbhan/UniTac/assets/42799026/cd2ff6c6-67d4-4ab5-bce4-b0b6151444d7" alt="Sensor inspector window" class="inline"/></p>
 <p >Finally, you need to add functionality to the sensor, either by adding a sample or your own script. Simply drag the wanted functionality onto the sensor GameObject in the Unity Hierarchy or use the "Add component"-button in the sensor inspector window.</p>
 <h2><a class="anchor" id="autotoc_md6"></a>

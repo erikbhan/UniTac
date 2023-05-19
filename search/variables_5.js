@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['path_0',['Path',['../classUniTac_1_1DataPacketClient.html#a928685f5c4d74de11a6df7739acfab43',1,'UniTac.DataPacketClient.Path()'],['../classLogSessionData.html#a1a7dcef5c2a24f87f330079a56237a88',1,'LogSessionData.Path()']]]
+  ['messagereceivedevent_0',['MessageReceivedEvent',['../classUniTac_1_1Sensor.html#ae95a87a94fa77069847f740e3a41a7d2',1,'UniTac::Sensor']]]
 ];

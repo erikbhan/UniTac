@@ -112,41 +112,41 @@ Public Attributes</h2></td></tr>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>Serial</b> = &quot;&quot;</td></tr>
 <tr class="memdesc:abdf6a896002edb65013b4330e2484687"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serial of the sensor to handle events from.  <br /></td></tr>
 <tr class="separator:abdf6a896002edb65013b4330e2484687"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acdb7edc99e4ac3302f3362d478c3c17a"><td class="memItemLeft" align="right" valign="top"><a id="acdb7edc99e4ac3302f3362d478c3c17a" name="acdb7edc99e4ac3302f3362d478c3c17a"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>SecondsUntilIdle</b> = 2f</td></tr>
-<tr class="memdesc:acdb7edc99e4ac3302f3362d478c3c17a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seconds without messages from sensor before the session set to idle.  <br /></td></tr>
-<tr class="separator:acdb7edc99e4ac3302f3362d478c3c17a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0d059bdc75d049632d239edd073df4d"><td class="memItemLeft" align="right" valign="top"><a id="aa0d059bdc75d049632d239edd073df4d" name="aa0d059bdc75d049632d239edd073df4d"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>RangeOfView</b> = 100</td></tr>
 <tr class="memdesc:aa0d059bdc75d049632d239edd073df4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Radius of the field of view of the sensor. SensMax TAC-B sensors have a 10m radius.  <br /></td></tr>
 <tr class="separator:aa0d059bdc75d049632d239edd073df4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
-Properties</h2></td></tr>
+<tr class="memitem:acdb7edc99e4ac3302f3362d478c3c17a"><td class="memItemLeft" align="right" valign="top"><a id="acdb7edc99e4ac3302f3362d478c3c17a" name="acdb7edc99e4ac3302f3362d478c3c17a"></a>
+float&#160;</td><td class="memItemRight" valign="bottom"><b>SecondsUntilIdle</b> = 2f</td></tr>
+<tr class="memdesc:acdb7edc99e4ac3302f3362d478c3c17a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Seconds without messages from sensor before the session set to idle.  <br /></td></tr>
+<tr class="separator:acdb7edc99e4ac3302f3362d478c3c17a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae95a87a94fa77069847f740e3a41a7d2"><td class="memItemLeft" align="right" valign="top"><a id="ae95a87a94fa77069847f740e3a41a7d2" name="ae95a87a94fa77069847f740e3a41a7d2"></a>
-UnityEvent&#160;</td><td class="memItemRight" valign="bottom"><b>MessageReceivedEvent</b> = new()<code> [get]</code></td></tr>
+UnityEvent&#160;</td><td class="memItemRight" valign="bottom"><b>MessageReceivedEvent</b></td></tr>
 <tr class="memdesc:ae95a87a94fa77069847f740e3a41a7d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is invoked when the a message is received.  <br /></td></tr>
 <tr class="separator:ae95a87a94fa77069847f740e3a41a7d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ea32da236e1d9cbafc0e8b142ec8b5a"><td class="memItemLeft" align="right" valign="top"><a id="a6ea32da236e1d9cbafc0e8b142ec8b5a" name="a6ea32da236e1d9cbafc0e8b142ec8b5a"></a>
-UnityEvent&#160;</td><td class="memItemRight" valign="bottom"><b>StatusChangedEvent</b> = new()<code> [get]</code></td></tr>
-<tr class="memdesc:a6ea32da236e1d9cbafc0e8b142ec8b5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is envoked when the sensor changes active/idle status.  <br /></td></tr>
+UnityEvent&#160;</td><td class="memItemRight" valign="bottom"><b>StatusChangedEvent</b></td></tr>
+<tr class="memdesc:a6ea32da236e1d9cbafc0e8b142ec8b5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Event that is invoked when the sensor changes active/idle status.  <br /></td></tr>
 <tr class="separator:a6ea32da236e1d9cbafc0e8b142ec8b5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
+Properties</h2></td></tr>
+<tr class="memitem:abcd147f7ff7f0a185c5bf300f323d2e6"><td class="memItemLeft" align="right" valign="top"><a id="abcd147f7ff7f0a185c5bf300f323d2e6" name="abcd147f7ff7f0a185c5bf300f323d2e6"></a>
+List&lt; <a class="el" href="classUniTac_1_1Models_1_1Entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Entities</b> = new()<code> [get]</code></td></tr>
+<tr class="memdesc:abcd147f7ff7f0a185c5bf300f323d2e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of entities currently detected by the sensor.  <br /></td></tr>
+<tr class="separator:abcd147f7ff7f0a185c5bf300f323d2e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8905735533e78f1ee9968553fc3df0e2"><td class="memItemLeft" align="right" valign="top"><a id="a8905735533e78f1ee9968553fc3df0e2" name="a8905735533e78f1ee9968553fc3df0e2"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsActive</b> = false<code> [get]</code></td></tr>
+<tr class="memdesc:a8905735533e78f1ee9968553fc3df0e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bool representing if the sensor is currently active. The sensor is active if it has received a message in less time than the time set by <a class="el" href="classUniTac_1_1Sensor.html#acdb7edc99e4ac3302f3362d478c3c17a" title="Seconds without messages from sensor before the session set to idle.">SecondsUntilIdle</a>.  <br /></td></tr>
+<tr class="separator:a8905735533e78f1ee9968553fc3df0e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a39ab1eda32ac8d29b8bd1eb0e10af607"><td class="memItemLeft" align="right" valign="top"><a id="a39ab1eda32ac8d29b8bd1eb0e10af607" name="a39ab1eda32ac8d29b8bd1eb0e10af607"></a>
 float&#160;</td><td class="memItemRight" valign="bottom"><b>CurrentSessionLength</b> = 0f<code> [get]</code></td></tr>
-<tr class="memdesc:a39ab1eda32ac8d29b8bd1eb0e10af607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running lenght of the current session.  <br /></td></tr>
+<tr class="memdesc:a39ab1eda32ac8d29b8bd1eb0e10af607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Running length of the current session.  <br /></td></tr>
 <tr class="separator:a39ab1eda32ac8d29b8bd1eb0e10af607"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a923001628da884ff8e83229751b9a552"><td class="memItemLeft" align="right" valign="top"><a id="a923001628da884ff8e83229751b9a552" name="a923001628da884ff8e83229751b9a552"></a>
 <a class="el" href="classUniTac_1_1Models_1_1Session.html">Session</a>?&#160;</td><td class="memItemRight" valign="bottom"><b>LastSession</b><code> [get]</code></td></tr>
 <tr class="memdesc:a923001628da884ff8e83229751b9a552"><td class="mdescLeft">&#160;</td><td class="mdescRight">Data from the session before the current session. Null if current session is the first session.  <br /></td></tr>
 <tr class="separator:a923001628da884ff8e83229751b9a552"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa646d9d20094693b6184f6dcc27d86ee"><td class="memItemLeft" align="right" valign="top"><a id="aa646d9d20094693b6184f6dcc27d86ee" name="aa646d9d20094693b6184f6dcc27d86ee"></a>
-Dictionary&lt; long, <a class="el" href="classUniTac_1_1Models_1_1Entity.html">Entity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>Entities</b> = new()<code> [get]</code></td></tr>
-<tr class="memdesc:aa646d9d20094693b6184f6dcc27d86ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of entities currently detected by the sensor.  <br /></td></tr>
-<tr class="separator:aa646d9d20094693b6184f6dcc27d86ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8905735533e78f1ee9968553fc3df0e2"><td class="memItemLeft" align="right" valign="top"><a id="a8905735533e78f1ee9968553fc3df0e2" name="a8905735533e78f1ee9968553fc3df0e2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>IsActive</b> = false<code> [get]</code></td></tr>
-<tr class="memdesc:a8905735533e78f1ee9968553fc3df0e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bool representing if the sensor is currently active. The sensor is active if it has received a message in less time than the time set by <a class="el" href="classUniTac_1_1Sensor.html#acdb7edc99e4ac3302f3362d478c3c17a" title="Seconds without messages from sensor before the session set to idle.">SecondsUntilIdle</a>.  <br /></td></tr>
-<tr class="separator:a8905735533e78f1ee9968553fc3df0e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >Script for the sensor gameobject that handles functionality.  </p>
