@@ -20,26 +20,35 @@ namespace UniTac {
         /// <summary>
         /// The port the project should use. 
         /// </summary>
+        [Tooltip("Server port for the MQTT server.")]
         public int ServerPort = 1883;
+
+        [Header("Debug settings")]
         /// <summary>
         /// Boolean variable toggled in the Inspector GUI; enables logging to 
         /// the console if true.
         /// </summary>
+        [Tooltip("Turns logging to debug console on or off completely. Turning this off increases performance.")]
         public bool EnableLogging = false;
         /// <summary>
         /// The minimum log level a message from the server needs before it 
         /// is printed in console.
         /// </summary>
+        [Tooltip("The minimum log level a message from the server needs before it is printed in console.")]
         public LogLevel ServerLogLevel = LogLevel.None;
         /// <summary>
         /// The minimum log level a message from the client needs before it 
         /// is printed in console.
         /// </summary>
+        [Tooltip("The minimum log level a message from the client needs before it is printed in console.")]
         public LogLevel ClientLogLevel = LogLevel.None;
+
+        [Header("Credentials")]
         /// <summary>
-        /// The path to file with username and password for MQTT-protocol. 
+        /// The relative path to file with username and password for MQTT-protocol. 
         /// If left empty no username or password will be sett.
         /// </summary>
+        [Tooltip("The relative path to a txt-file containing {\"username\":\"YOUR_USERNAME\",\"password\":\"SECRET_PASSWORD\"}")]
         public string SecretsFilePath = string.Empty;
         /// <summary>
         /// The MQTT server.
@@ -47,6 +56,7 @@ namespace UniTac {
         internal MqttServer Server { get; private set; }
         private IMqttClient Client;
         private readonly Dictionary<string, Sensor> Sensors = new();
+        public List<GameObject> SensorList = new();
 
         /// <summary>
         /// Start is called before the first frame update.
@@ -66,6 +76,7 @@ namespace UniTac {
             {
                 var sensor = child.GetComponent<Sensor>();
                 Sensors[sensor.Serial] = sensor;
+                SensorList.Add(child.gameObject);
             }
             Server = CreateServer(username, password);
             Client = CreateClient();
@@ -80,13 +91,13 @@ namespace UniTac {
         /// <returns>The server object.</returns>
         private MqttServer CreateServer(string username, string password) {
             var mqttFactory = new MqttFactory();
-
+#if UNITY_EDITOR
             if (EnableLogging && ServerLogLevel != LogLevel.None)
             {
                 Logger logger = new(ServerLogLevel);
                 mqttFactory = new MqttFactory(logger);
             }
-
+#endif
             var MqttServerOptions = new MqttServerOptionsBuilder()
                 .WithDefaultEndpoint()
                 .WithDefaultEndpointPort(ServerPort)
@@ -112,13 +123,13 @@ namespace UniTac {
         /// <returns>The client object.</returns>
         private IMqttClient CreateClient() {
             var mqttFactory = new MqttFactory();
-
+#if UNITY_EDITOR
             if (EnableLogging && ClientLogLevel != LogLevel.None) 
             {
                 Logger logger = new(ClientLogLevel);
                 mqttFactory = new MqttFactory(logger);
             }
-
+#endif
             var client = mqttFactory.CreateMqttClient();
             client.ApplicationMessageReceivedAsync += e => HandleMessage(e);
             return client;
@@ -131,7 +142,7 @@ namespace UniTac {
         private async void ConnectClient(string username, string password)
         {
             var mqttClientOptions = new MqttClientOptionsBuilder()
-                .WithTcpServer("127.0.0.1")
+                .WithTcpServer("127.0.0.1", ServerPort)
                 .WithCredentials(username, password)
                 .Build();
             

@@ -14,21 +14,41 @@ namespace UniTac {
         /// <summary>
         /// Serial of the sensor to handle events from.
         /// </summary>
+        [Tooltip("Serial number of the physical sensor.")]
         public string Serial = "";
+        /// <summary>
+        /// Radius of the field of view of the sensor. SensMax TAC-B 
+        /// sensors have a 10m radius.
+        /// </summary>
+        [Tooltip("Radius of the visual indicator showing the sensor's field of view. Has no effect on the function of this script. SensMax TAC-B sensors have a 10m radius.")]
+        public float RangeOfView = 100;
         /// <summary>
         /// Seconds without messages from sensor before the session set to idle.
         /// </summary>
+        [Tooltip("Seconds without messages from sensor before the session set to idle.")]
         public float SecondsUntilIdle = 2f;
+
+        [Header("Sensor events")]
         /// <summary>
         /// Event that is invoked when the a message is received.
         /// </summary>
-        public UnityEvent MessageReceivedEvent { get; } = new();
+        public UnityEvent MessageReceivedEvent;
         /// <summary>
-        /// Event that is envoked when the sensor changes active/idle status.
+        /// Event that is invoked when the sensor changes active/idle status.
         /// </summary>
-        public UnityEvent StatusChangedEvent { get; } = new();
+        public UnityEvent StatusChangedEvent;
         /// <summary>
-        /// Running lenght of the current session.
+        /// List of entities currently detected by the sensor.
+        /// </summary>
+        public List<Entity> Entities { get; private set; } = new();
+        /// <summary>
+        /// Bool representing if the sensor is currently active. 
+        /// The sensor is active if it has received a message in less time 
+        /// than the time set by <see cref="SecondsUntilIdle"/>.
+        /// </summary>
+        public bool IsActive { get; private set; } = false;
+        /// <summary>
+        /// Running length of the current session.
         /// </summary>
         public float CurrentSessionLength { get; private set; } = 0f;
         /// <summary>
@@ -38,21 +58,6 @@ namespace UniTac {
         #nullable enable
         public Session? LastSession { get; private set; }
         #nullable disable
-        /// <summary>
-        /// List of entities currently detected by the sensor.
-        /// </summary>
-        public Dictionary<long, Entity> Entities { get; private set; } = new();
-        /// <summary>
-        /// Bool representing if the sensor is currently active. 
-        /// The sensor is active if it has received a message in less time 
-        /// than the time set by <see cref="SecondsUntilIdle"/>.
-        /// </summary>
-        public bool IsActive { get; private set; } = false;
-        /// <summary>
-        /// Radius of the field of view of the sensor. SensMax TAC-B 
-        /// sensors have a 10m radius.
-        /// </summary>
-        public float RangeOfView = 100;
 
         // Private
         private float IdleTimer = 0f;
@@ -69,12 +74,7 @@ namespace UniTac {
         /// </param>
         public void HandleMessage(Payload payload) {
             IdleTimer = SecondsUntilIdle;
-            var temp = new Dictionary<long, Entity>();
-            foreach (Entity e in payload.Entities.Values.ToList())
-            {
-                temp.Add(e.Id, e);
-            }
-            Entities = temp;
+            Entities = payload.Entities.Values.ToList();
             MessageReceivedEvent.Invoke();
         }
 
@@ -128,7 +128,7 @@ namespace UniTac {
             if (!Entities.Any()) return null;
             Entity? closestEntity = null;
             double distance = Double.PositiveInfinity;
-            foreach (var e in Entities.Values)
+            foreach (var e in Entities)
             {
                 var d = e.DistanceFromParent();
                 if (d < distance)
@@ -146,7 +146,7 @@ namespace UniTac {
         /// <param name="id">The id of the entity</param>
         /// <returns><see cref="Entity"/> the entity or null if not found.</returns>
         public Entity? GetEntity(long id) { 
-            return Entities.ContainsKey(id) ? Entities[id] : null; 
+            return Entities.Find(e => { return e.Id == id; }); 
         }
         #nullable disable
 

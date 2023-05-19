@@ -9,8 +9,9 @@ using UniTac;
 public class LogSessionData : MonoBehaviour
 {
     /// <summary>
-    /// File path of logfile.
+    /// Relative path to log file. Default path is set to "./Assets/SerialNumber-Log.txt".
     /// </summary>
+    [Tooltip("Relative path to log file. Default path is set to \"./Assets/SerialNumber-Log.txt\".")]
     public string Path = "";
     private Sensor Sensor = null;
 

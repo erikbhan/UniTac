@@ -13,22 +13,25 @@ public class SpawnOnEntity : MonoBehaviour
     /// <summary>
     /// GameObject to spawn representing entities.
     /// </summary>
-    public GameObject SpawnPrefab = null;
+    [Tooltip("Spawnable prefab")]
+    public GameObject SpawnPrefab;
     /// <summary>
-    /// List of colors for spawned objects.
+    /// List of colors for spawned objects. Colors are assigned based on Id in this sample.
     /// </summary>
+    [Tooltip("Colors for spawned objects. Colors are assigned based on Id in this sample.")]
     public List<Color> colors = new(){
         Color.blue,
         Color.green,
         Color.red,
         Color.yellow,
     };
-
+   
     // Private
-    private bool newMessageRecieved = false;
+    private bool newMessageReceived = false;
     private readonly Queue<Entity> UpdateQueue = new();
     private readonly Dictionary<long, GameObject> Spawned = new();
-    private Sensor Sensor = null;
+    private List<GameObject> Entities;
+    private Sensor Sensor;
 
     /// <summary>
     /// Start is called before the first frame update.
@@ -49,9 +52,9 @@ public class SpawnOnEntity : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (newMessageRecieved)
+        if (newMessageReceived)
         {
-            newMessageRecieved = false;
+            newMessageReceived = false;
             TransformOrInstantiateEntities(UpdateQueue);
         }
     }
@@ -83,6 +86,7 @@ public class SpawnOnEntity : MonoBehaviour
                 newBean.transform.localPosition = new Vector3(entity.X[0] / 10f, 0f, entity.Y[0] / 10f);
                 if (colors.Any()) newBean.GetComponent<MeshRenderer>().material.color = colors[(int)entity.Id % colors.Count];
                 Spawned.Add(entity.Id, newBean);
+                Entities.Add(Spawned[entity.Id]);
             }
         }
     }
@@ -92,11 +96,11 @@ public class SpawnOnEntity : MonoBehaviour
     /// </summary>
     private void Spawn()
     {
-        foreach (Entity entity in Sensor.Entities.Values.ToList<Entity>())
+        foreach (Entity entity in Sensor.Entities)
         {
             UpdateQueue.Enqueue(entity);
         }
-        newMessageRecieved = true;
+        newMessageReceived = true;
     }
 
     /// <summary>
@@ -109,5 +113,6 @@ public class SpawnOnEntity : MonoBehaviour
             Destroy(spawn);
         }
         Spawned.Clear();
+        Entities.Clear();
     }
 }

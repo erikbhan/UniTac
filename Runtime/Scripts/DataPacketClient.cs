@@ -16,13 +16,15 @@ namespace UniTac
     public class DataPacketClient : MonoBehaviour
     {
         /// <summary>
-        /// File path of logfile. If no file exist it will be created.
+        /// Relative path to output file, a file wil be automatically generated with the name and filetype in the set path.
         /// </summary>
+        [Tooltip("Relative path to output file, a file wil be automatically generated with the name and filetype in the set path.")]
         public string Path = "./Assets/5-minute-message-log.txt";
         /// <summary>
         /// The minimum log level a message from the client needs before it 
         /// is printed in Unity's debug console.
         /// </summary>
+        [Tooltip("The minimum log level a message from the client needs before it is printed in Unity's debug console. Does not effect function of the script.")]
         public LogLevel LogLevel = LogLevel.None;
         private IMqttClient Client;
         private Manager Manager;
@@ -58,13 +60,13 @@ namespace UniTac
         private IMqttClient CreateClient()
         {
             var mqttFactory = new MqttFactory();
-
+#if UNITY_EDITOR
             if (LogLevel != LogLevel.None)
             {
                 Logger logger = new(LogLevel);
                 mqttFactory = new MqttFactory(logger);
             }
-
+#endif
             var client = mqttFactory.CreateMqttClient();
             client.ApplicationMessageReceivedAsync += e => HandleMessage(e);
             return client;

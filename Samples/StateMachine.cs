@@ -9,19 +9,23 @@ public class StateMachine : MonoBehaviour
     /// <summary>
     /// GameObject thats is active if the sensor is detecting entities.
     /// </summary>
+    [Tooltip("GameObject thats is active if the sensor is detecting entities.")]
     public GameObject ActiveAnimation;
     /// <summary>
     /// GameObject thats is active if the sensor is not detecting entities.
     /// </summary>
+    [Tooltip("GameObject thats is active if the sensor is not detecting entities.")]
     public GameObject IdleAnimation;
     /// <summary>
     /// GameObject thats is active if the sensor has not detected entities for the set time.
     /// </summary>
+    [Tooltip("GameObject thats is active if the sensor has not detected entities for the set time.")]
     public GameObject IdleAnimation2;
     /// <summary>
     /// Number of second before second idle animation is set active.
     /// </summary>
-    public float IdleTimeUntilSecondAnimation = 300f;
+    [Tooltip("Number of second before second idle animation is set active.")]
+    public float IdleTimeUntilSecondAnimation = 30f;
 
     private Sensor Sensor;
     private bool IsActive = false;

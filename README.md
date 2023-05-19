@@ -1,6 +1,6 @@
 # SensMax TAC-B Unity integration
 
-This Unity package is an integration of the SensMax's TAC-B line of sensors. It uses the [MQTTnet](https://github.com/dotnet/MQTTnet) package to communicate with the sensor. It facilitates the use of multiple sensors in one project.
+This Unity package is an integration of the SensMax's TAC-B line of sensors. It uses the [MQTTnet](https://github.com/dotnet/MQTTnet) package to communicate with the sensor. It facilitates the use of multiple sensors in one project. This package is made for 3D projects, but is equally usable in 2D projects.
 
 ![Gif of spawn entities sample in use](https://github.com/erikbhan/UniTac/assets/42799026/6a9239cf-9510-4e96-bf74-1dcd17c3b8ef)
 
@@ -24,7 +24,7 @@ To handle incoming messages any sensors needs to be added. Use the "Add Sensor"-
 
 ![Add sensor button](https://github.com/erikbhan/UniTac/assets/42799026/2e2a6da1-d3ec-4657-a13f-740ea732c262)
 
-Configure each sensor via the Inspector window; you need to set the "serial" field equal to the physical sensor's serial number. Seconds until idle is simply the time from the last message until the sensor considers itself "idle".
+Configure each sensor via the Inspector window; you need to set the "serial" field equal to the physical sensor's serial number. Seconds until idle is simply the time from the last message until the sensor considers itself "idle". If using the sensor in a 2D project the sensor rotation must be set to X=90.
 
 ![Sensor inspector window](https://github.com/erikbhan/UniTac/assets/42799026/cd2ff6c6-67d4-4ab5-bce4-b0b6151444d7)
 
@@ -32,7 +32,7 @@ Finally, you need to add functionality to the sensor, either by adding a sample 
 
 ### Sensor Events
 
-The sensor implements the [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern), utilizing [UnityEvent](https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html). Because the sensor only sends a new packet every 100ms, we avoid some overhead by not checking the sensor every frame. In addition, you can add as many listeners as you want without creating unnecessary coupling in your code. 
+The sensor implements the [observer pattern](https://en.wikipedia.org/wiki/Observer_pattern), utilizing [UnityEvent](https://docs.unity3d.com/ScriptReference/Events.UnityEvent.html). Because the sensor only sends a new packet every 100ms, we avoid some overhead by not checking the sensor every frame. In addition, you can add as many listeners as you want without creating unnecessary coupling in your code.
 
 | UnityEvent | Functionality |
 | --- | --- |
